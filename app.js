@@ -61,4 +61,11 @@ module.exports = app;
 var server = app.listen(3000, function(){
 	console.log('Listening on port %d', server.address().port);
 });
-io.listen(server);
+io.listen(3001);
+console.log(io.sockets);
+//io.sockets.on('connection', function(socket){
+//	socket.emit('news', {hello: 'world'});
+//	socket.on('my other event', function(data) {
+//		console.log(data);
+//	});
+//});
