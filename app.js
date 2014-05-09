@@ -5,6 +5,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var io = require ('socket.io');
 
 var routes = require('./routes');
 var users = require('./routes/user');
@@ -60,3 +61,4 @@ module.exports = app;
 var server = app.listen(3000, function(){
 	console.log('Listening on port %d', server.address().port);
 });
+io.listen(server);

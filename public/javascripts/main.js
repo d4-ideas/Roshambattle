@@ -50,4 +50,4 @@ $(document).ready(function() {
 	setInterval(function() {
 		dot_move();
 	}, dotSpeed);
-})
+});

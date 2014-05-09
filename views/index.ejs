@@ -5,6 +5,14 @@
     	<title>RPS Demo</title>
 		<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="main.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			var socket=io.connect('/');
+			socket.on('news', function(data){
+				console.log(data);
+				socket.emit('my other event', {my:'data'});
+			});
+		</script>
 	</head>
 	<body>
 		<div id="cover"><div id="line"><div id="dot"></div></div></div>
