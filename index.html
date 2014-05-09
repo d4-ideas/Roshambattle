@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>RPS Demo</title>
+        <style>
+            #line {
+                position: relative;
+                top: 0px;
+                left:0px;
+                width: 100%;
+                height: 2px;
+                background: #0F0;
+                opacity: .2;
+                z-index: 100;
+            }
+
+            #dot {
+                position: relative;
+                left: 10px;
+                width: 20px;
+                height: 2px;
+                background: #000;
+                opacity: 1;
+            }
+
+            #cover {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 200px;
+            }
+
+            body {
+                background: #000;
+                background-image: url('evenBG.gif');
+                color: #FFF;
+                font-size: 14px;
+                font-family: "Courier",fixed,monospace;
+            }
+
+            #content {
+                margin:20px 20px 0px 20px;
+                position: relative;
+                opacity: .6;
+                z-index: 50;
+                color: #0F0;
+                text-shadow: 0px 0px 3px;
+                text-transform:uppercase;
+            }
+            table {
+                width: 100%;
+                margin-bottom: 40px;
+                border-collapse: collapse;
+            }
+            tr {
+                
+            }
+            th {
+                font-weight: bold;
+                text-align: left;
+                border-bottom: 1px solid;
+                padding: 0 5px;
+            }
+            td {
+                vertical-align: top;
+                border-bottom: 1px solid;
+                padding: 10px 5px;
+            }
+            td p {
+                margin: 0;
+            }
+        </style>
+        <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                var lineHeight = $('#line').height();
+                var dotWidth = $('#dot').width();
+                var desiredBottom = 0;
+                var lineStart = $('#line').css('top');
+                var dotStart = $('#dot').css('left');
+                var lineSpeed = 5000;
+                var dotSpeed = lineSpeed / 2;
+
+                var windowHeight = $(window).height();
+                var windowWidth = $(window).width();
+                var newPosition = windowHeight - (lineHeight + desiredBottom);
+                var newPositionDot = windowWidth - dotWidth;                
+                
+                function move() {
+                    $('#line').animate({
+                        top: newPosition
+                    }, lineSpeed);
+                    $('#line').animate({
+                        top: lineStart
+                    }, 0);
+                };
+
+                function dot_move() {
+                    $('#dot').animate({
+                        left: newPositionDot
+                    }, dotSpeed);
+                    $('#dot').animate({
+                        left: dotStart
+                    }, 0);
+                }
+
+                $(window).resize(function() {
+                    windowHeight = $(window).height();
+                    windowWidth = $(window).width();
+                    newPosition = windowHeight - (lineHeight + desiredBottom);
+                    newPositionDot = windowWidth - dotWidth;
+                    $("#cover").height(windowHeight);
+                });
+
+                $("#w0").focus();
+
+                $("#cover").height(windowHeight);
+                
+                move();
+                dot_move();
+                setInterval(function() {
+                    move();
+                }, lineSpeed);
+                setInterval(function() {
+                    dot_move();
+                }, dotSpeed);
+            })
+        </script>
+	</head>
+	<body>
+        
+    <div id="cover"><div id="line"><div id="dot"></div></div></div>
+
+    <div id="content">
+        <h3>Welcome: Player 1</h3>
+        <h4>Current Score: 3 out of 6 (50% efficiency)</h4>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Round</th>
+                    <th>Weapon</th>
+                    <th>Committed</th>
+                    <th>Results</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Rock</td>
+                    <td>04/22/2014 11:11:11</td>
+                    <td>
+                        <p>@ 04/22/2014 11:11:12</p>
+                        <p>Player 2: Win</p>
+                        <p>Player 3: Loss</p>
+                        <p>Player 4: Tie</p>
+                        <p>Score: 1 out of 3 (33.33% efficiency)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Paper</td>
+                    <td>04/29/2014 11:11:11</td>
+                    <td>
+                        <p>@ 04/29/2014 12:22:22</p>
+                        <p>Player 2: Win</p>
+                        <p>Player 3: Loss</p>
+                        <p>Player 4: Win</p>
+                        <p>Score: 2 out of 3 (66.66% efficiency)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>
+                        <input type="radio" id="w0" name="weapon" value="rock"><label for="w0">Rock</label><br>
+                        <input type="radio" id="w1" name="weapon" value="paper"><label for="w1">Paper</label><br>
+                        <input type="radio" id="w2" name="weapon" value="scissors"><label for="w2">Scissors</label>
+                    </td>
+                    <td>
+                        <input type="submit" value="Commit Weapon">
+                    </td>
+                    <td>TBD</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p>Bragging Rights</p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Vs.</th>
+                    <th>Results</th>
+                    <th>Efficiency</th>
+                    <th>Trending</th>
+                </tr>
+                <tr>
+                    <td>Player 2</td>
+                    <td>2 of 2</td>
+                    <td>100%</td>
+                    <td>No Change</td>
+                </tr>
+                <tr>
+                    <td>Player 3</td>
+                    <td>0 of 2</td>
+                    <td>0%</td>
+                    <td>No Change</td>
+                </tr>
+                <tr>
+                    <td>Player 4</td>
+                    <td>1 of 2</td>
+                    <td>50%</td>
+                    <td>Up</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        
+    </body>
+</html>
