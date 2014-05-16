@@ -1,3 +1,7 @@
+/*
+ * Scan Lines Code sourced from http://www.wittworksproductions.com/2012/12/scan-lines-with-javascript/
+ */
+
 $(document).ready(function() {
 	var lineHeight = $('#line').height();
 	var dotWidth = $('#dot').width();
