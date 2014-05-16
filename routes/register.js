@@ -17,7 +17,7 @@ exports.registerPost = function (req, res) {
     var returnData,
         hashedPassword = shaSum.digest('hex'),
         ourContent = {authentication:{type:'default',
-                                      details: {emailAdddress: req.body.emailAddress,
+                                      details: {emailAddress: req.body.emailAddress,
                                       password: hashedPassword}},
                       displayName: req.body.displayName,
                       createdOn: Date.now()};
@@ -26,10 +26,8 @@ exports.registerPost = function (req, res) {
     user.register(ourContent, function(err, data){
         if (err){
             //should improve error cases
-            console.log('registerPost Error: ' + err);
-            res.statusCode = 500;
-            res.body = err;
-            res.end();
+            console.log('registerPost Error: ' + err.error);
+            res.status(500).json({status:'error',reason:err.error});
         } else {
             console.log('registerPost Success');
             res.json({status:'approved'});
