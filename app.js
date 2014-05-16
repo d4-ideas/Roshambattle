@@ -7,8 +7,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var io = require ('socket.io');
 
+//routes
 var routes = require('./routes');
 var users = require('./routes/user');
+var login = require('./routes/login');
+var logout = require('./routes/logout');
+var register = require('./routes/register');
 
 var app = express();
 
@@ -36,6 +40,11 @@ app.use(app.router);
 
 app.get('/', routes.index);
 app.get('/users', users.list);
+app.get('/register', register.registerGet);
+app.post('/register', register.registerPost);
+app.get('/login', login.loginGet);
+app.post('/login', login.loginPost);
+app.get('/logout', logout.logout);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
@@ -66,11 +75,22 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
 module.exports = app;
 var server = app.listen(3000, function(){
+    console.log('          / \\');
+    console.log('         / 3 \\');
+    console.log('        /     \\');
+    console.log('       /       \\');
+    console.log('      /   d 4   \\');
+    console.log('     /   ideas   \\');
+    console.log('    /             \\');
+    console.log('   /               \\');
+    console.log('  / 1             2 \\');
+    console.log(' /___________________\\');
 	console.log('Listening on port %d', server.address().port);
-});
+    console.log('Press ctrl+c to exit');
+});    
+
 var serv_io = io.listen(server);
 serv_io.sockets.on('connection', function(socket){
 	socket.emit('news', {hello: 'world'});
