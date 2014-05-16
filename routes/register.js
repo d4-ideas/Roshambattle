@@ -22,37 +22,17 @@ exports.registerPost = function (req, res) {
                       displayName: req.body.displayName,
                       createdOn: Date.now()};
     console.log('call register');
-    user.register(ourContent);
-        /*
-        ourPost = http.request(options, function (returnRes) {
-            returnRes.setEncoding('utf8');
-
-            returnRes.on('data', function (chunk) {
-                if (typeof returnData !== 'undefined') {
-                    returnData += chunk;
-                } else {
-                    returnData = chunk;
-                }
-            });
-            returnRes.on('end', function () {
-                returnData = JSON.parse(returnData);
-                if (typeof returnData.error !== 'undefined') {
-                    res.json({status: 'error', 'reason': returnData.error});
-                } else {
-                    req.session.userID = returnData.userID;
-                    //return success to the client
-                    res.json({status: 'approved'});
-                }
-            });
-        });
-        */
-    
-    ourPost.on('error', function (e) {
-        console.log('problem with request: ' + e.message);
-        res.json({status: 'error' + e.message});
+    if (ourContent.displayName === 'ZTM'){
+        ourContent = undefined;
+    }
+    user.register(ourContent, function(err, data){
+        if (err){
+            console.log('registerPost Error: ' + err);
+            res.statusCode = 500;
+            res.body = err;
+        } else {
+            console.log('registerPost Success');
+            res.json = data;
+        }
     });
-
-    // write data to request body
-    ourPost.write(ourContent);
-    ourPost.end();
 };
