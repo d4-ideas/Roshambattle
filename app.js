@@ -26,9 +26,6 @@ db.once('open', function callback(){
    console.log('Connected to Mongo'); 
 });
 
-var d4users = require('d4-user');
-d4users.init(mongoose);
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
