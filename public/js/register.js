@@ -18,7 +18,7 @@ $(document).ready(function () {
         posting.done(function (data) {
             console.log(data);
             if (data.status === "approved") {
-                window.location.assign("/Pin");
+                window.location.assign("/");
             } else if (data.status === "error") {
                 $("#error").text(data.reason);
             }

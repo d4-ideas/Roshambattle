@@ -7,7 +7,7 @@ exports.registerGet = function (req, res) {
 
 exports.registerPost = function (req, res) {
     console.log('enter registerPost');
-    //req.session.username = req.body.emailAdddress;
+    req.session.username = req.body.emailAdddress;
     var crypto = require('crypto'),
         shaSum = crypto.createHash('md5'),
         password = req.body.password + 'd4bacon';
@@ -22,17 +22,17 @@ exports.registerPost = function (req, res) {
                       displayName: req.body.displayName,
                       createdOn: Date.now()};
     console.log('call register');
-    if (ourContent.displayName === 'ZTM'){
-        ourContent = undefined;
-    }
+
     user.register(ourContent, function(err, data){
         if (err){
+            //should improve error cases
             console.log('registerPost Error: ' + err);
             res.statusCode = 500;
             res.body = err;
+            res.end();
         } else {
             console.log('registerPost Success');
-            res.json = data;
+            res.json({status:'approved'});
         }
     });
 };
