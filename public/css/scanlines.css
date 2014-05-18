@@ -1,0 +1,132 @@
+/* Scan Lines */
+#line {
+    display: block;
+	position: relative;
+	top: 0px;
+	left:0px;
+	width: 100%;
+	height: 2px;
+	background: #0F0;
+	opacity: .2;
+	z-index: 100;
+}
+#dot {
+    display: block;
+	position: relative;
+	left: 10px;
+	width: 20px;
+	height: 2px;
+	background: #000;
+	opacity: 1;
+}
+#cover {
+    display: block;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 200px;
+}
+
+/* Main Styles */
+body.theme-scanlines {
+	background: #000;
+	background-image: url('/images/evenBG.gif');
+	color: #FFF;
+	font-size: 14px;
+	font-family: "Courier",fixed,monospace;
+}
+body.theme-scanlines #content {
+	position: relative;
+	opacity: .6;
+	z-index: 50;
+	color: #0F0;
+	text-shadow: 0px 0px 3px;
+	text-transform:uppercase;
+}
+body.theme-scanlines #error {
+    color: #0f0;
+    -webkit-animation: opacity 2s infinite;
+    -moz-animation: opacity 2s infinite;
+    -o-animation: opacity 2s infinite;
+    -ms-animation: opacity 2s infinite;
+    animation: opacity 2s infinite;
+}
+@-webkit-keyframes opacity {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+@-moz-keyframes opacity {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+@-ms-keyframes opacity {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+@-o-keyframes opacity {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+@keyframes opacity {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+body.theme-scanlines #theme-widget input:checked + label {
+    color: #ff0;
+}
+
+/* Registration & Login */
+body.theme-scanlines.user-form input[type=text],
+body.theme-scanlines.user-form input[type=password]{
+    opacity: 0.8;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+}
+body.theme-scanlines.user-form input[type=text]:focus,
+body.theme-scanlines.user-form input[type=password]:focus {
+    opacity: 1.0;
+}
+body.theme-scanlines.user-form ::-webkit-input-placeholder {
+    color: #060;
+    font-family: "Courier",fixed,monospace;
+    text-transform:uppercase;
+    font-weight: bold;
+    opacity: 1.0;
+}
+body.theme-scanlines.user-form :-moz-placeholder { /* Firefox 18- */
+    color: #060;
+    font-family: "Courier",fixed,monospace;
+    text-transform:uppercase;
+    font-weight: bold;
+    opacity: 1.0;
+}
+body.theme-scanlines.user-form  ::-moz-placeholder {  /* Firefox 19+ */
+    color: #060;
+    font-family: "Courier",fixed,monospace;
+    text-transform:uppercase;
+    font-weight: bold;
+    opacity: 1.0;
+}
+body.theme-scanlines.user-form  :-ms-input-placeholder {  
+    color: #060;
+    font-family: "Courier",fixed,monospace;
+    text-transform:uppercase;
+    font-weight: bold;
+    opacity: 1.0;
+}
+body.theme-scanlines.user-form input {  
+    font-family: "Courier",fixed,monospace;
+}
+
+/* Theme Widget*/
+body.theme-scanlines #theme-widget {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

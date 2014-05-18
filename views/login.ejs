@@ -2,15 +2,18 @@
 <html>
 	<head>
 	<title><%= title %></title>
+    <link rel='stylesheet' href='/css/style.css' />
+    <link rel='stylesheet' href='/css/scanlines.css' />
+    <link rel='stylesheet' href='/css/lcd.css' />
     <script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
     <script src="/js/login.js"></script>
     <script src="/js/md5-min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
 	<script type="text/javascript" src="/js/scanlines.js"></script>
-    <link rel='stylesheet' href='/css/style.css' />
     <script>
     </script>
 	</head>
-	<body class="user-form">
+	<body class="user-form theme-scanlines">
         <div id="cover"><div id="line"><div id="dot"></div></div></div>
         <div id="content">
             <h1><%= title %></h1>
@@ -23,6 +26,12 @@
                     <br>
                     <input type="submit" value="Unlock The Gates!" name="Submit">
                 </form>
+            </div>
+            <div id="theme-widget">
+                <span>Theme:</span>
+                <input type="radio" id="theme0" name="theme-options" value="none"><label for="theme0">0</label> | 
+                <input type="radio" id="theme1" name="theme-options" value="scanlines" checked="checked"><label for="theme1">1</label> | 
+                <input type="radio" id="theme2" name="theme-options" value="lcd"><label for="theme2">2</label>
             </div>
         </div>
 	</body>

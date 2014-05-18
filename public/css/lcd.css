@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'liquid_crystalregular';
+    src: url('fonts/liquidcrystal-normal-webfont.eot');
+    src: url('fonts/liquidcrystal-normal-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/liquidcrystal-normal-webfont.woff') format('woff'),
+         url('fonts/liquidcrystal-normal-webfont.ttf') format('truetype'),
+         url('fonts/liquidcrystal-normal-webfont.svg#liquid_crystalregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body.theme-lcd {
+    font-family: 'liquid_crystalregular';
+    background-color: #abaea6;
+}
+body.theme-lcd #line,
+body.theme-lcd #dot,
+body.theme-lcd #cover {
+    display: none;
+}
+body.theme-lcd.user-form ::-webkit-input-placeholder {
+    color: #060;
+    font-family: 'liquid_crystalregular';
+}
+body.theme-lcd.user-form :-moz-placeholder { /* Firefox 18- */
+    color: #060;
+    font-family: 'liquid_crystalregular';
+}
+body.theme-lcd.user-form  ::-moz-placeholder {  /* Firefox 19+ */
+    color: #060;
+    font-family: 'liquid_crystalregular';
+}
+body.theme-lcd.user-form  :-ms-input-placeholder {  
+    color: #060;
+    font-family: 'liquid_crystalregular';
+}
+body.theme-lcd.user-form input {
+    font-family: 'liquid_crystalregular';
+}
