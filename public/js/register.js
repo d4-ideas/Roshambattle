@@ -14,15 +14,16 @@ $(document).ready(function () {
             $("#error").text("Your passwords don't match");
             return false;
         }
-        posting = $.post(url, {emailAddress: emailAddress, password: pwHash, displayName: });
+        posting = $.post(url, {emailAddress: emailAddress, password: pwHash, displayName: displayName});
         posting.done(function (data) {
             console.log(data);
-            if (data.status === "approved") {
+            if (data.result === "ok") {
                 window.location.assign("/");
-            } else if (data.status === "error") {
-                $("#error").text(data.reason);
-            }
-            console.log(data.status);
+            };
+        });    
+        posting.fail(function (data) {
+            console.log(data);
+            $("#error").text(data.responseJSON.reason);
         });
     });
 });

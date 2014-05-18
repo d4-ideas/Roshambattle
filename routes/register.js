@@ -26,11 +26,9 @@ exports.registerPost = function (req, res) {
     user.register(ourContent, function(err, data){
         if (err){
             //should improve error cases
-            console.log('registerPost Error: ' + err.error);
-            res.status(500).json({status:'error',reason:err.error});
+            res.status(500).json({result:'error', reason:'The call to user.register failed.  Here is the reason: ' + err.error});
         } else {
-            console.log('registerPost Success');
-            res.json({status:'approved'});
+            res.json({result:'ok'});
         }
     });
 };
