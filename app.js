@@ -26,12 +26,6 @@ db.once('open', function callback(){
    console.log('Connected to Mongo'); 
 });
 
-//*******************************************
-//Testing Station
-var testTurn = require('d4-roshamturn');
-testTurn.takeTurn({'userid':'5379651cc759b5480b56c8e6', 'weapon':'Rock'}, function(err, success){if(err){ console.log(err.error)} else {console.log(success)}});
-//*******************************************
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
