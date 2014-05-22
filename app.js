@@ -32,8 +32,8 @@ db.once('open', function callback(){
 // userid 53757be81b180608167613cc
 // userid 53757952b6aff3ec01383f27
 
-var testTurn = require('d4-roshamturn');
-testTurn.takeTurn({'userid':'5379651cc759b5480b56c8e6', 'weapon':'Scissors'}, function(err, success){if(err){ console.log(err.error)} else {console.log(success)}});
+//var testTurn = require('d4-roshamturn');
+//testTurn.takeTurn({'userid':'5379651cc759b5480b56c8e6', 'weapon':'Scissors'}, function(err, success){if(err){ console.log(err.error)} else {console.log(success)}});
 //*******************************************
 
 // view engine setup
