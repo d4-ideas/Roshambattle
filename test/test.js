@@ -80,10 +80,25 @@ describe("d4-user", function() {
             });
        });       
    });
+    describe('.getUserID()', function(){
+        it('should return a userid', function(done){
+            user.getUserID({email:existingUser.email}, function(err, data){
+               expect(err).to.not.be.ok;
+               expect(data).to.be.ok;
+               //done();                
+            });
+        });
+        it('should not return a userid', function(done){
+            user.getUserID({email:'idonotalreadyexist'}, function(err, data){
+               expect(err).to.be.ok;
+               expect(data).to.not.be.ok;
+               //done();                
+            });            
+        });
+    });
 });
 
 var testTurn = require('d4-roshamturn');
-
 describe("d4-roshamturn", function() {
     describe('.takeTurn()', function() {
         it('should log return success', function(done){   
@@ -100,6 +115,8 @@ describe("d4-roshamturn", function() {
 });
 
 user.userModel.findOneAndRemove({email:'existingUser@test.com'},function(err,res){
+    console.log('remove');
     if (err) throw new Error ('Failed to remove existingUser');
+    else console.log('removed');
     return true;
 });
