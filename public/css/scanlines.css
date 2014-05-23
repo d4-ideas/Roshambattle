@@ -1,5 +1,5 @@
 /* Scan Lines */
-#line {
+body.theme-scanlines #line {
     display: block;
 	position: relative;
 	top: 0px;
@@ -10,7 +10,7 @@
 	opacity: .2;
 	z-index: 100;
 }
-#dot {
+body.theme-scanlines #dot {
     display: block;
 	position: relative;
 	left: 10px;
@@ -19,7 +19,7 @@
 	background: #000;
 	opacity: 1;
 }
-#cover {
+body.theme-scanlines #cover {
     display: block;
 	position: fixed;
 	left: 0px;
@@ -122,6 +122,20 @@ body.theme-scanlines.user-form  :-ms-input-placeholder {
 }
 body.theme-scanlines.user-form input {  
     font-family: "Courier",fixed,monospace;
+}
+body.theme-scanlines .n00b-link {
+    color: #0f0;
+    font-family: "Courier",fixed,monospace;
+    text-transform:uppercase;
+    font-weight: bold;
+    opacity: 0.6;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+}
+body.theme-scanlines .n00b-link:hover,
+body.theme-scanlines .n00b-link:focus,
+body.theme-scanlines .n00b-link:active {
+    opacity: 1.0;
 }
 
 /* Theme Widget*/

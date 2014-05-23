@@ -50,6 +50,12 @@ td p {
     min-width: 300px;
     margin-bottom: 15px;
 }
+.n00b-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #000;
+    text-decoration: none;
+}
 
 /* Theme Widget*/
 #theme-widget {

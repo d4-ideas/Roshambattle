@@ -56,8 +56,7 @@ $(document).ready(function() {
 		console.log($("[name=weapon]").val());
 		socket.emit('Message', {weapon:$("[name=weapon]").val()});
 	});
-});
 
-socket.on('Result', function(data){
+    socket.on('Result', function(data){
 	console.log(data);
 });
