@@ -21,7 +21,7 @@ function initScanlines(){
     var windowHeight = $(window).height();
     var windowWidth = $(window).width();
     var newPosition = windowHeight - (lineHeight + desiredBottom);
-    var newPositionDot = windowWidth - dotWidth;                
+    var newPositionDot = windowWidth - dotWidth;
 
     function move() {
         $('#line').animate({
