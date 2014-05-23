@@ -3,11 +3,18 @@
  */
 
 function initScanlines(){
-    var lineHeight = $('#line').height();
-    var dotWidth = $('#dot').width();
+    //var lineHeight = $('#line').height();
+    //var dotWidth = $('#dot').width();
+    //var lineStart = $('#line').css('top');
+    //var dotStart = $('#dot').css('left');
+    // Hardcoding these values to fix an issue when scanlines 
+    // is not the theme loaded initially. 
+    var lineHeight = 2;
+    var dotWidth = 20;
+    var lineStart = 0;
+    var dotStart = 10;
+    
     var desiredBottom = 0;
-    var lineStart = $('#line').css('top');
-    var dotStart = $('#dot').css('left');
     var lineSpeed = 5000;
     var dotSpeed = lineSpeed / 2;
 
@@ -57,24 +64,16 @@ function initScanlines(){
 }
 
 function hideScanlines(){
-    //$('#line').stop(true,true);
-    //$('#dot').stop(true,true);
     $('#line').hide().addClass('hidden');
     $('#dot').hide();
 }
 
 function showScanlines(){
     if ($('#line').hasClass('hidden')) {
-        $('#line').show();
+        $('#line').show().removeClass('hidden');
         $('#dot').show();
     }
     else {
         initScanlines();
     }
 }
-
-$(document).ready(function() {
-    if ($('body').hasClass('theme-scanlines')) {
-        initScanlines();   
-    }
-});
