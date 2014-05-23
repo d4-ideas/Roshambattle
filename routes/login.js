@@ -27,7 +27,8 @@ exports.loginPost = function (req, res) {
         else {
             if (hashedPassword === data.password){
                 //put back any session variables we need.
-                req.session.username = req.body.emailAddress;
+                req.session.emailAddress = req.body.emailAddress;
+                req.session.displayName = data.name;
                 req.session.userID = data._id;
                 //return success to the client
                 res.json({result:'ok'});   
