@@ -26,7 +26,7 @@ exports.registerPost = function (req, res) {
             //should improve error cases
             res.status(500).json({result:'error', reason:'The call to user.register failed.  Here is the reason: ' + err.error});
         } else {
-            req.session.userID = returnData._id;
+            req.session.userID = data._id;
             res.json({result:'ok'});
         }
     });
