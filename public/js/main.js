@@ -1,8 +1,8 @@
-function createCookie(name,value,days) {
+function createCookie(name, value, days) {
     if (days) {
 		var date = new Date();
-		date.setTime(date.getTime()+(days*24*60*60*1000));
-		var expires = "; expires="+date.toGMTString();
+		date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+		var expires = "; expires=" + date.toGMTString();
 	}
 	else var expires = "";
 	document.cookie = name+"="+value+expires+"; path=/";
@@ -26,15 +26,15 @@ function eraseCookie(name) {
 function setTheme(themeIndex){
     if (themeIndex == 0) {
         $('body').removeClass('theme-scanlines').removeClass('theme-lcd');
-        hideScanlines();
+        //hideScanlines();
     }
     else if (themeIndex == 1) {
         $('body').removeClass('theme-lcd').addClass('theme-scanlines');
-        showScanlines();
+        //showScanlines();
     }
     else if (themeIndex == 2) {
         $('body').removeClass('theme-scanlines').addClass('theme-lcd');
-        hideScanlines();
+        //hideScanlines();
     }
 }
 
@@ -62,9 +62,5 @@ $(document).ready(function() {
 		//socket.emit('Message', {weapon:$("[name=weapon]:checked").val()});
 	});
 
-//    if (typeof socket !=='undefined'){
-//        socket.on('Result', function(data){
-//            console.log(data);
-//        });
-//    }
+    initScanlines();
 });

@@ -7,7 +7,8 @@ exports.registerGet = function (req, res) {
 
 exports.registerPost = function (req, res) {
     console.log('enter registerPost');
-    req.session.username = req.body.emailAdddress;
+    req.session.emailAddress = req.body.emailAdddress;
+    req.session.displayName = req.body.displayName;
     var crypto = require('crypto'),
         shaSum = crypto.createHash('md5'),
         password = req.body.password + 'd4bacon';
