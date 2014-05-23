@@ -7,17 +7,8 @@ db.once('open', function callback(){
    console.log('Connected to Mongo'); 
 });
 var expect = require("chai").expect;
+
 var user = require("d4-user");
-//var mongoose = require('mongoose');
-//var userSchema = new mongoose.Schema({
-//    email: String,
-//    name: String,
-//    password: String,
-//    createdate: { type: Date, default: Date.now },
-//});
-//
-//
-//var userModel = mongoose.model('user', userSchema);
 var existingUser = {
             name: 'existingUser', 
             email: 'existingUser@test.com', 
@@ -40,23 +31,19 @@ describe("d4-user", function() {
             });
        });
        it("should throw error when blank password given", function(done){
-            var ourContent = {authentication:{type:'default',
-                                      details: {emailAddress: 'BigTestUser@email.com',
-                                      password: ''}},
-                          displayName: 'BigTestUser',
-                        createdOn: Date.now()};           
+            var ourContent = {emailAddress: 'BigTestUser@email.com',
+                              password: '',
+                              displayName: 'BigTestUser'};           
             user.register(ourContent, function(err, data){
                expect(err).to.be.ok;
                expect(data).to.not.be.ok;
                done();
             });
        });  
-       it('should throw and error for an existing user email', function(done){
-            ourContent = {authentication:{type:'default',
-                                      details: {emailAddress: 'existingUser@test.com',
-                                      password: 'btu'}},
-                          displayName: 'BigTestUser',
-                        createdOn: Date.now()};           
+       it('should throw an error for an existing user email', function(done){
+            ourContent = {emailAddress: 'existingUser@test.com',
+                          password: 'btu',
+                          displayName: 'BigTestUser'};           
            user.register(ourContent, function(err, data){
                expect(err).to.be.ok;
                expect(data).to.not.be.ok;
@@ -64,13 +51,11 @@ describe("d4-user", function() {
            });
        });
        it("should create user", function(done){
-            ourContent = {authentication:{type:'default',
-                                      details: {emailAddress: 'BigTestUser@email.com',
-                                      password: 'btu'}},
-                          displayName: 'BigTestUser',
-                        createdOn: Date.now()};           
+            ourContent = {emailAddress: 'BigTestUser@email.com',
+                          password: 'btu',
+                          displayName: 'BigTestUser'};           
             user.register(ourContent, function(err, data){
-                var query = user.userModel.findOne({'email': ourContent.authentication.details.emailAddress});
+                var query = user.userModel.findOne({'email': ourContent.emailAddress});
                 query.exec(function(err, foundUser){
                     expect(err).to.not.be.ok;
                     expect(foundUser).to.be.ok;

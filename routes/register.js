@@ -16,11 +16,9 @@ exports.registerPost = function (req, res) {
 
     var returnData,
         hashedPassword = shaSum.digest('hex'),
-        ourContent = {authentication:{type:'default',
-                                      details: {emailAddress: req.body.emailAddress,
-                                      password: hashedPassword}},
-                      displayName: req.body.displayName,
-                      createdOn: Date.now()};
+        ourContent = {emailAddress: req.body.emailAddress,
+                      password: hashedPassword,
+                      displayName: req.body.displayName};
     console.log('call register');
 
     user.register(ourContent, function(err, data){
@@ -28,6 +26,7 @@ exports.registerPost = function (req, res) {
             //should improve error cases
             res.status(500).json({result:'error', reason:'The call to user.register failed.  Here is the reason: ' + err.error});
         } else {
+            req.session.userID = data._id;
             res.json({result:'ok'});
         }
     });

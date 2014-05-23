@@ -38,6 +38,8 @@ function setTheme(themeIndex){
     }
 }
 
+var socket=io.connect('/');
+
 $(document).ready(function() {
     var cookieValue = readCookie('theme');
     var themeSetting = '#theme' + cookieValue;
@@ -50,4 +52,12 @@ $(document).ready(function() {
         setTheme(cbvalue);
 
     });
+	$('#commit').click(function(){
+		console.log($("[name=weapon]").val());
+		socket.emit('Message', {weapon:$("[name=weapon]").val()});
+	});
+});
+
+socket.on('Result', function(data){
+	console.log(data);
 });
