@@ -10,10 +10,10 @@ $(document).ready(function () {
         posting.done(function (data) {
             if (data.result === 'ok') {
                 window.location.assign('/');
-            } else if (data.result === 'error') {
-                $('#error').text(data.reason);
             }
-            console.log(data.status);
+        }); 
+        posting.fail(function (data) {
+            $("#error").text(data.responseJSON.reason);
         });
     });
 });
