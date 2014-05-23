@@ -1,4 +1,4 @@
-var http = require('http');
+var user = require('d4-user');
 
 exports.loginGet = function (req, res) {
     //Should we check session state and pass through if they user already has a valid session?
@@ -16,53 +16,25 @@ exports.loginPost = function (req, res) {
     shaSum.update(password);
 
     var returnData,
-        hashedPassword = shaSum.digest('hex'),
-        ourContent = JSON.stringify({'username': req.body.username,
-                                    'password': hashedPassword}),
-        options = {
-            hostname: 'localhost',
-            port: 3001,
-            path: '/users',
-            method: 'GET',
-            headers: {'content-type': 'application/json',
-                        'content-length': ourContent.length}
-        },
-        ourReq = http.request(options, function (returnRes) {
-            if (returnRes.statusCode === 200) {
-                returnRes.setEncoding('utf8');
+        hashedPassword = shaSum.digest('hex');
 
-                returnRes.on('data', function (chunk) {
-                    if (typeof returnData !== 'undefined') {
-                        returnData += chunk;
-                    } else {
-                        returnData = chunk;
-                    }
-                });
-                returnRes.on('end', function () {
-                    var data = JSON.parse(returnData);
-                    if (data.status === 'success') {
-                        console.log('user ' + req.body.username + ' logged in.');
-                        //put back any session variables we need.
-                        req.session.username = req.body.username;
-                        req.session.userID = data.userID;
-                        //return success to the client
-                        res.json({'status': 'success'});
-                    } else {
-                        console.log('there was an error');
-                        console.log(data);
-                        res.json({'status': 'error', 'reason': data.reason});
-                    }
-                });
-            } else {
-                res.json({'status': 'error', 'reason': 'failed to get user'});
+    user.getUser({email: req.body.emailAddress}, function(err, data){
+        if(err){
+            console.log('there was an error');
+            console.log(err);
+            res.status(500).json({result:'error', reason: err.error});                
+        }
+        else {
+            if (hashedPassword === data.password){
+                //put back any session variables we need.
+                req.session.username = req.body.emailAddress;
+                req.session.userID = data._id;
+                //return success to the client
+                res.json({result:'ok'});   
             }
-        });
-    
-    ourReq.on('error', function (e) {
-        res.json({status: 'error', 'reason': e.message});
+            else {
+                res.status(500).json({result:'error', reason: 'Try again fat fingers.'});
+            }
+        }
     });
-
-    // write data to request body
-    ourReq.write(ourContent);
-    ourReq.end();
 };
