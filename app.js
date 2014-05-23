@@ -5,7 +5,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var io = require ('socket.io');
+//var io = require ('socket.io');
 var MongoStore = require('connect-mongo')(express);
 
 //routes
@@ -14,6 +14,7 @@ var users = require('./routes/user');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
 var register = require('./routes/register');
+var processTurn = require ('./routes/processTurn');
 
 var app = express();
 
@@ -67,6 +68,7 @@ app.post('/register', register.registerPost);
 app.get('/login', login.loginGet);
 app.post('/login', login.loginPost);
 app.get('/logout', logout.logout);
+app.post('/selectWeapon', processTurn.selectWeapon);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
@@ -113,10 +115,10 @@ var server = app.listen(3000, function(){
     console.log('Press ctrl+c to exit');
 });    
 
-var serv_io = io.listen(server);
-serv_io.sockets.on('connection', function(socket){
-	socket.emit('Result', {you: 'lost'});
-	socket.on('Message', function(data) {
-		console.log(data);
-	});
-});
+//var serv_io = io.listen(server);
+//serv_io.sockets.on('connection', function(socket){
+//	socket.emit('Result', {you: 'lost'});
+//	socket.on('Message', function(data) {
+//		console.log(data);
+//	});
+//});

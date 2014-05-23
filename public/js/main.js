@@ -38,9 +38,9 @@ function setTheme(themeIndex){
     }
 }
 
-if (typeof io !== 'undefined'){
-	var socket=io.connect('/');
-}
+//if (typeof io !== 'undefined'){
+//	var socket=io.connect('/');
+//}
 
 $(document).ready(function() {
     var cookieValue = readCookie('theme');
@@ -55,13 +55,16 @@ $(document).ready(function() {
 
     });
 	$('#commit').click(function(){
-		console.log($("[name=weapon]").val());
-		socket.emit('Message', {weapon:$("[name=weapon]").val()});
+		$.post('/selectWeapon',
+			   {weapon : $("[name=weapon]:checked").val()},
+			   function(){}
+		);
+		//socket.emit('Message', {weapon:$("[name=weapon]:checked").val()});
 	});
 
-    if (typeof socket !=='undefined'){
-        socket.on('Result', function(data){
-            console.log(data);
-        });
-    }
+//    if (typeof socket !=='undefined'){
+//        socket.on('Result', function(data){
+//            console.log(data);
+//        });
+//    }
 });
