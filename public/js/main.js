@@ -38,8 +38,9 @@ function setTheme(themeIndex){
     }
 }
 
-var socket=io.connect('/');
-
+if (typeof io !== 'undefined'){
+	var socket=io.connect('/');
+}
 $(document).ready(function() {
     var cookieValue = readCookie('theme');
     var themeSetting = '#theme' + cookieValue;
@@ -58,6 +59,8 @@ $(document).ready(function() {
 	});
 });
 
-socket.on('Result', function(data){
-	console.log(data);
-});
+if (typeof socket !=='undefined'){
+	socket.on('Result', function(data){
+		console.log(data);
+	});
+}
