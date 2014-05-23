@@ -1,3 +1,4 @@
+var socket=io.connect('/');
 $(document).ready(function() {
     $('#theme-widget input[type=radio][name=theme-options]').change(function() {
         if (this.value == 'none') {
@@ -13,4 +14,11 @@ $(document).ready(function() {
             hideScanlines();
         }
     });
+	$('#commit').click(function(){
+		console.log($("[name=weapon]").val());
+		socket.emit('Message', {weapon:$("[name=weapon]").val()});
+	});
+});
+socket.on('Result', function(data){
+	console.log(data);
 });

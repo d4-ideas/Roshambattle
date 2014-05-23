@@ -4,11 +4,6 @@
     	<title>RPS Demo</title>
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
-			var socket=io.connect('/');
-			socket.on('news', function(data){
-				console.log(data);
-				socket.emit('my other event', {my:'data'});
-			});
 		</script>
         <link rel='stylesheet' href='/css/style.css' />
         <link rel='stylesheet' href='/css/scanlines.css' />
@@ -62,7 +57,7 @@
 							<input type="radio" id="w2" name="weapon" value="scissors"><label for="w2">Scissors</label>
 						</td>
 						<td>
-							<input type="submit" value="Commit Weapon">
+							<input type="submit" value="Commit Weapon" id="commit">
 						</td>
 						<td>TBD</td>
 					</tr>
