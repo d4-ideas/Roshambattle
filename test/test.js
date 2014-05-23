@@ -7,6 +7,7 @@ db.once('open', function callback(){
    console.log('Connected to Mongo'); 
 });
 var expect = require("chai").expect;
+var http = require('http');
 
 var user = require("d4-user");
 var existingUser = {
@@ -22,7 +23,17 @@ user.userModel.create(existingUser, function(err, noob){
 });
 
 describe("d4-user", function() {
-   describe(".register()", function() {
+    describe('.getUser()', function() {
+        it('should return a password for a valid emailAddress', function(done) {
+            user.getUser({email: existingUser.email}, function(err, data){
+                expect(err).to.not.be.ok;
+                expect(data).to.be.ok;
+                done();
+            });
+        });
+    });
+                             
+    describe(".register()", function() {
        it("should throw error when no user given", function(done){
             user.register(undefined, function(err, data){
                expect(err).to.be.ok;
