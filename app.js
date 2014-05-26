@@ -33,10 +33,11 @@ db.once('open', function callback(){
 // userid 53757be81b180608167613cc
 // userid 53757a9297f781bc2153bae2
 //
-//var testUser = require('d4-roshamuser');
+var testTurn = require('d4-roshamturn');
+var testUser = require('d4-roshamuser');
 //testUser.setWeapon({'userid':'5379651cc759b5480b56c8e6', 'weapon':'Scissors'}, function(err, success){if(err){ console.log(err.error)} else {console.log(success)}});
 //testUser.setWeapon({'userid':'53757be81b180608167613cc', 'weapon':'Rock'}, function(err, success){if(err){ console.log(err.error)} else {console.log(success)}});
-//testUser.setWeapon({'userid':'53757a9297f781bc2153bae2', 'weapon':'Paper'}, function(err, success){if(err){ console.log(err.error)} else {console.log(success)}});
+//testUser.setWeapon({'userid':'53757a9297f781bc2153bae2', 'weapon':'Rock'}, function(err, success){if(err){ console.log(err.error)} else {console.log(success)}});
 //
 //testUser.getRoshamUser('53757a9297f781bc2153bae2',  function(err, success){if(err){ console.log(err.error)} else {console.log(success)}});
 //
