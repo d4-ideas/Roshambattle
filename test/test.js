@@ -15,7 +15,7 @@ var existingUser = {emailAddress: 'BigTestUser@email.com',
                     displayName: 'BigTestUser'},
     existingUserID;
 
-user.userModel.findOneAndRemove({email:'existingUser@test.com'},function(err,res){
+user.userModel.findOneAndRemove({email:existingUser.emailAddress},function(err,res){
     console.log('remove');
     if (err) throw new Error ('Failed to remove existingUser');
     else console.log('removed');
@@ -42,12 +42,10 @@ describe("d4-user", function() {
        });
        it("should create user", function(done){        
             user.register(existingUser, function(err, data){
-                var query = user.userModel.findOne({'email': existingUser.emailAddress});
-                query.exec(function(err, foundUser){
-                    expect(err).to.not.be.ok;
-                    expect(foundUser).to.be.ok;
-                    done();
-                });
+                expect(err).to.not.be.ok;
+                expect(data).to.be.ok;
+                existingUserID = data;
+                done();
             });
        });        
        it('should throw an error for an existing user email', function(done){    
@@ -87,11 +85,11 @@ describe("d4-user", function() {
     });
 });
 
-var testTurn = require('d4-roshamturn');
-describe("d4-roshamturn", function() {
-    describe('.takeTurn()', function() {
+var ruser = require('d4-roshamuser');
+describe('d4-roshamuser', function() {
+    describe('.setWeapon()', function() {
         it('should log return success', function(done){   
-           testTurn.takeTurn({'userid':existingUserID, 'weapon':'Rock'}, function(err, success){
+           ruser.setWeapon({'userid':existingUserID, 'weapon':'Rock'}, function(err, success){
                 if(err){
                     done(err);
                 } 
@@ -102,3 +100,31 @@ describe("d4-roshamturn", function() {
         });
     });
 });
+
+var testTurn = require('d4-roshamturn');
+describe('d4-roshamturn', function() {
+//    describe('.takeTurn()', function() {
+//        it('should log return success', function(done){   
+//           testTurn.takeTurn({'userid':existingUserID, 'weapon':'Rock'}, function(err, success){
+//                if(err){
+//                    done(err);
+//                } 
+//                else {
+//                    done();
+//                }
+//            });
+//        });
+//    });
+    describe('.generateTurn', function() {
+        it('should create a new turn', function(done){
+            testTurn.generateTurn(function(err, data){
+                expect(err).to.not.be.ok;
+                expect(data).to.be.ok;
+                console.log(data);
+                done();
+            });
+        });
+    });
+});
+
+
