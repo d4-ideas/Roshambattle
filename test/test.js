@@ -10,15 +10,22 @@ var expect = require("chai").expect;
 var http = require('http');
 
 var user = require("d4-user");
-var existingUser = {emailAddress: 'BigTestUser@email.com',
+var existingUser = {emailAddress: 'RockUser@email.com',
                     password: '123',
-                    displayName: 'BigTestUser'},
+                    displayName: 'RockUser'},
+    existingUser2 = {emailAddress: 'PaperUser@email.com',
+                    password: '123',
+                    displayName: 'PaperUser'},
     existingUserID;
 
 user.userModel.findOneAndRemove({email:existingUser.emailAddress},function(err,res){
-    console.log('remove');
     if (err) throw new Error ('Failed to remove existingUser');
-    else console.log('removed');
+    else console.log('remove 1');
+    return true;
+});
+user.userModel.findOneAndRemove({email:existingUser2.emailAddress},function(err,res){
+    if (err) throw new Error ('Failed to remove existingUser');
+    else console.log('remove 2');
     return true;
 });
 
@@ -99,6 +106,15 @@ describe('d4-roshamuser', function() {
             });
         });
     });
+    describe('.getRoshamUser', function(){
+        it('should return a roshamuser', function(done){
+            ruser.getRoshamUser(existingUserID, function(err, data){
+                expect(err).to.not.be.ok;
+                expect(data).to.be.ok;
+                done();
+            });
+        });
+    });
 });
 
 var testTurn = require('d4-roshamturn');
@@ -117,11 +133,20 @@ describe('d4-roshamturn', function() {
 //    });
     describe('.generateTurn', function() {
         it('should create a new turn', function(done){
-            testTurn.generateTurn(function(err, data){
-                expect(err).to.not.be.ok;
+            user.register(existingUser2, function(err, data){
                 expect(data).to.be.ok;
-                console.log(data);
-                done();
+                ruser.setWeapon({'userid':data, 'weapon':'Paper'}, function(err, success){
+                    expect(success).to.be.ok;
+                    testTurn.generateTurn(function(err, data){
+                        expect(err).to.not.be.ok;
+                        expect(data).to.be.ok;
+                        ruser.getRoshamUser(existingUserID, function(err, data){
+                            console.log(data);
+                            expect(data).to.be.ok;
+                            done();
+                        });
+                    });
+                });
             });
         });
     });
