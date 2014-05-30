@@ -68,7 +68,6 @@ app.use(app.router);
 
 
 app.get('/', routes.index);
-app.get('/users', users.list);
 app.get('/register', register.registerGet);
 app.post('/register', register.registerPost);
 app.get('/login', login.loginGet);
@@ -123,6 +122,7 @@ var server = app.listen(3000, function(){
 });    
 
 app.io.route('Message', processTurn.selectWeapon);
+app.io.route('getUserScore', users.getUserScore);
 //var serv_io = io.listen(server);
 //serv_io.sockets.on('connection', function(socket){
 //	socket.emit('Result', {you: 'lost'});
