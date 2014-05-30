@@ -8,7 +8,7 @@ exports.selectWeapon = function (req,res){
                 if(err){
 					//we need to return an error event
                     //res.status(500).json({result:'error', reason:'Bzzz...  try again.  The call to setWeapon failed with reason: '+err.error});
-					req.io.emit({result:'error', reason:'Bzzz...  try again.  The call to setWeapon failed with reason: '+err.error});
+					req.io.emit('result', {'result':'error', reason:'Bzzz...  try again.  The call to setWeapon failed with reason: '+err.error});
                 } 
                 else {
 					console.log ('emitting');
