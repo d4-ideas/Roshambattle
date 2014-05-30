@@ -39,7 +39,11 @@ function setTheme(themeIndex){
 }
 
 if (typeof io !== 'undefined'){
-	var socket=io.connect('/');
+	var io=io.connect();
+	console.log(io);
+	io.on('result', function(data){
+		console.log('got result: ' + data.result);
+	});
 }
 
 $(document).ready(function() {
@@ -59,7 +63,7 @@ $(document).ready(function() {
 //			   {weapon : $("[name=weapon]:checked").val()},
 //			   function(){}
 //		);
-		socket.emit('Message', {weapon:$("[name=weapon]:checked").val()});
+		io.emit('Message', {weapon:$("[name=weapon]:checked").val()});
 	});
 
     initScanlines();
