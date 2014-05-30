@@ -1,4 +1,5 @@
 var ruser = require('d4-roshamuser');
+var turn = require('d4-roshamturn');
 
 exports.selectWeapon = function (req,res){
 	console.log(req.body);
@@ -11,4 +12,14 @@ exports.selectWeapon = function (req,res){
                 }
             });
 	console.log(req.session);
+};
+
+exports.generateTurn = function (req,res){
+    turn.generateTurn(function(err, data){
+        if (data){
+            res.render('generateTurn', { title: 'RoshamBattle!', status: 'ok'});
+        } else {
+            res.render('generateTurn', { title: 'RoshamBattle!', status: 'you failed.' + err.error});
+        }
+    });    
 };
