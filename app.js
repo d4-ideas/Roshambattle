@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require('express.io');
 var http = require('http');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -16,7 +16,7 @@ var logout = require('./routes/logout');
 var register = require('./routes/register');
 var processTurn = require ('./routes/processTurn');
 
-var app = express();
+var app = express().http().io();
 
 // connect to the database
 var mongoose = require('mongoose');
@@ -52,7 +52,7 @@ app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+app.use(express.cookieParser());
 app.use(express.session({
     key: 'app.sess',
     store: new MongoStore({
@@ -110,7 +110,7 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 var server = app.listen(3000, function(){
     console.log('          / \\');
-    console.log('         / 3 \\');
+    console.log('         / 4 \\');
     console.log('        /     \\');
     console.log('       /       \\');
     console.log('      /   d 4   \\');
@@ -123,6 +123,7 @@ var server = app.listen(3000, function(){
     console.log('Press ctrl+c to exit');
 });    
 
+app.io.route('Message', processTurn.selectWeapon);
 //var serv_io = io.listen(server);
 //serv_io.sockets.on('connection', function(socket){
 //	socket.emit('Result', {you: 'lost'});
