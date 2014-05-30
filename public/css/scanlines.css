@@ -137,6 +137,17 @@ body.theme-scanlines .n00b-link:focus,
 body.theme-scanlines .n00b-link:active {
     opacity: 1.0;
 }
+body.theme-scanlines #the-shitcan {
+    border: 1px solid #0f0;
+    background-color: #020;
+}
+body.theme-scanlines #taunt-box textarea {
+    background-color: #020;
+    border-color: #0f0;
+    color: #0f0;
+    font-family: "Courier",fixed,monospace;
+    text-transform:uppercase;
+}
 
 /* Theme Widget*/
 body.theme-scanlines #theme-widget {

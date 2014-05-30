@@ -1,3 +1,7 @@
+body {
+    min-width: 304px;
+}
+
 #line,
 #dot,
 #cover {
@@ -68,6 +72,25 @@ td p {
 }
 #theme-widget input:checked + label {
     font-weight: bold;
+}
+#the-shitcan {
+    border: 1px solid #999;
+    width: 96%;
+    padding: 0 2%;
+    background-color: #eee;
+    margin-bottom: 20px;
+}
+#the-shitcan span.user {
+    font-weight: bold
+}
+#taunt-box {
+    margin-bottom: 30px;
+    text-align: center;
+}
+#taunt-box textarea {
+    width: 98%;
+    padding: 1%;
+    border-color: #999;
 }
 
 /* table adjustments for 760px or lower */
