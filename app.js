@@ -76,6 +76,7 @@ app.get('/login', login.loginGet);
 app.post('/login', login.loginPost);
 app.get('/logout', logout.logout);
 app.post('/selectWeapon', processTurn.selectWeapon);
+app.get('/generateTurn', processTurn.generateTurn);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
