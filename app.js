@@ -7,6 +7,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 //var io = require ('socket.io');
 var MongoStore = require('connect-mongo')(express);
+var schedule = require('node-schedule');
+var turn = require('d4-roshamturn');
+
 
 //routes
 var routes = require('./routes');
@@ -27,22 +30,18 @@ db.once('open', function callback(){
    console.log('Connected to Mongo'); 
 });
 
-//*******************************************
-//Testing Station
-// userid 5379651cc759b5480b56c8e6
-// userid 53757be81b180608167613cc
-// userid 53757a9297f781bc2153bae2
-//
-var testTurn = require('d4-roshamturn');
-var testUser = require('d4-roshamuser');
-//testUser.setWeapon({'userid':'5379651cc759b5480b56c8e6', 'weapon':'Scissors'}, function(err, success){if(err){ console.log(err.error)} else {console.log(success)}});
-//testUser.setWeapon({'userid':'53757be81b180608167613cc', 'weapon':'Rock'}, function(err, success){if(err){ console.log(err.error)} else {console.log(success)}});
-//testUser.setWeapon({'userid':'53757a9297f781bc2153bae2', 'weapon':'Rock'}, function(err, success){if(err){ console.log(err.error)} else {console.log(success)}});
-//
-//testUser.getRoshamUser('53757a9297f781bc2153bae2',  function(err, success){if(err){ console.log(err.error)} else {console.log(success)}});
-//
-//testTurn.generateTurn(function(err, success){if(err){ console.log(err.error)} else {console.log(success)}});
-//*******************************************
+var rule = new schedule.RecurrenceRule();
+rule.minute = [0,30];
+
+var j = schedule.scheduleJob(rule, function(){
+    turn.generateTurn(function(err, data){
+        if (data){
+            console.log('I have generated a turn!!');            
+        } else {
+            console.log('I failed to generate a turn!!');
+        }
+    });      
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
