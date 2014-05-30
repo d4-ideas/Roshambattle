@@ -45,7 +45,7 @@ if (typeof io !== 'undefined'){
 		console.log('got result: ' + data.result);
 	});
     io.on('UserScoreSuccess', function(data){
-        $('#current-score').html('GP:'data.totalBattles + ' Wins:' + data.totalWins + 'Draws:' + data.totalTies + 'Losses:'+data.totalLosses);
+        $('#current-score').html('GP: '+data.totalBattles + ' Wins: ' + data.totalWins + ' Draws: ' + data.totalTies + ' Losses: '+data.totalLosses);
     });
     io.on('UserScoreFailure',function(data){
         $('#current-score').html(data.error);
@@ -57,7 +57,8 @@ $(document).ready(function() {
     var themeSetting = '#theme' + cookieValue;
     $(themeSetting).prop('checked',true);
     setTheme(cookieValue);
-    io.emit('getUserScore',{}):
+    console.log('send the event');
+    io.emit('getUserScore', {});
     
     $('#theme-widget input[type=radio][name=theme-options]').change(function() {
         var cbvalue = this.value;
