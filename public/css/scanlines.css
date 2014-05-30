@@ -144,3 +144,18 @@ body.theme-scanlines #theme-widget {
     top: 0;
     right: 0;
 }
+
+/* table adjustments for 760px or lower */
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+    body.theme-scanlines tr { 
+        border: 1px solid #0f0; 
+    }
+	
+	body.theme-scanlines td { 
+		/* Behave  like a "row" */
+		border-bottom: 1px solid #090;
+	}
+}
