@@ -4,6 +4,7 @@ var turn = require('d4-roshamturn');
 exports.selectWeapon = function (req,res){
 	console.log(req.data);
 	console.log(req.body);
+    console.log(req.session);
            ruser.setWeapon({'userid':req.session.userID, 'weapon':req.data.weapon}, function(err, success){
                 if(err){
 					//we need to return an error event

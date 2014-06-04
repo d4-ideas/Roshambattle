@@ -67,10 +67,6 @@ $(document).ready(function() {
 
     });
 	$('#commit').click(function(){
-//		$.post('/selectWeapon',
-//			   {weapon : $("[name=weapon]:checked").val()},
-//			   function(){}
-//		);
 		io.emit('Message', {weapon:$("[name=weapon]:checked").val()});
 	});
 

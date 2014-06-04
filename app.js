@@ -15,7 +15,6 @@ var turn = require('d4-roshamturn');
 var routes = require('./routes');
 var users = require('./routes/user');
 var login = require('./routes/login');
-var logout = require('./routes/logout');
 var register = require('./routes/register');
 var processTurn = require ('./routes/processTurn');
 
@@ -72,7 +71,7 @@ app.get('/register', register.registerGet);
 app.post('/register', register.registerPost);
 app.get('/login', login.loginGet);
 app.post('/login', login.loginPost);
-app.get('/logout', logout.logout);
+app.get('/logout', users.logout);
 app.post('/selectWeapon', processTurn.selectWeapon);
 app.get('/generateTurn', processTurn.generateTurn);
 
