@@ -42,7 +42,7 @@ if (typeof io !== 'undefined'){
 	var io=io.connect();
 	console.log(io);
 	io.on('result', function(data){
-		console.log('got result: ' + data.result);
+        $('#makeItEasyToFindMe').html('You have selected '+$("[name=weapon]:checked").val());
 	});
     io.on('UserScoreSuccess', function(data){
         $('#current-score').html('GP: '+data.totalBattles + ' Wins: ' + data.totalWins + ' Draws: ' + data.totalTies + ' Losses: '+data.totalLosses);
