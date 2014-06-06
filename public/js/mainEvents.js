@@ -24,7 +24,8 @@ if (typeof io !== 'undefined'){
 	});
     io.on('getOneTurn', function(data){
         $('#error').html('');
-        var row = '<tr><td data-label="Weapon">Paper</td><td data-label="Committed">'+data+'</td><td data-label="Results"><p>Player 2: Win</p><p>Player 3: Loss</p><p>Player 4: Win</p><p>Score: 2 out of 3 (66.66% efficiency)</p></td></tr>'
+        var a = moment(data);
+        var row = '<tr><td data-label="Weapon">Paper</td><td data-label="Committed">'+a.format("MMMM Do YYYY, h:mm:ss a")+'</td><td data-label="Results"><p>Player 2: Win</p><p>Player 3: Loss</p><p>Player 4: Win</p><p>Score: 2 out of 3 (66.66% efficiency)</p></td></tr>'
         $('#table-rounds tr:last').after(row);
     });
     io.on('getTurnsFailure', function(data){
