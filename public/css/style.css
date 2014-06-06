@@ -17,9 +17,6 @@ table {
 	margin-bottom: 40px;
 	border-collapse: collapse;
 }
-tr {
-
-}
 th {
 	font-weight: bold;
 	text-align: left;
@@ -108,7 +105,17 @@ a:focus {
 
 /* table adjustments for 760px or lower */
 @media only screen and (max-width: 760px)  {
-
+    #welcome-block {
+        display: block;
+        margin: 0 0 10px 0;
+    }
+    #theme-widget {
+        position: relative;
+        top: auto;
+        right: auto;
+        display: inline-block;
+    }
+    
     /* Force table to not be like tables anymore */
 	table, thead, tbody, th, td, tr {
 		display: block; 

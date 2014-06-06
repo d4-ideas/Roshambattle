@@ -151,12 +151,6 @@ body.theme-scanlines #taunt-box textarea {
 body.theme-scanlines a {
     color: #0f0;
 }
-/* Theme Widget*/
-body.theme-scanlines #theme-widget {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
 
 /* table adjustments for 760px or lower */
 @media 
