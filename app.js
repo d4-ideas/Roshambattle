@@ -120,7 +120,7 @@ var server = app.listen(3000, function(){
     console.log('Press ctrl+c to exit');
 });    
 
-app.io.route('Message', processTurn.selectWeapon);
+app.io.route('selectWeapon', processTurn.selectWeapon);
 app.io.route('getUserScore', users.getUserScore);
 //var serv_io = io.listen(server);
 //serv_io.sockets.on('connection', function(socket){

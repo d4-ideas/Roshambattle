@@ -41,10 +41,15 @@ function setTheme(themeIndex){
 if (typeof io !== 'undefined'){
 	var io=io.connect();
 	console.log(io);
-	io.on('result', function(data){
+	io.on('selectWeaponSuccess', function(data){
+        $('#error').html('');
         $('#makeItEasyToFindMe').html('You have selected '+$("[name=weapon]:checked").val());
 	});
+    io.on('selectWeaponFailure', function(data){
+        $('#error').html('selectWeapon failed with error: ' + data.reason);
+    });
     io.on('UserScoreSuccess', function(data){
+        $('#error').html('');
         $('#current-score').html('GP: '+data.totalBattles + ' Wins: ' + data.totalWins + ' Draws: ' + data.totalTies + ' Losses: '+data.totalLosses);
     });
     io.on('UserScoreFailure',function(data){
@@ -67,7 +72,7 @@ $(document).ready(function() {
 
     });
 	$('#commit').click(function(){
-		io.emit('Message', {weapon:$("[name=weapon]:checked").val()});
+		io.emit('selectWeapon', {weapon:$("[name=weapon]:checked").val()});
 	});
 
     initScanlines();
