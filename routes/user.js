@@ -9,7 +9,11 @@ exports.getUserScore = function(req){
     });    
 };
 
+exports.getTurns = function(req){
+    req.io.emit('getOneTurn', '');
+};
+
 exports.logout = function (req, res) {
     res.clearCookie('app.sess');
     res.redirect('/login');
-}
+};

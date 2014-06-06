@@ -38,66 +38,19 @@ function setTheme(themeIndex){
     }
 }
 
-if (typeof io !== 'undefined'){
-	var io=io.connect();
-	console.log(io);
-	io.on('selectWeaponSuccess', function(data){
-        $('#error').html('');
-        $('#makeItEasyToFindMe').html('You have selected '+$("[name=weapon]:checked").val());
-	});
-    io.on('selectWeaponFailure', function(data){
-        $('#error').html('selectWeapon failed with error: ' + data.reason);
-    });
-    io.on('UserScoreSuccess', function(data){
-        $('#error').html('');
-        $('#current-score').html('GP: '+data.totalBattles + ' Wins: ' + data.totalWins + ' Draws: ' + data.totalTies + ' Losses: '+data.totalLosses);
-        if (data.weapon){
-            $('#makeItEasyToFindMe').html('You have selected '+data.weapon);
-        }
-    });
-    io.on('UserScoreFailure',function(data){
-        $('#current-score').html(data.error);
-    });
-	io.on('messageForYouSir', function(data){
-		console.log(data);
-		$("#the-shitcan").append('<p><span class="user">' + data.who + ': </span> ' + data.what + '</p>');
-
-	});
-}
-
 $(document).ready(function() {
     /* Licking the paint */
     var cookieValue = readCookie('theme');
     var themeSetting = '#theme' + cookieValue;
     $(themeSetting).prop('checked',true);
     setTheme(cookieValue);
+    
     $('#theme-widget input[type=radio][name=theme-options]').change(function() {
         var cbvalue = this.value;
         createCookie('theme',cbvalue,365);
         setTheme(cbvalue);
     });
-	$('#commit').click(function(){
-		io.emit('selectWeapon', {weapon:$("[name=weapon]:checked").val()});
-	});
 
-    /* I shall taunt you a second time! */
-    $("#taunt-box textarea").keypress(function(e){
-        if (e.which == 13) {
-            $('[name=taunt]').click();
-            event.preventDefault();
-            event.stopPropagation();
-            return false;
-        }
-    });
-	$('[name=taunt]').click(function(){
-		var daTaunt = $("#taunt-box textarea").val();
-        var daTaunter = $('#welcome-block span').html();
-        io.emit('taunt', {taunt : daTaunt});
-		$("#the-shitcan").append('<p class="hideMe"><span class="user">' + daTaunter + ':</span> ' + daTaunt + '</p>');
-        setTimeout(function() {
-            $("#taunt-box textarea").val('');
-        }, 100);
-  	});
 
     /* Turns on the scan line bit */
     initScanlines();
