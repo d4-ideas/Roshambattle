@@ -148,12 +148,8 @@ body.theme-scanlines #taunt-box textarea {
     font-family: "Courier",fixed,monospace;
     text-transform:uppercase;
 }
-
-/* Theme Widget*/
-body.theme-scanlines #theme-widget {
-    position: absolute;
-    top: 0;
-    right: 0;
+body.theme-scanlines a {
+    color: #0f0;
 }
 
 /* table adjustments for 760px or lower */

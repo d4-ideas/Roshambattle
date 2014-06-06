@@ -17,9 +17,6 @@ table {
 	margin-bottom: 40px;
 	border-collapse: collapse;
 }
-tr {
-
-}
 th {
 	font-weight: bold;
 	text-align: left;
@@ -60,7 +57,15 @@ td p {
     color: #000;
     text-decoration: none;
 }
-
+a {
+    color: #000;
+    text-decoration: none;
+}
+a:hover,
+a:active,
+a:focus {
+    text-decoration: underline;
+}
 /* Theme Widget*/
 #theme-widget {
     position: absolute;
@@ -72,6 +77,11 @@ td p {
 }
 #theme-widget input:checked + label {
     font-weight: bold;
+}
+#theme-widget label:hover,
+#theme-widget label:active,
+#theme-widget label:focus {
+    text-decoration: underline;
 }
 #the-shitcan {
     border: 1px solid #999;
@@ -95,7 +105,17 @@ td p {
 
 /* table adjustments for 760px or lower */
 @media only screen and (max-width: 760px)  {
-
+    #welcome-block {
+        display: block;
+        margin: 0 0 10px 0;
+    }
+    #theme-widget {
+        position: relative;
+        top: auto;
+        right: auto;
+        display: inline-block;
+    }
+    
     /* Force table to not be like tables anymore */
 	table, thead, tbody, th, td, tr {
 		display: block; 

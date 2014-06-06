@@ -74,6 +74,7 @@ app.post('/login', login.loginPost);
 app.get('/logout', users.logout);
 app.io.route('selectWeapon', processTurn.selectWeapon);
 app.io.route('taunt', messages.taunt);
+app.io.route('getUserScore', users.getUserScore);
 app.get('/generateTurn', processTurn.generateTurn);
 
 /// catch 404 and forwarding to error handler
@@ -119,6 +120,4 @@ var server = app.listen(3000, function(){
     console.log(' /___________________\\');
 	console.log('Listening on port %d', server.address().port);
     console.log('Press ctrl+c to exit');
-});    
-
-app.io.route('getUserScore', users.getUserScore);
+});

@@ -15,9 +15,17 @@
 	</head>
 	<body class="theme-scanlines">
 		<div id="cover"><div id="line"><div id="dot"></div></div></div>
+        <div id="error"></div>
 		<div id="content">
-			<h3>Welcome: <%= displayName %> <a id="logout" href='/logout'>Logout</a></h3> 
-			<h4 id="current-score"></h4>
+			<h3 id="welcome-block">Welcome: <%= displayName %></h3>
+            <div id="theme-widget">
+                <a id="logout" href='/logout'>Logout</a>
+                <span> | Theme:</span>
+                <input type="radio" id="theme0" name="theme-options" value="0" data-themeName="none"><label for="theme0">0</label> | 
+                <input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
+                <input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>
+            </div>
+            <h4 id="current-score"></h4>
 			<table id="table-rounds">
 				<thead>
 					<tr>
@@ -106,13 +114,7 @@
                 <textarea rows="10" cols="50" placeholder="Use psychologival warfare on your opponents..."></textarea><br>
                 <input type="button" value="Taunt Away!" name="taunt">
             </form>
-            
-            <div id="theme-widget">
-                <span>Theme:</span>
-                <input type="radio" id="theme0" name="theme-options" value="0" data-themeName="none"><label for="theme0">0</label> | 
-                <input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
-                <input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>
-            </div>
+
         </div>
     </body>
 </html>
