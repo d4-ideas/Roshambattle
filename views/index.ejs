@@ -16,7 +16,7 @@
 	<body class="theme-scanlines">
 		<div id="cover"><div id="line"><div id="dot"></div></div></div>
 		<div id="content">
-			<h3>Welcome: <%= displayName %> <a id="logout" href='/logout'>Logout</a></h3> 
+			<h3>Welcome: <%= displayName %></h3>
 			<h4 id="current-score"></h4>
 			<table id="table-rounds">
 				<thead>
@@ -111,7 +111,8 @@
             </form>
             
             <div id="theme-widget">
-                <span>Theme:</span>
+                <a id="logout" href='/logout'>Logout</a>
+                <span> | Theme:</span>
                 <input type="radio" id="theme0" name="theme-options" value="0" data-themeName="none"><label for="theme0">0</label> | 
                 <input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
                 <input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>

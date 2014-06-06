@@ -60,7 +60,15 @@ td p {
     color: #000;
     text-decoration: none;
 }
-
+a {
+    color: #000;
+    text-decoration: none;
+}
+a:hover,
+a:active,
+a:focus {
+    text-decoration: underline;
+}
 /* Theme Widget*/
 #theme-widget {
     position: absolute;
@@ -72,6 +80,11 @@ td p {
 }
 #theme-widget input:checked + label {
     font-weight: bold;
+}
+#theme-widget label:hover,
+#theme-widget label:active,
+#theme-widget label:focus {
+    text-decoration: underline;
 }
 #the-shitcan {
     border: 1px solid #999;
