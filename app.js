@@ -121,3 +121,19 @@ var server = app.listen(3000, function(){
 	console.log('Listening on port %d', server.address().port);
     console.log('Press ctrl+c to exit');
 });
+
+//Anthony hacking here - please leave it alone
+var ourSocketConnections=[];
+var passTheWord = function(theTurnDate){
+	console.log('in passTheWord');
+	
+	for (connection in app.io.connected){
+		if (app.io.connected.hasOwnProperty(connection)){
+			app.io.sockets.sockets[connection].emit('messageForYouSir', {who : 'server', what : 'I see you'});
+		}
+	}
+};
+setTimeout(function(){passTheWord('foo')}, 100);
+app.io.on('connection', function(socket){
+	//console.log(app.io.connected);
+});
