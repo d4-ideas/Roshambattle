@@ -10,13 +10,13 @@ var MongoStore = require('connect-mongo')(express);
 var schedule = require('node-schedule');
 var turn = require('d4-roshamturn');
 
-
 //routes
 var routes = require('./routes');
 var users = require('./routes/user');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var processTurn = require ('./routes/processTurn');
+var messages = require('./routes/messages');
 
 var app = express().http().io();
 
@@ -72,7 +72,8 @@ app.post('/register', register.registerPost);
 app.get('/login', login.loginGet);
 app.post('/login', login.loginPost);
 app.get('/logout', users.logout);
-app.post('/selectWeapon', processTurn.selectWeapon);
+app.io.route('selectWeapon', processTurn.selectWeapon);
+app.io.route('taunt', messages.taunt);
 app.get('/generateTurn', processTurn.generateTurn);
 
 /// catch 404 and forwarding to error handler
@@ -120,12 +121,4 @@ var server = app.listen(3000, function(){
     console.log('Press ctrl+c to exit');
 });    
 
-app.io.route('Message', processTurn.selectWeapon);
 app.io.route('getUserScore', users.getUserScore);
-//var serv_io = io.listen(server);
-//serv_io.sockets.on('connection', function(socket){
-//	socket.emit('Result', {you: 'lost'});
-//	socket.on('Message', function(data) {
-//		console.log(data);
-//	});
-//});

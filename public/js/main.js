@@ -40,7 +40,6 @@ function setTheme(themeIndex){
 
 if (typeof io !== 'undefined'){
 	var io=io.connect();
-	console.log(io);
 	io.on('result', function(data){
         $('#makeItEasyToFindMe').html('You have selected '+$("[name=weapon]:checked").val());
 	});
@@ -50,6 +49,11 @@ if (typeof io !== 'undefined'){
     io.on('UserScoreFailure',function(data){
         $('#current-score').html(data.error);
     });
+	io.on('messageForYouSir', function(data){
+		console.log(data);
+		$("#the-shitcan").append('<p><span class="user">' + data.who + '</span> ' + data.what + '</p>');
+
+	});
 }
 
 $(document).ready(function() {
@@ -57,17 +61,18 @@ $(document).ready(function() {
     var themeSetting = '#theme' + cookieValue;
     $(themeSetting).prop('checked',true);
     setTheme(cookieValue);
-    console.log('send the event');
-    io.emit('getUserScore', {});
     
     $('#theme-widget input[type=radio][name=theme-options]').change(function() {
         var cbvalue = this.value;
         createCookie('theme',cbvalue,365);
         setTheme(cbvalue);
-
     });
 	$('#commit').click(function(){
-		io.emit('Message', {weapon:$("[name=weapon]:checked").val()});
+		io.emit('selectWeapon', {weapon:$("[name=weapon]:checked").val()});
+	});
+	$('[name=taunt]').click(function(){
+		io.emit('taunt', {taunt : $("#taunt-box textarea").val()});
+		$("#the-shitcan").append('<p><span class="user">Me:</span> ' + $("#taunt-box textarea").val() + '</p>');
 	});
 
     initScanlines();
