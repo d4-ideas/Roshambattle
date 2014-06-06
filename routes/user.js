@@ -1,4 +1,5 @@
 var user = require('d4-roshamuser');
+var turn = require('d4-roshamturn');
 
 exports.getUserScore = function(req){
     user.getRoshamUser(req.session.userID, function(err, data){
@@ -10,7 +11,16 @@ exports.getUserScore = function(req){
 };
 
 exports.getTurns = function(req){
-    req.io.emit('getOneTurn', '');
+    turn.getTurns({numberOfTurns:5,userID:req.session.userID}, function(err, data){
+        if(err)
+            req.io.emit('getTurnsFailure', 'Failed to get the turns for you: ' +  err.error);
+        else{
+            data.forEach(function(element){
+                req.io.emit('getOneTurn', element.turnDate); 
+            });
+            
+        }
+    });
 };
 
 exports.logout = function (req, res) {

@@ -23,8 +23,12 @@ if (typeof io !== 'undefined'){
 
 	});
     io.on('getOneTurn', function(data){
-        var row = '<tr><td data-label="Round">2</td><td data-label="Weapon">Paper</td><td data-label="Committed">04/29/2014 11:11:11</td><td data-label="Results"><p>@ 04/29/2014 12:22:22</p><p>Player 2: Win</p><p>Player 3: Loss</p><p>Player 4: Win</p><p>Score: 2 out of 3 (66.66% efficiency)</p></td></tr>'
+        $('#error').html('');
+        var row = '<tr><td data-label="Weapon">Paper</td><td data-label="Committed">'+data+'</td><td data-label="Results"><p>Player 2: Win</p><p>Player 3: Loss</p><p>Player 4: Win</p><p>Score: 2 out of 3 (66.66% efficiency)</p></td></tr>'
         $('#table-rounds tr:last').after(row);
+    });
+    io.on('getTurnsFailure', function(data){
+        $('#error').html(data);
     });
 }
 
