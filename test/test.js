@@ -169,7 +169,6 @@ describe('d4-roshamturn', function() {
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
                 expect(data).to.be.an('array');
-                console.log(data);
                 expect(data).to.have.length.below(1);
                 done();
             });
@@ -178,3 +177,19 @@ describe('d4-roshamturn', function() {
 });
 
 
+var testResult = require('d4-roshamresult');
+describe('d4-roshamresult', function() {
+    describe('.getTurnResults', function() {
+        it('should return the results', function(done){
+            var turnDate = new Date("2014-05-30T11:57:40.114Z");
+            testResult.getTurnResults({turnDate:turnDate,
+                               userID:'53757be81b180608167613cc'}, 
+                               function(err,data){
+                expect(err).to.be.undefined;
+                expect(data).to.be.ok;
+                console.log(data);                    
+                done();
+            });            
+        });        
+    });    
+});
