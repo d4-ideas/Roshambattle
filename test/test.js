@@ -140,9 +140,7 @@ describe('d4-roshamturn', function() {
     
     describe('.getTurns', function() {
         it('should return an error', function(done){
-            testTurn.getTurns({startDate:undefined,
-                               numberOfTurns:5,
-                               userID:undefined}, 
+            testTurn.getTurns(undefined, 
                               function(err,data){
                 expect(err).to.be.ok;
                 expect(data).to.be.undefined;
@@ -157,7 +155,7 @@ describe('d4-roshamturn', function() {
                               function(err,data){
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
-                expect(data).to.be.an(object);
+                expect(data).to.be.an('array');
                 expect(data).to.have.length.at.least(1);
                 done();
             });
@@ -170,8 +168,9 @@ describe('d4-roshamturn', function() {
                               function(err,data){
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
-                expect(data).to.be.an(object);
-                expect(data).to.have.length.eql(0);
+                expect(data).to.be.an('array');
+                console.log(data);
+                expect(data).to.have.length.below(1);
                 done();
             });
         });        
