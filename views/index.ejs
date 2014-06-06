@@ -17,7 +17,7 @@
 		<div id="cover"><div id="line"><div id="dot"></div></div></div>
         <div id="error"></div>
 		<div id="content">
-			<h3 id="welcome-block">Welcome: <%= displayName %></h3>
+			<h3 id="welcome-block">Welcome: <span><%= displayName %></span></h3>
             <div id="theme-widget">
                 <a id="logout" href='/logout'>Logout</a>
                 <span> | Theme:</span>
@@ -111,7 +111,7 @@
             </div>
             
             <form id="taunt-box" name="taunt-box">
-                <textarea rows="10" cols="50" placeholder="Use psychologival warfare on your opponents..."></textarea><br>
+                <textarea rows="2" cols="50" placeholder="Use psychologival warfare on your opponents..."></textarea><br>
                 <input type="button" value="Taunt Away!" name="taunt">
             </form>
 

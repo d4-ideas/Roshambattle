@@ -60,17 +60,17 @@ if (typeof io !== 'undefined'){
     });
 	io.on('messageForYouSir', function(data){
 		console.log(data);
-		$("#the-shitcan").append('<p><span class="user">' + data.who + '</span> ' + data.what + '</p>');
+		$("#the-shitcan").append('<p><span class="user">' + data.who + ': </span> ' + data.what + '</p>');
 
 	});
 }
 
 $(document).ready(function() {
+    /* Licking the paint */
     var cookieValue = readCookie('theme');
     var themeSetting = '#theme' + cookieValue;
     $(themeSetting).prop('checked',true);
     setTheme(cookieValue);
-    
     $('#theme-widget input[type=radio][name=theme-options]').change(function() {
         var cbvalue = this.value;
         createCookie('theme',cbvalue,365);
@@ -79,10 +79,26 @@ $(document).ready(function() {
 	$('#commit').click(function(){
 		io.emit('selectWeapon', {weapon:$("[name=weapon]:checked").val()});
 	});
-	$('[name=taunt]').click(function(){
-		io.emit('taunt', {taunt : $("#taunt-box textarea").val()});
-		$("#the-shitcan").append('<p><span class="user">Me:</span> ' + $("#taunt-box textarea").val() + '</p>');
-	});
 
+    /* I shall taunt you a second time! */
+    $("#taunt-box textarea").keypress(function(e){
+        if (e.which == 13) {
+            $('[name=taunt]').click();
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        }
+    });
+	$('[name=taunt]').click(function(){
+		var daTaunt = $("#taunt-box textarea").val();
+        var daTaunter = $('#welcome-block span').html();
+        io.emit('taunt', {taunt : daTaunt});
+		$("#the-shitcan").append('<p class="hideMe"><span class="user">' + daTaunter + ':</span> ' + daTaunt + '</p>');
+        setTimeout(function() {
+            $("#taunt-box textarea").val('');
+        }, 100);
+  	});
+
+    /* Turns on the scan line bit */
     initScanlines();
 });
