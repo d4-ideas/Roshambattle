@@ -49,7 +49,7 @@ describe("d4-user", function() {
        });
        it("should create user", function(done){        
             user.register(existingUser, function(err, data){
-                expect(err).to.not.be.ok;
+                expect(err).to.be.undefined;
                 expect(data).to.be.ok;
                 existingUserID = data;
                 done();
@@ -67,7 +67,7 @@ describe("d4-user", function() {
     describe('.getUser()', function() {
         it('should return a password for a valid emailAddress', function(done) {
             user.getUser({email: existingUser.emailAddress}, function(err, data){
-                expect(err).to.not.be.ok;
+                expect(err).to.be.undefined;
                 expect(data).to.be.ok;
                 done();
             });
@@ -77,7 +77,7 @@ describe("d4-user", function() {
     describe('.getUserID()', function(){
         it('should return a userid', function(done){
             user.getUserID({email:existingUser.emailAddress}, function(err, data){
-               expect(err).to.not.be.ok;
+               expect(err).to.be.undefined;
                expect(data).to.be.ok;
                done();                
             });
@@ -119,18 +119,6 @@ describe('d4-roshamuser', function() {
 
 var testTurn = require('d4-roshamturn');
 describe('d4-roshamturn', function() {
-//    describe('.takeTurn()', function() {
-//        it('should log return success', function(done){   
-//           testTurn.takeTurn({'userid':existingUserID, 'weapon':'Rock'}, function(err, success){
-//                if(err){
-//                    done(err);
-//                } 
-//                else {
-//                    done();
-//                }
-//            });
-//        });
-//    });
     describe('.generateTurn', function() {
         it('should create a new turn', function(done){
             user.register(existingUser2, function(err, data){
@@ -138,10 +126,9 @@ describe('d4-roshamturn', function() {
                 ruser.setWeapon({'userid':data, 'weapon':'Paper'}, function(err, success){
                     expect(success).to.be.ok;
                     testTurn.generateTurn(function(err, data){
-                        expect(err).to.not.be.ok;
+                        expect(err).to.be.undefined;
                         expect(data).to.be.ok;
                         ruser.getRoshamUser(existingUserID, function(err, data){
-                            console.log(data);
                             expect(data).to.be.ok;
                             done();
                         });
@@ -150,6 +137,45 @@ describe('d4-roshamturn', function() {
             });
         });
     });
+    
+    describe('.getTurns', function() {
+        it('should return an error', function(done){
+            testTurn.getTurns({startDate:undefined,
+                               numberOfTurns:5,
+                               userID:undefined}, 
+                              function(err,data){
+                expect(err).to.be.ok;
+                expect(data).to.be.undefined;
+                done();
+            });
+        });
+        
+        it('should return an array of turns', function(done){
+            testTurn.getTurns({startDate:undefined,
+                               numberOfTurns:5,
+                               userID:undefined}, 
+                              function(err,data){
+                expect(err).to.be.undefined;
+                expect(data).to.be.ok;
+                expect(data).to.be.an(object);
+                expect(data).to.have.length.at.least(1);
+                done();
+            });
+        });
+        it('should return an empty array of turns', function(done){
+            var startDate = new Date("October 13, 1975 11:13:00");
+            testTurn.getTurns({startDate:startDate,
+                               numberOfTurns:5,
+                               userID:undefined}, 
+                              function(err,data){
+                expect(err).to.be.undefined;
+                expect(data).to.be.ok;
+                expect(data).to.be.an(object);
+                expect(data).to.have.length.eql(0);
+                done();
+            });
+        });        
+    });    
 });
 
 
