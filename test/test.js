@@ -182,12 +182,11 @@ describe('d4-roshamresult', function() {
     describe('.getTurnResults', function() {
         it('should return the results', function(done){
             var turnDate = new Date("2014-05-30T11:57:40.114Z");
-            testResult.getTurnResults({turnDate:turnDate,
-                               userID:'53757be81b180608167613cc'}, 
+            testResult.getTurnResults({turnDate:turnDate}, 
                                function(err,data){
+                console.log(data);                    
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
-                console.log(data);                    
                 done();
             });            
         });        
