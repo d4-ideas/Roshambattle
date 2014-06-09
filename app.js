@@ -124,17 +124,15 @@ var server = app.listen(3000, function(){
 });
 
 //Anthony hacking here - please leave it alone
-var ourSocketConnections=[];
 var passTheWord = function(theTurnDate){
-	console.log('in passTheWord');
-	
+	//iterate through our connections
 	for (connection in app.io.connected){
 		if (app.io.connected.hasOwnProperty(connection)){
-			app.io.sockets.sockets[connection].emit('messageForYouSir', {who : 'server', what : 'I see you'});
+			//get the turn info here...
+			//send them a message
+			app.io.sockets.sockets[connection].emit('messageForYouSir', {who: 'god', what : 'I see you ' + app.io.handshaken[connection].session.displayName});
 		}
 	}
 };
-setTimeout(function(){passTheWord('foo')}, 100);
-app.io.on('connection', function(socket){
-	//console.log(app.io.connected);
-});
+
+setInterval(function(){passTheWord('foo')}, 10000);
