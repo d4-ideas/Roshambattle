@@ -1,3 +1,4 @@
+console.log('user');
 var user = require('d4-roshamuser');
 var turn = require('d4-roshamturn');
 
@@ -16,7 +17,9 @@ exports.getTurns = function(req){
             req.io.emit('getTurnsFailure', 'Failed to get the turns for you: ' +  err.error);
         else{
             data.forEach(function(element){
-                req.io.emit('getOneTurn', element.turnDate); 
+                //testResult.getTurnResults({element.turnDate}, function(err,data){
+                    req.io.emit('getOneTurn', element.turnDate); 
+                //});                
             });
             
         }
