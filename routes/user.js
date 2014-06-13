@@ -1,6 +1,6 @@
-console.log('user');
 var user = require('d4-roshamuser');
 var turn = require('d4-roshamturn');
+var result = require('d4-roshamresult');
 
 exports.getUserScore = function(req){
     user.getRoshamUser(req.session.userID, function(err, data){
@@ -19,9 +19,23 @@ exports.getTurns = function(req){
             req.io.emit('getTurnsFailure', 'Failed to get the turns for you: ' +  err.error);
         else{
             data.forEach(function(element){
-                //testResult.getTurnResults({element.turnDate}, function(err,data){
-                    req.io.emit('getOneTurn', element.turnDate); 
-                //});                
+
+                var aResult = {turnDate: element.turnDate, 
+                              userID: 123, 
+                              weapon: 'Rock', 
+                              opponents: [{name:'Billy Bob', result:'Win'},
+                                          {name:'Joey Johnson', result:'Tie'},
+                                          {name:'Happy', result:'Tie'},
+                                          {name:'Grr', result: 'Loss'}]
+                            }
+                    req.io.emit('getOneTurn', aResult); 
+//                result.getUserTurnResults ({turnDate:element.turnDate, userID:req.session.userID}, function(err, data) {
+//                    if (err)
+//                        req.io.emit('getTurnsFailure', 'Failed to get the results for you: ' +  err.error);
+//                    else 
+//                        req.io.emit('getOneTurn', data);
+//                }); 
+        
             });
             
         }

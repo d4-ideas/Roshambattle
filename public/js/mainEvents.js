@@ -5,9 +5,11 @@ if (typeof io !== 'undefined'){
         $('#error').html('');
         $('#makeItEasyToFindMe').html('You have selected '+$("[name=weapon]:checked").val());
 	});
+    
     io.on('selectWeaponFailure', function(data){
         $('#error').html('selectWeapon failed with error: ' + data.reason);
     });
+    
     io.on('UserScoreSuccess', function(data){
         $('#error').html('');
         $('#current-score').html('GP: '+data.totalBattles + ' Wins: ' + data.totalWins + ' Draws: ' + data.totalTies + ' Losses: '+data.totalLosses);
@@ -15,19 +17,27 @@ if (typeof io !== 'undefined'){
             $('#makeItEasyToFindMe').html('You have selected '+data.weapon);
         }
     });
+    
     io.on('UserScoreFailure',function(data){
         $('#current-score').html(data.error);
     });
+    
 	io.on('messageForYouSir', function(data){
 		$("#the-shitcan").append('<p><span class="user">' + data.who + ': </span> ' + data.what + '</p>');
 
 	});
+    
     io.on('getOneTurn', function(data){
+        console.log('getonTurn' + data);
         $('#error').html('');
-        var a = moment(data);
-        var row = '<tr><td data-label="Weapon">Paper</td><td data-label="Committed">'+a.format("MMMM Do YYYY, h:mm:ss a")+'</td><td data-label="Results"><p>Player 2: Win</p><p>Player 3: Loss</p><p>Player 4: Win</p><p>Score: 2 out of 3 (66.66% efficiency)</p></td></tr>'
+        var turnDate = moment(data.turnDate);
+        var oppHTML = data.opponents.reduce(function(previousValue, currentValue) {
+            return previousValue + '<p>' + currentValue.name + ': ' + currentValue.result + '</p>';
+        }, '');
+        var row = '<tr><td data-label="Weapon">'+data.weapon+'</td><td data-label="Committed">'+turnDate.format("MMMM Do YYYY, h:mm:ss a")+'</td><td data-label="Results">'+oppHTML+'</td></tr>';
         $('#table-rounds tr:last').after(row);
     });
+    
     io.on('getTurnsFailure', function(data){
         $('#error').html(data);
     });
