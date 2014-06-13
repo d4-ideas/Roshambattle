@@ -3,47 +3,14 @@ var expect = require("chai").expect;
 var ruser = require('d4-roshamuser');
 var user = require('d4-user');
 var testTurn = require('d4-roshamturn');
-var someTurns;
-var rockUser = {emailAddress: 'RockUser@email.com',
-                    password: 'testuser',
-                    displayName: 'RockUser'},
-    paperUser = {emailAddress: 'PaperUser@email.com',
-                    password: 'testuser',
-                    displayName: 'PaperUser'},
-    rockID;
+var rockID;
 
-before(function(done){
-    user.userModel.create(rockUser, paperUser)
-    .then(function(rock, paper){
-        console.log(rock + paper);
-        var rRock = {'userid': rock._id,
-                   'weapon': 'Rock',
-                   'totalBattles': 0,
-                   'totalWins': 0,
-                   'totalLosses': 0,
-                   'totalTies': 0},
-            rPaper = {'userid': paper._id,
-                   'weapon': 'Paper',
-                   'totalBattles': 0,
-                   'totalWins': 0,
-                   'totalLosses': 0,
-                   'totalTies': 0};
-        rockID = rock._id;
-        ruser.roshamuserModel.create(rRock, rPaper)
-        .then(function(){
-            done();
-        }); 
-    });
-});
-
-after(function(done){
-    ruser.roshamuserModel.remove(null, function(err, res){
-        if (err || res <1) {
-            console.log('error removing test roshamusers ' + err + res + existingUser.password);
-            done();
-        } else {
-            done()
-        }
+before(function(){
+    user.userModel.findOne({email:'RockUser@email.com'}, function (err, data) {
+        if (err)
+            throw "Couldn't find rock user";
+        else
+            rockID = data._id;
     });
 });
 

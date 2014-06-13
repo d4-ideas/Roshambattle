@@ -11,6 +11,8 @@ exports.getUserScore = function(req){
     });    
 };
 
+
+
 exports.getTurns = function(req){
     turn.getTurns({numberOfTurns:5,userID:req.session.userID}, function(err, data){
         if(err)
