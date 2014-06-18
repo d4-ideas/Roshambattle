@@ -58,6 +58,7 @@ describe('d4-roshamresult', function() {
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
                 expect(data.weapon).to.be.string('Rock');
+                done();
             });
         });
     });

@@ -49,10 +49,6 @@ $(document).ready(function() {
     $('#commit').click(function(){
 		io.emit('selectWeapon', {weapon:$("[name=weapon]:checked").val()});
 	});
-    
-	$('#commit').click(function(){
-		io.emit('selectWeapon', {weapon:$("[name=weapon]:checked").val()});
-	});
 
     /* I shall taunt you a second time! */
     $("#taunt-box textarea").keypress(function(e){
