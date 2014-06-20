@@ -39,19 +39,32 @@ describe('d4-roshamturn', function() {
         });
         
         it('should return an array of turns', function(done){
-            testTurn.getTurns({startDate:undefined,
-                               numberOfTurns:5,
+            testTurn.getTurns({startDate:'5/22/2014',
+                               numberOfTurns:2,
                                userID:undefined}, 
                               function(err,data){
+                console.log(data);
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
                 expect(data).to.be.an('array');
-                expect(data).to.have.length.at.least(1);
+                expect(data).to.have.length.equal(2);
                 someTurns = data;
-                console.log(data);
                 done();
             });
         });
+        it('should return an array of turns with no start date ', function(done){
+            testTurn.getTurns({numberOfTurns:2,
+                               userID:undefined}, 
+                              function(err,data){
+                console.log(data);
+                expect(err).to.be.undefined;
+                expect(data).to.be.ok;
+                expect(data).to.be.an('array');
+                expect(data).to.have.length.equal(2);
+                someTurns = data;
+                done();
+            });
+        });        
         it('should return an empty array of turns', function(done){
             var startDate = new Date("October 13, 1975 11:13:00");
             testTurn.getTurns({startDate:startDate,
