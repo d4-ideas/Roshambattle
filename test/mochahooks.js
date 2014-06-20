@@ -19,25 +19,36 @@ before(function(done){
        console.log('Connected to Mongo');
     });
     
+    var i = 0,
+        checkDone = function(){
+            i++;
+            if (i === 2) done();
+        }
     user.userModel.create(rockUser, paperUser)
     .then(function(rock, paper){
         var rRock = {'userid': rock._id,
                    'weapon': 'Rock',
-                   'totalBattles': 0,
-                   'totalWins': 0,
+                   'totalBattles': 2,
+                   'totalWins': 2,
                    'totalLosses': 0,
                    'totalTies': 0},
             rPaper = {'userid': paper._id,
                    'weapon': 'Paper',
-                   'totalBattles': 0,
+                   'totalBattles': 2,
                    'totalWins': 0,
-                   'totalLosses': 0,
+                   'totalLosses': 2,
                    'totalTies': 0};
         ruser.roshamuserModel.create(rRock, rPaper)
-        .then(function(){
-            done();
-        }); 
-    });    
+        .then(checkDone); 
+        var turn1 = {turnDate: '5/21/2014 8:00AM',
+                     participants: [{userid: rock._id, weapon: 'Rock'}, {userid: paper._id, weapon: 'Paper'}]},
+            turn2 = {turnDate: '5/21/2014 9:00AM',
+                     participants: [{userid: rock._id, weapon: 'Rock'}, {userid: paper._id, weapon: 'Paper'}]};
+        testTurn.model.create(turn1, turn2).then(checkDone);
+    });  
+});
+
+
 });
 
 after(function(){

@@ -31,7 +31,6 @@ before(function(){
                     'player2': paperID, 
                     'weapon2': 'Paper',
                     'winner': 2});
-            
         }
     }
 });

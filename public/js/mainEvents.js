@@ -28,7 +28,6 @@ if (typeof io !== 'undefined'){
 	});
     
     io.on('getOneTurn', function(data){
-        console.log('getonTurn' + data);
         $('#error').html('');
         var turnDate = moment(data.turnDate);
         var oppHTML = data.opponents.reduce(function(previousValue, currentValue) {
