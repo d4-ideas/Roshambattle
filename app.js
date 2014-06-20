@@ -129,10 +129,12 @@ var passTheWord = function(theTurnDate){
 	for (connection in app.io.connected){
 		if (app.io.connected.hasOwnProperty(connection)){
 			//get the turn info here...
+			getUserTurnResults({turnDate : turnDate, userID : theUserId}, function(data){
+				app.io.sockets.sockets[connection].emit('turnResult', {who: 'god', what : 'I see you ' + app.io.handshaken[connection].session.displayName});
+			});
 			//send them a message
-			app.io.sockets.sockets[connection].emit('messageForYouSir', {who: 'god', what : 'I see you ' + app.io.handshaken[connection].session.displayName});
 		}
 	}
 };
 
-setInterval(function(){passTheWord('foo')}, 10000);
+//setInterval(function(){passTheWord('foo')}, 10000);
