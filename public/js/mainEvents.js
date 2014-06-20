@@ -12,7 +12,7 @@ if (typeof io !== 'undefined'){
     
     io.on('UserScoreSuccess', function(data){
         $('#error').html('');
-        $('#current-score').html('GP: '+data.totalBattles + ' Wins: ' + data.totalWins + ' Draws: ' + data.totalTies + ' Losses: '+data.totalLosses);
+        $('#current-score').html('Games Played: '+data.totalBattles + '<p> Wins: ' + data.totalWins + ' Draws: ' + data.totalTies + ' Losses: '+data.totalLosses);
         if (data.weapon){
             $('#makeItEasyToFindMe').html('You have selected '+data.weapon);
         }

@@ -30,7 +30,8 @@ db.once('open', function callback(){
 });
 
 var rule = new schedule.RecurrenceRule();
-rule.minute = [0,30];
+rule.minute = [0];
+rule.hour = [0,12];
 
 var j = schedule.scheduleJob(rule, function(){
     turn.generateTurn(function(err, data){
