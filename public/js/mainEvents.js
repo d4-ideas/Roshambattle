@@ -38,7 +38,7 @@ if (typeof io !== 'undefined'){
 
         var rows = document.getElementById('table-rounds').rows;
         var len = rows.length-2;//don't include header or selection rows
-
+console.log('sort');
         //sort the rows
         for (h=len; h=parseInt(h/2);){
             for(i=h; i<len; i++){
