@@ -14,7 +14,9 @@ exports.getUserScore = function(req){
 
 
 exports.getTurns = function(req){
+    console.log('enter getturns');
     turn.getTurns({numberOfTurns:5,userID:req.session.userID}, function(err, data){
+        console.log('lenght of array' + data.length);
         if(err)
             req.io.emit('getTurnsFailure', 'Failed to get the turns for you: ' +  err.error);
         else{

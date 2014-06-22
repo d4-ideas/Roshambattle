@@ -47,21 +47,19 @@ describe('d4-roshamturn', function() {
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
                 expect(data).to.be.an('array');
-                expect(data).to.have.length.equal(2);
-                someTurns = data;
+                expect(data).to.have.length(2);
                 done();
             });
         });
         it('should return an array of turns with no start date ', function(done){
             testTurn.getTurns({numberOfTurns:2,
-                               userID:undefined}, 
+                               userID:rockID}, 
                               function(err,data){
                 console.log(data);
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
                 expect(data).to.be.an('array');
-                expect(data).to.have.length.equal(2);
-                someTurns = data;
+                expect(data).to.have.length(2);
                 done();
             });
         });        
