@@ -5,7 +5,6 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-//var io = require ('socket.io');
 var MongoStore = require('connect-mongo')(express);
 var schedule = require('node-schedule');
 var turn = require('d4-roshamturn');
@@ -28,6 +27,10 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback(){
    console.log('Connected to Mongo'); 
 });
+
+// connect up our socket utilities
+var socketUtil = require ('d4-sockets.js');
+sockets.initialize(app);
 
 var rule = new schedule.RecurrenceRule();
 rule.minute = [0];
