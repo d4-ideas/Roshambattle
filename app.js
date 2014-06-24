@@ -29,8 +29,8 @@ db.once('open', function callback(){
 });
 
 // connect up our socket utilities
-var socketUtil = require ('d4-sockets.js');
-sockets.initialize(app);
+var socketUtil = require('d4-sockets');
+socketUtil.initialize(app);
 
 var rule = new schedule.RecurrenceRule();
 rule.minute = [0];
