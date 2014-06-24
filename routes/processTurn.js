@@ -1,5 +1,6 @@
 var ruser = require('d4-roshamuser');
 var turn = require('d4-roshamturn');
+var d4sockets = require('d4-sockets');
 
 exports.selectWeapon = function (req,res){
     console.log('enter selectWeapon');
@@ -21,6 +22,7 @@ exports.selectWeapon = function (req,res){
 exports.generateTurn = function (req,res){
     turn.generateTurn(function(err, data){
         if (data){
+            d4sockets.contactConnectedSockets(data);
             res.render('generateTurn', { title: 'RoshamBattle!', status: 'ok'});
         } else {
             res.render('generateTurn', { title: 'RoshamBattle!', status: 'you failed.' + err.error});
