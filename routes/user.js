@@ -30,7 +30,11 @@ exports.getTurns = function(req){
                     else {
                         turns[i++] = data;
                         if (--num === 0) {
-                            turns.sort();
+                            turns.sort(function(a,b){
+                                var date1 = new Date(a.turnDate),
+                                    date2 = new Date(b.turnDate);
+                                return date2-date1;
+                            }); 
                             req.io.emit('getTurns', turns);
                         }
                     }
