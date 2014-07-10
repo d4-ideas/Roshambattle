@@ -27,9 +27,10 @@ if (typeof io !== 'undefined'){
 
 	});
     
-    io.on('getOneTurn', function(data){
+    io.on('getTurns', function(data){
         $('#error').html('');
         var rows = '';
+        console.log(data);
         data.forEach(function(element){
             var turnDate = moment(element.turnDate);
             var oppHTML = element.opponents.reduce(function(previousValue, currentValue) {

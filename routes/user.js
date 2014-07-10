@@ -31,7 +31,7 @@ exports.getTurns = function(req){
                         turns[i++] = data;
                         if (--num === 0) {
                             turns.sort();
-                            req.io.emit('getOneTurn', turns);
+                            req.io.emit('getTurns', turns);
                         }
                     }
                 }); 
