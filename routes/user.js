@@ -14,29 +14,25 @@ exports.getUserScore = function(req){
 
 
 exports.getTurns = function(req){
-    console.log('enter getturns');
     turn.getTurns({numberOfTurns:5,userID:req.session.userID}, function(err, data){
-        console.log('lenght of array' + data.length);
         if(err)
             req.io.emit('getTurnsFailure', 'Failed to get the turns for you: ' +  err.error);
         else{
+            var num = data.length,
+                i = 0,
+                turns = new Array();
+            turns.length = num;
             data.forEach(function(element){
-
-//                var aResult = {turnDate: element.turnDate, 
-//                              userID: 123, 
-//                              weapon: 'Rock', 
-//                              opponents: [{name:'Billy Bob', result:'Win'},
-//                                          {name:'Joey Johnson', result:'Tie'},
-//                                          {name:'Happy', result:'Tie'},
-//                                          {name:'Grr', result: 'Loss'}]
-//                            }
-//                    req.io.emit('getOneTurn', aResult); 
+                turns[element.turnDate]='';
                 result.getUserTurnResults ({turnDate:element.turnDate, userID:req.session.userID}, function(err, data) {
                     if (err)
                         req.io.emit('getTurnsFailure', 'Failed to get the results for you: ' +  err.error);
                     else {
-                        console.log(data);
-                        req.io.emit('getOneTurn', data);
+                        turns[i++] = data;
+                        if (--num === 0) {
+                            turns.sort();
+                            req.io.emit('getOneTurn', turns);
+                        }
                     }
                 }); 
         

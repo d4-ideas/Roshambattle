@@ -29,28 +29,15 @@ if (typeof io !== 'undefined'){
     
     io.on('getOneTurn', function(data){
         $('#error').html('');
-        var turnDate = moment(data.turnDate);
-        var oppHTML = data.opponents.reduce(function(previousValue, currentValue) {
-            return previousValue + '<p>' + currentValue.name + ': ' + currentValue.result + '</p>';
-        }, '');
-        var row = '<tr><td data-label="Weapon">'+data.weapon+'</td><td data-label="Committed">'+turnDate.format("MMMM Do YYYY, h:mm:ss a")+'</td><td data-label="Results">'+oppHTML+'</td></tr>';
-        $('#table-rounds tr:last').after(row);
-
-        var rows = document.getElementById('table-rounds').rows;
-        var len = rows.length-2;//don't include header or selection rows
-console.log('sort');
-        //sort the rows
-        for (h=len; h=parseInt(h/2);){
-            for(i=h; i<len; i++){
-                var k = moment(rows[i+2].cells[1].innerHTML, "MMMM Do YYYY, h:mm:ss a"),
-                    row1 = rows[i+2].innerHTML;
-                for (var j = i; j >= h && moment(k).isBefore(moment(rows[j-h+2].cells[1].innerHTML, "MMMM Do YYYY, h:mm:ss a")); j -= h){
-                    rows[j+2] = rows[j-h+2].innerHTML;
-                }
-                rows[j+2] = row1;
-            }
-        }
-
+        var rows = '';
+        data.forEach(function(element){
+            var turnDate = moment(element.turnDate);
+            var oppHTML = element.opponents.reduce(function(previousValue, currentValue) {
+                return previousValue + '<p>' + currentValue.name + ': ' + currentValue.result + '</p>';
+            }, '');
+            rows += '<tr><td data-label="Weapon">'+element.weapon+'</td><td data-label="Committed">'+turnDate.format("MMMM Do YYYY, h:mm:ss a")+'</td><td data-label="Results">'+oppHTML+'</td></tr>';
+        });
+        $('#table-rounds tr:last').after(rows);
     });
     
     io.on('getTurnsFailure', function(data){
