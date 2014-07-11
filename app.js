@@ -34,7 +34,7 @@ socketUtil.initialize(app);
 
 var rule = new schedule.RecurrenceRule();
 rule.minute = [0];
-rule.hour = [0,12];
+rule.hour = [0,2,4,6,8,10,12,14,16,18,20,22];
 
 var j = schedule.scheduleJob(rule, function(){
     turn.generateTurn(function(err, data){
