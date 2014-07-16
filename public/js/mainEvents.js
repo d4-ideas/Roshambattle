@@ -27,10 +27,21 @@ if (typeof io !== 'undefined'){
 
 	});
     
+    io.on('getChatsSuccess', function(data){
+        //I know this isn't the fastest way
+        data.forEach(function(chat){
+            addChat(chat.user.name, chat.comments, chat.chatDate);
+        });
+    });
+          
+    io.on('getChatsFailure', function(data){
+        console.log('enter getChatsFailure');
+        console.log(data);        
+    });          
+    
     io.on('getTurns', function(data){
         $('#error').html('');
         var rows = '';
-        console.log(data);
         data.forEach(function(element){
             var turnDate = moment(element.turnDate);
             var oppHTML = element.opponents.reduce(function(previousValue, currentValue) {
@@ -46,14 +57,20 @@ if (typeof io !== 'undefined'){
     });
 }
 
+var addChat = function(user, comments, chatDate){
+    var niceDate = moment(chatDate);
+    $("#the-shitcan").append('<p class="hideMe"><span>'+niceDate.fromNow()+'</span> <span class="user">' + user + ':</span> ' + comments + '</p>');
+}
+
 $(document).ready(function() {
     io.emit('getUserScore', {});    
     io.emit('getTurns', {});
+    io.emit('getChats', {});
     $('#commit').click(function(){
 		io.emit('selectWeapon', {weapon:$("[name=weapon]:checked").val()});
 	});
 
-    /* I shall taunt you a second time! */
+    /* Create a taunt on the press of the Enter/Return key */
     $("#taunt-box textarea").keypress(function(e){
         if (e.which == 13) {
             $('[name=taunt]').click();
@@ -66,7 +83,7 @@ $(document).ready(function() {
 		var daTaunt = $("#taunt-box textarea").val();
         var daTaunter = $('#welcome-block span').html();
         io.emit('taunt', {taunt : daTaunt});
-		$("#the-shitcan").append('<p class="hideMe"><span class="user">' + daTaunter + ':</span> ' + daTaunt + '</p>');
+		addChat(daTaunter, daTaunt, new Date());
         setTimeout(function() {
             $("#taunt-box textarea").val('');
         }, 100);

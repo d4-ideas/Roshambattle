@@ -78,6 +78,7 @@ app.post('/login', login.loginPost);
 app.get('/logout', users.logout);
 app.io.route('selectWeapon', processTurn.selectWeapon);
 app.io.route('taunt', messages.taunt);
+app.io.route('getChats', messages.getChats);
 app.io.route('getUserScore', users.getUserScore);
 app.io.route('getTurns', users.getTurns);
 app.get('/generateTurn', processTurn.generateTurn);
