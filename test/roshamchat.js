@@ -3,6 +3,8 @@ var ruser = require('d4-roshamuser');
 var user = require('d4-user');
 var testChat = require('d4-chat');
 var rockID;
+var paperID;
+var chatID;
 
 before(function(){
     user.userModel.findOne({email:'RockUser@email.com'}, function (err, data) {
@@ -11,6 +13,12 @@ before(function(){
         else
             rockID = data._id;
     });
+    user.userModel.findOne({email:'PaperUser@email.com'}, function (err, data) {
+        if (err)
+            throw "Couldn't find paper user";
+        else
+            paperID = data._id;
+    });    
 });
 
 after(function(){
@@ -32,6 +40,7 @@ describe('d4-chat', function() {
             testChat.addChat({user:rockID, comments:'Here is a comment'}, function(err, data){
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
+                chatID = data._id;
                 testChat.model.findOne({user:rockID}).exec(function(err, data){
                     expect(data).to.be.ok;
                     expect(data.comments).to.be.string('Here is a comment');
@@ -52,4 +61,82 @@ describe('d4-chat', function() {
             });
         });
     });
+    
+    describe('.addPlus', function(){
+        it('should throw an error', function(done){
+            testChat.addPlus(undefined, function(err, data){
+                expect(err).to.be.ok;
+                expect(data).to.be.undefined;
+                done();
+            });
+        });     
+        it('should throw an error2', function(done){
+            testChat.addPlus({chatID:undefined, userID:'aa'}, function(err, data){
+                expect(err).to.be.ok;
+                expect(data).to.be.undefined;
+                done();
+            });
+        });
+        it('should throw an error3', function(done){
+            testChat.addPlus({chatID:'aa', userID:undefined}, function(err, data){
+                expect(err).to.be.ok;
+                expect(data).to.be.undefined;
+                done();
+            });
+        });        
+        it('should fail due to same user as creator', function(done){
+            testChat.addPlus({chatID:chatID, userID:rockID}, function(err, data){
+                expect(err).to.be.ok;
+                expect(data).to.be.undefined;
+                done();
+            });
+        });
+        it('should succeed', function(done){
+            testChat.addPlus({chatID:chatID, userID:paperID}, function(err, data){
+                expect(err).to.be.undefined;
+                expect(data).to.be.ok;
+                console.log(data);
+                done();
+            });            
+        });      
+    });
+    
+    describe('.addMinus', function(){
+        it('should throw an error', function(done){
+            testChat.addMinus(undefined, function(err, data){
+                expect(err).to.be.ok;
+                expect(data).to.be.undefined;
+                done();
+            });
+        });     
+        it('should throw an error2', function(done){
+            testChat.addMinus({chatID:undefined, userID:'aa'}, function(err, data){
+                expect(err).to.be.ok;
+                expect(data).to.be.undefined;
+                done();
+            });
+        });
+        it('should throw an error3', function(done){
+            testChat.addMinus({chatID:'aa', userID:undefined}, function(err, data){
+                expect(err).to.be.ok;
+                expect(data).to.be.undefined;
+                done();
+            });
+        });        
+        it('should fail due to same user as creator', function(done){
+            testChat.addMinus({chatID:chatID, userID:rockID}, function(err, data){
+                expect(err).to.be.ok;
+                expect(data).to.be.undefined;
+                done();
+            });
+        });
+        it('should succeed', function(done){
+            testChat.addMinus({chatID:chatID, userID:paperID}, function(err, data){
+                expect(err).to.be.undefined;
+                expect(data).to.be.ok;
+                console.log(data);
+                done();
+            });            
+        });      
+    });    
 });
