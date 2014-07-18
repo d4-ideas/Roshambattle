@@ -51,7 +51,29 @@ $(document).ready(function() {
         setTheme(cbvalue);
     });
 
+    /* Tabs */
+    $('#tabs-block li').on('click', function(){ 
+        var that = this;
+        var target = '#';
+        if (!$(this).hasClass('active')) {
+            target += $(this).data('tabid');
 
+           $('#tabs-block li').each(function(){
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
+                }
+                $(that).addClass('active');
+            });
+            
+            $('.tab-block').each(function(){
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
+                }
+            });
+            $(target).addClass('active');
+        }
+    });
+    
     /* Turns on the scan line bit */
     initScanlines();
 });

@@ -40,6 +40,20 @@ body.theme-lcd.user-form input {
 body.theme-lcd.user-form #error {
     margin-top: 10px;
 }
+
+body.theme-lcd #tabs-block li {
+    border: 1px solid #fff;
+    color: #fff;
+}
+body.theme-lcd #tabs-block li:hover {
+    color: #0f0;
+    border-color: #0f0;
+    background-color: #000;
+}
+
+
+
+
 body.theme-lcd #taunt-box textarea {
     background-color: #eee;
     font-family: 'liquid_crystalregular';

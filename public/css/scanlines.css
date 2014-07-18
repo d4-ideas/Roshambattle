@@ -140,6 +140,28 @@ body.theme-scanlines .n00b-link:focus,
 body.theme-scanlines .n00b-link:active {
     opacity: 1.0;
 }
+
+body.theme-scanlines #tabs-block li {
+    border: 1px solid #fff;
+    color: #fff;
+}
+body.theme-scanlines #tabs-block li:hover {
+    color: #ff0;
+    border-color: #ff0;
+    background-color: #000;
+}
+body.theme-scanlines #tabs-block li.active,
+body.theme-scanlines #tabs-block li.active:hover {
+    color: #0f0;
+    border-color: #0f0;
+    background-color: #000;
+}
+
+
+
+
+
+
 body.theme-scanlines #the-shitcan {
     border: 1px solid #0f0;
     background-color: #020;
