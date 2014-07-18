@@ -59,7 +59,7 @@ if (typeof io !== 'undefined'){
 
 var addChat = function(user, comments, chatDate){
     var niceDate = moment(chatDate);
-    $("#the-shitcan").append('<p class="hideMe"><span>'+niceDate.fromNow()+'</span> <span class="user">' + user + ':</span> ' + comments + '</p>');
+    $("#the-shitcan").prepend('<p class="hideMe"><span>'+niceDate.fromNow()+'</span> <span class="user">' + user + ':</span> ' + comments + '</p>');
 }
 
 $(document).ready(function() {
