@@ -1,6 +1,5 @@
 if (typeof io !== 'undefined'){
 	var io=io.connect();
-	console.log(io);
 	io.on('selectWeaponSuccess', function(data){
         $('#error').html('');
         $('#makeItEasyToFindMe').html('You have selected '+$("[name=weapon]:checked").val());
@@ -23,21 +22,29 @@ if (typeof io !== 'undefined'){
     });
     
 	io.on('messageForYouSir', function(data){
-		$("#the-shitcan").append('<p><span class="user">' + data.who + ': </span> ' + data.what + '</p>');
-
+		addChat(data);
 	});
     
     io.on('getChatsSuccess', function(data){
         //I know this isn't the fastest way
         data.forEach(function(chat){
-            addChat(chat.user.name, chat.comments, chat.chatDate);
+            addChat(chat);
         });
     });
           
     io.on('getChatsFailure', function(data){
         console.log('enter getChatsFailure');
         console.log(data);        
-    });          
+    });  
+    
+    io.on('plusAdded', function(data){
+        var count = $("#"+data+"").children('.plusChat').children('.Count').html();
+        $("#"+data+"").children('.plusChat').children('.Count').html(++count);
+    });
+    io.on('minusAdded', function(data){
+        var count = $("#"+data+"").children('.minusChat').children('.Count').html();
+        $("#"+data+"").children('.minusChat').children('.Count').html(++count);
+    });
     
     io.on('getTurns', function(data){
         $('#error').html('');
@@ -57,9 +64,23 @@ if (typeof io !== 'undefined'){
     });
 }
 
-var addChat = function(user, comments, chatDate){
-    var niceDate = moment(chatDate);
-    $("#the-shitcan").prepend('<p class="hideMe"><span>'+niceDate.fromNow()+'</span> <span class="user">' + user + ':</span> ' + comments + '</p>');
+$(document).on('click', '.plusChat', function () {
+    var target = this,
+        chatID = $(target).parent().attr('id');
+    io.emit('addPlus', {chatID:chatID});
+});
+$(document).on('click', '.minusChat', function () {
+    var target = this,
+        chatID = $(target).parent().attr('id');
+    io.emit('addMinus', {chatID:chatID});
+});
+
+var addChat = function(chat){
+    var niceDate = moment(chat.chatDate);
+    var plusHTML = '<a class="plusChat" href="#">+(<span class="Count">'+chat.pluses.length+'</span>)</a>';
+    var minusHTML = '<a class="minusChat" href="#">-(<span class="Count">'+chat.minuses.length+'</span>)</a>';
+    
+    $("#the-shitcan").prepend('<p class="hideMe" id=' + chat._id + '>' + plusHTML + ' ' + minusHTML + '<span> ' + niceDate.fromNow() + '</span> <span class="user">' + chat.user.name + ':</span> ' + chat.comments + '</p>');
 }
 
 $(document).ready(function() {
@@ -83,7 +104,6 @@ $(document).ready(function() {
 		var daTaunt = $("#taunt-box textarea").val();
         var daTaunter = $('#welcome-block span').html();
         io.emit('taunt', {taunt : daTaunt});
-		addChat(daTaunter, daTaunt, new Date());
         setTimeout(function() {
             $("#taunt-box textarea").val('');
         }, 100);
