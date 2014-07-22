@@ -19,14 +19,22 @@ exports.getChats = function(req){
 
 exports.addPlus = function(req){
     chat.addPlus({chatID:req.data.chatID, userID: req.session.userID}, function(err, data){
-        req.io.broadcast('plusAdded', req.data.chatID);
-        req.io.emit('plusAdded', req.data.chatID);
+        if (err)
+            req.io.emit('plusFailed', err.error);
+        else{
+            req.io.broadcast('plusAdded', req.data.chatID);
+            req.io.emit('plusAdded', req.data.chatID);
+        }
     });
 };
 
 exports.addMinus = function(req){
     chat.addMinus({chatID:req.data.chatID, userID: req.session.userID}, function(err, data){
-        req.io.broadcast('minusAdded', req.data.chatID);
-        req.io.emit('minusAdded', req.data.chatID);
+        if (err)
+            req.io.emit('minusFailed', err.error);
+        else{        
+            req.io.broadcast('minusAdded', req.data.chatID);
+            req.io.emit('minusAdded', req.data.chatID);
+        }
     });
 };

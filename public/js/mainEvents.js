@@ -45,6 +45,14 @@ if (typeof io !== 'undefined'){
         var count = $("#"+data+"").children('.minusChat').children('.Count').html();
         $("#"+data+"").children('.minusChat').children('.Count').html(++count);
     });
+    io.on('plusFailed', function(data){
+        $('#error').html('Plus failed with reason: ' + data);
+        setTimeout(function(){$('#error').html('');},5000);
+    });
+    io.on('minusFailed', function(data){
+        $('#error').html('Plus failed with reason: ' + data);
+        setTimeout(function(){$('#error').html('');},5000);
+    });
     
     io.on('getTurns', function(data){
         $('#error').html('');
