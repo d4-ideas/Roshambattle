@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-    	<title>RPS Demo</title>
+    	<title>Roshambattle Bitches!</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="apple-mobile-web-app-capable" content="yes">
 		<script src="/socket.io/socket.io.js"></script>
@@ -16,7 +16,7 @@
 		<script type="text/javascript" src="/js/scanlines.js"></script>
         <script type="text/javascript" src="/js/moment.min.js"></script>
 	</head>
-	<body class="theme-scanlines">
+	<body class="theme-scanlines" data-uid="<%= userID %>">
 		<div id="cover"><div id="line"><div id="dot"></div></div></div>
         <div id="error"></div>
 		<div id="content">
@@ -58,44 +58,19 @@
 						<td data-label="Results" id='makeItEasyToFindMe'>TBD</td>
 					</tr>
 				</tbody>
-			</table>
-
-            <div id="stats-block" class="tab-block">
-                <!--<p>Bragging Rights</p>
+			</table>        
+            <div id="leader-block" class="tab-block">
                 <table id="table-results">
                     <thead>
                         <tr>
-                            <th>Vs.</th>
-                            <th>Results</th>
-                            <th>Efficiency</th>
-                            <th>Trending</th>
+                            <th>Name</th>
+                            <th>Win Rate</th>
+                            <th>Total Wins</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td data-label="Vs.">Player 2</td>
-                            <td data-label="Results">2 of 2</td>
-                            <td data-label="Efficiency">100%</td>
-                            <td data-label="Trending">No Change</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Vs.">Player 3</td>
-                            <td data-label="Results">0 of 2</td>
-                            <td data-label="Efficiency">0%</td>
-                            <td data-label="Trending">No Change</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Vs.">Player 4</td>
-                            <td data-label="Results">1 of 2</td>
-                            <td data-label="Efficiency">50%</td>
-                            <td data-label="Trending">Up</td>
-                        </tr>
-                    </tbody>
-                </table>-->
-            </div>
-            
-            <div id="leader-block" class="tab-block">
-                <p>Leader Board: Coming Soon</p>
+                    </tbody>   
+                </table>
             </div>
             
             <div id="taunt-block" class="tab-block">
@@ -106,7 +81,6 @@
                 <div id="the-shitcan">
                 </div>
             </div>
-
         </div>
     </body>
 </html>
