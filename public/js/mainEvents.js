@@ -88,7 +88,7 @@ $(document).on('click', '.plusChat', function () {
         chatUser = $(target).parent().data('uid'),
         clientUser = $('body').data('uid');
     if (chatUser == clientUser) {
-        $('#error').html('Stop playing with yourself.');
+        $('#error').html('Stop playing with yourself');
     }
     else {
         io.emit('addPlus', {chatID:chatID});
@@ -103,7 +103,7 @@ $(document).on('click', '.minusChat', function () {
         chatUser = $(target).parent().data('uid'),
         clientUser = $('body').data('uid');
     if (chatUser == clientUser) {
-        $('#error').html('Stop touching yourself.');
+        $('#error').html('Stop touching yourself');
     }
     else {
         io.emit('addMinus', {chatID:chatID});

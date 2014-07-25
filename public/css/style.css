@@ -142,10 +142,10 @@ a:focus {
 }
 #the-shitcan {
     border: 1px solid #999;
-    width: 96%;
+    width: 98%;
     padding: 0;
     background-color: #eee;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
 }
 #the-shitcan span.user {
     font-weight: bold;
@@ -172,7 +172,9 @@ a:focus {
 }
 .karma-machine .count {
     cursor: pointer;
-    padding: 0 3px;
+    padding: 0px 6px 1px 5px;
+    display: inline-block;
+    
 }
 .karma-machine .plusChat {
     color: #090;
