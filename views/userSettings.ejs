@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel='stylesheet' href='/css/style.css' />
+    <link rel='stylesheet' href='/css/scanlines.css' />
+    <link rel='stylesheet' href='/css/lcd.css' />
+    <script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/register.js"></script>
+    <script src="/js/md5-min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+	<script type="text/javascript" src="/js/scanlines.js"></script>
+    <script>
+    </script>
+	</head>
+	<body class="user-form theme-scanlines">
+        <div id="cover"><div id="line"><div id="dot"></div></div></div>
+        <div id="content">
+            <h1><%= title %></h1>
+            <div id="error"></div>
+            <div id="settings">
+                <form name="userSettings" action="/updateUser" method="post">
+                    <input type="text" name="displayName" placeholder="What name on your tombstone?" value="Blah" autofocus>
+                    <br>
+                    <input type="text" name="emailAddress" placeholder="Where to send the e-card?">
+                    <br>
+                    <input type="password" name="existingPassword" placeholder="Your Current Security Key">
+                    <input type="password" name="password" placeholder="Your New Security Key">
+                    <br>
+                    <input type="password" name="confirm" placeholder="Security Key autocorrect validation">
+                    <br>
+                    <input type="submit" value="I am ready to do battle!" name="Submit">
+                </form>
+            </div>
+            <div id="theme-widget">
+                <span>Theme:</span>
+                <input type="radio" id="theme0" name="theme-options" value="0" data-themeName="none"><label for="theme0">0</label> | 
+                <input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
+                <input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>
+            </div>
+        </div>
+	</body>
+</html>
