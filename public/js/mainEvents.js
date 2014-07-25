@@ -74,7 +74,7 @@ if (typeof io !== 'undefined'){
     io.on('getLeaderBoardSuccess', function(data){
         var rows = '';
         data.forEach(function(element){
-            rows +=  '<tr><td data-label="Name">' + element.user.displayName + '</td><td data-label="WinRate">' + element.score.winRate + '</td><td data-label="TotalWins">' + element.score.totalWins + '</td></tr>'
+            rows +=  '<tr><td data-label="Name">' + element.user.name + '</td><td data-label="WinRate">' + element.score.winRate + '</td><td data-label="TotalWins">' + element.score.totalWins + '</td></tr>'
         });
         $('#leader-block tr:last').after(rows);
     });

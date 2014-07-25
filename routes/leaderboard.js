@@ -6,14 +6,6 @@ exports.getLeaderBoard = function(req){
                     numScores: 25,
                     startAtRank: 1 
                 };
-    var boardTest = [{
-                    effectiveDate: Date,
-                    user: {_id:'123', displayName:'Dummy'}, 
-                    score:  {
-                        winRate: .0,
-                        totalWins: 0
-                    }
-                }];
     
     leader.getScores(input, function(err, data){
         if (err)
@@ -21,6 +13,4 @@ exports.getLeaderBoard = function(req){
         else
             req.io.emit('getLeaderBoardSuccess', data);
     });
-    
-    req.io.emit('getLeaderBoardSuccess', boardTest);
 }
