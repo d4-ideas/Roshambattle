@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var MongoStore = require('connect-mongo')(express);
 var schedule = require('node-schedule');
 var turn = require('d4-roshamturn');
+var leaderBoard = require('d4-roshamleader');
 
 //routes
 var routes = require('./routes');
@@ -41,6 +42,7 @@ var j = schedule.scheduleJob(rule, function(){
     turn.generateTurn(function(err, data){
         if (data){
             console.log('I have generated a turn!!');            
+            leaderBoard.genScores();
         } else {
             console.log('I failed to generate a turn!!');
         }

@@ -1,3 +1,4 @@
+var u = require('d4-user');
 var user = require('d4-roshamuser');
 var turn = require('d4-roshamturn');
 var result = require('d4-roshamresult');
@@ -52,5 +53,12 @@ exports.logout = function (req, res) {
 };
 
 exports.settings = function (req, res) {
-    res.render('userSettings', {title:'blah'});
+    u.getUser({_id: req.session.userID}, function(err, data){
+        if (err)
+            res.status(500).json({result:'error', reason: 'Sumtin went very wrong.'});
+        else {
+            data.title = 'User Makeover';
+            res.render('userSettings', data);
+        }
+    });
 };

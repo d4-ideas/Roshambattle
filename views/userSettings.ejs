@@ -22,16 +22,17 @@
             <div id="error"></div>
             <div id="settings">
                 <form name="userSettings" action="/updateUser" method="post">
-                    <input type="text" name="displayName" placeholder="What name on your tombstone?" value="Blah" autofocus>
+                    <input type="text" name="displayName" placeholder="What name on your tombstone?" value="<%= displayName %>" autofocus>
                     <br>
-                    <input type="text" name="emailAddress" placeholder="Where to send the e-card?">
+                    <input type="text" name="emailAddress" placeholder="Where to send the e-card?" value="<%= emailAddress %>">
                     <br>
                     <input type="password" name="existingPassword" placeholder="Your Current Security Key">
+                    <br>
                     <input type="password" name="password" placeholder="Your New Security Key">
                     <br>
                     <input type="password" name="confirm" placeholder="Security Key autocorrect validation">
                     <br>
-                    <input type="submit" value="I am ready to do battle!" name="Submit">
+                    <input type="submit" value="Make it so" name="Submit">
                 </form>
             </div>
             <div id="theme-widget">
