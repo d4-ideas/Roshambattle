@@ -38,12 +38,12 @@ if (typeof io !== 'undefined'){
     });  
     
     io.on('plusAdded', function(data){
-        var count = $("#"+data+"").children('.plusChat').children('.Count').html();
-        $("#"+data+"").children('.plusChat').children('.Count').html(++count);
+        var count = $("#"+data+"").children('.plusChat').html();
+        $("#"+data+"").children('.plusChat').html(++count);
     });
     io.on('minusAdded', function(data){
-        var count = $("#"+data+"").children('.minusChat').children('.Count').html();
-        $("#"+data+"").children('.minusChat').children('.Count').html(++count);
+        var count = $("#"+data+"").children('.minusChat').html();
+        $("#"+data+"").children('.minusChat').html(++count);
     });
     io.on('plusFailed', function(data){
         $('#error').html('Plus failed with reason: ' + data);

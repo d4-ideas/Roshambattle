@@ -50,3 +50,7 @@ exports.logout = function (req, res) {
     res.clearCookie('app.sess');
     res.redirect('/login');
 };
+
+exports.settings = function (req, res) {
+    res.render('userSettings', {title:'blah'});
+};

@@ -77,6 +77,7 @@ app.post('/register', register.registerPost);
 app.get('/login', login.loginGet);
 app.post('/login', login.loginPost);
 app.get('/logout', users.logout);
+app.get('/userSettings', users.settings); 
 app.io.route('selectWeapon', processTurn.selectWeapon);
 app.io.route('taunt', messages.taunt);
 app.io.route('getChats', messages.getChats);
