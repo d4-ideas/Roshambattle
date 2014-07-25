@@ -16,6 +16,7 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var processTurn = require ('./routes/processTurn');
 var messages = require('./routes/messages');
+var leaderboard = require('./routes/leaderboard');
 
 var app = express().http().io();
 
@@ -83,6 +84,7 @@ app.io.route('addPlus', messages.addPlus);
 app.io.route('addMinus', messages.addMinus);
 app.io.route('getUserScore', users.getUserScore);
 app.io.route('getTurns', users.getTurns);
+app.io.route('getLeaderBoard', leaderboard.getLeaderBoard);
 app.get('/generateTurn', processTurn.generateTurn);
 
 /// catch 404 and forwarding to error handler

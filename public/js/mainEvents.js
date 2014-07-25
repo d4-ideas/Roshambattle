@@ -70,7 +70,17 @@ if (typeof io !== 'undefined'){
     io.on('getTurnsFailure', function(data){
         $('#error').html(data);
     });
+    
+    io.on('getLeaderBoardSuccess', function(data){
+        var rows = '';
+        data.forEach(function(element){
+            rows +=  '<tr><td data-label="Name">' + element.user.displayName + '</td><td data-label="WinRate">' + element.score.winRate + '</td><td data-label="TotalWins">' + element.score.totalWins + '</td></tr>'
+        });
+        $('#leader-block tr:last').after(rows);
+    });
 }
+//------------------------------------------------------------End of IO
+
 
 $(document).on('click', '.plusChat', function () {
     var target = this,
@@ -95,6 +105,7 @@ $(document).ready(function() {
     io.emit('getUserScore', {});    
     io.emit('getTurns', {});
     io.emit('getChats', {});
+    io.emit('getLeaderBoard', {});
     $('#commit').click(function(){
 		io.emit('selectWeapon', {weapon:$("[name=weapon]:checked").val()});
 	});
