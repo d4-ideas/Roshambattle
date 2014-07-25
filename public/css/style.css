@@ -143,12 +143,42 @@ a:focus {
 #the-shitcan {
     border: 1px solid #999;
     width: 96%;
-    padding: 0 2%;
+    padding: 0;
     background-color: #eee;
     margin-bottom: 20px;
 }
 #the-shitcan span.user {
-    font-weight: bold
+    font-weight: bold;
+    padding-right: 5px;
+}
+.chat-row {
+    padding: 1% 2%;
+    clear: both;
+}
+.chat-row p {
+    margin: 0;
+}
+.chat-row:nth-of-type(even) {
+    background-color: #ddd;
+}
+.karma-machine {
+    float: right;
+    padding: 0 0 5px 5px;
+}
+.karma-machine .time-machine {
+    display: inline-block;
+    margin-right: 5px;
+    color: #666;
+}
+.karma-machine .count {
+    cursor: pointer;
+    padding: 0 3px;
+}
+.karma-machine .plusChat {
+    color: #090;
+}
+.karma-machine .minusChat {
+    color: #900;
 }
 #taunt-box {
     margin-bottom: 10px;

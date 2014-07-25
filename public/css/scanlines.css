@@ -156,12 +156,6 @@ body.theme-scanlines #tabs-block li.active:hover {
     border-color: #0f0;
     background-color: #000;
 }
-
-
-
-
-
-
 body.theme-scanlines #the-shitcan {
     border: 1px solid #0f0;
     background-color: #020;
@@ -172,6 +166,18 @@ body.theme-scanlines #taunt-box textarea {
     color: #0f0;
     font-family: "Courier",fixed,monospace;
     text-transform:uppercase;
+}
+body.theme-scanlines .chat-row:nth-of-type(even) {
+    background-color: #000;
+}
+body.theme-scanlines .karma-machine .time-machine {
+    color: #999;
+}
+body.theme-scanlines .karma-machine .plusChat {
+    color: #0F0;
+}
+body.theme-scanlines .karma-machine .minusChat {
+    color: #F00;
 }
 body.theme-scanlines input[type=submit],
 body.theme-scanlines input[type=button] {

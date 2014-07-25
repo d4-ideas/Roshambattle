@@ -84,21 +84,40 @@ if (typeof io !== 'undefined'){
 
 $(document).on('click', '.plusChat', function () {
     var target = this,
-        chatID = $(target).parent().attr('id');
-    io.emit('addPlus', {chatID:chatID});
+        chatID = $(target).parent().attr('id'),
+        chatUser = $(target).parent().data('uid'),
+        clientUser = $('body').data('uid');
+    if (chatUser == clientUser) {
+        $('#error').html('Stop playing with yourself.');
+    }
+    else {
+        io.emit('addPlus', {chatID:chatID});
+        $('#error').html(''); 
+    }
+    return false;
 });
+
 $(document).on('click', '.minusChat', function () {
     var target = this,
-        chatID = $(target).parent().attr('id');
-    io.emit('addMinus', {chatID:chatID});
+        chatID = $(target).parent().attr('id'),
+        chatUser = $(target).parent().data('uid'),
+        clientUser = $('body').data('uid');
+    if (chatUser == clientUser) {
+        $('#error').html('Stop touching yourself.');
+    }
+    else {
+        io.emit('addMinus', {chatID:chatID});
+        $('#error').html('');
+    }
+    return false;
 });
 
 var addChat = function(chat){
     var niceDate = moment(chat.chatDate);
-    var plusHTML = '<a class="plusChat" href="#">+(<span class="Count">'+chat.pluses.length+'</span>)</a>';
-    var minusHTML = '<a class="minusChat" href="#">-(<span class="Count">'+chat.minuses.length+'</span>)</a>';
-    
-    $("#the-shitcan").prepend('<p class="hideMe" id=' + chat._id + '>' + plusHTML + ' ' + minusHTML + '<span> ' + niceDate.fromNow() + '</span> <span class="user">' + chat.user.name + ':</span> ' + chat.comments + '</p>');
+    var plusHTML = '<span class="count plusChat">'+chat.pluses.length+'</span>';
+    var minusHTML = '<span class="count minusChat">'+chat.minuses.length+'</span>';
+
+    $("#the-shitcan").prepend('<div class="chat-row"><div id="' + chat._id + '" data-uid="' + chat.user._id + '" class="karma-machine"><span class="time-machine">' + niceDate.fromNow() + '</span>' + plusHTML + minusHTML + '</div><p><span class="user">' + chat.user.name + ':</span>' + chat.comments + '</p></div>');
 }
 
 $(document).ready(function() {
