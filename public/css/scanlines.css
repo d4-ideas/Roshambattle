@@ -193,9 +193,9 @@ body.theme-scanlines input[type=button]:active {
 }
 
 /* table adjustments for 760px or lower */
-@media only screen and (max-device-width: 1024px),
-       only screen and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2),
-       only screen and (max-width: 640px) {
+@media all and (max-device-width: 1024px),
+       all and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2),
+       all and (max-width: 640px) {
 
     body.theme-scanlines tr { 
         border: 1px solid #0f0; 
