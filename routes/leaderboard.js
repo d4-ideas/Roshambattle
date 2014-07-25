@@ -3,7 +3,7 @@ var leader = require('d4-roshamleader');
 exports.getLeaderBoard = function(req){
     var input = { 
                     scoreType: 'winRate',
-                    numScores: 25,
+                    numScores: 5,
                     startAtRank: 1 
                 };
     
