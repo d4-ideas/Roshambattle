@@ -48,6 +48,7 @@ var j = schedule.scheduleJob(rule, function(){
         }
     });      
 });
+app.set('job', j);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
