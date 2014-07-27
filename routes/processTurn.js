@@ -5,14 +5,12 @@ var leaderBoard = require('d4-roshamleader');
 
 
 exports.selectWeapon = function (req,res){
-    console.log('enter selectWeapon');
     if (req.data.weapon){
 		ruser.setWeapon({'userid':req.session.userID, 'weapon':req.data.weapon}, function(err, success){
 			if(err){
 				req.io.emit('selectWeaponFailure', {reason:'Bzzz...  try again.  The call to setWeapon failed with reason: '+err.error});
 			} 
 			else {
-				console.log ('emitting');
 				req.io.emit('selectWeaponSuccess',{'result':'ok'});
 			}
 		});
