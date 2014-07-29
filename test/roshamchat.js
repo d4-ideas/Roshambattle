@@ -53,8 +53,6 @@ describe('d4-chat', function() {
     describe('.getChats', function() {
         it('should give me the chat we just added', function(done){
             testChat.getChats({startDate: new Date()}, function(err, data){
-                console.log(err);
-                console.log(data);
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
                 done();
@@ -95,10 +93,16 @@ describe('d4-chat', function() {
             testChat.addPlus({chatID:chatID, userID:paperID}, function(err, data){
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
-                console.log(data);
                 done();
             });            
-        });      
+        });    
+        it('should fail as user has plused already', function(done){
+            testChat.addPlus({chatID:chatID, userID:paperID}, function(err, data){
+                expect(err).to.be.ok;
+                expect(data).to.be.undefined;
+                done();
+            });            
+        });         
     });
     
     describe('.addMinus', function(){
@@ -134,9 +138,15 @@ describe('d4-chat', function() {
             testChat.addMinus({chatID:chatID, userID:paperID}, function(err, data){
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
-                console.log(data);
                 done();
             });            
         });      
+        it('should fail as user has minused already', function(done){
+            testChat.addMinus({chatID:chatID, userID:paperID}, function(err, data){
+                expect(err).to.be.ok;
+                expect(data).to.be.undefined;
+                done();
+            });            
+        });         
     });    
 });
