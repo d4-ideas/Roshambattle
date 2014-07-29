@@ -76,7 +76,7 @@ if (typeof io !== 'undefined'){
         data.forEach(function(element){
             rows +=  '<tr><td data-label="Name">' + element.user.name + '</td><td data-label="WinRate">' + element.score.winRate + '</td><td data-label="TotalWins">' + element.score.totalWins + '</td></tr>'
         });
-        $('#leader-block tr:last').after(rows);
+        $('#leader-block tbody').html(rows);
     });
 }
 //------------------------------------------------------------End of IO
