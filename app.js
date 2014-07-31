@@ -50,6 +50,7 @@ var j = schedule.scheduleJob(rule, function(){
 });
 app.set('job', j);
 
+app.set('port', process.env.PORT || 80);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -121,7 +122,7 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-var server = app.listen(3000, function(){
+var server = app.listen(app.get('port'), function(){
     console.log('          / \\');
     console.log('         / 4 \\');
     console.log('        /     \\');

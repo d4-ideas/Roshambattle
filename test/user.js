@@ -3,7 +3,29 @@ var expect = require("chai").expect;
 var user = require("d4-user");
 var testUser = {emailAddress: 'TestUser@email.com',
                     password: 'testuser',
-                    displayName: 'TestUser'};
+                    displayName: 'TestUser'},
+    upUserID;
+
+before(function(done){
+    var upUser = {name: 'Billy Bob',
+              email: 'bb@test.com'}
+    user.userModel.create(upUser, function(err, data){
+        if (err)
+            console.log('failed to add user');
+        else{
+            console.log(data._id);
+            upUserID = data._id;
+        }
+        done();
+    });
+});
+
+after(function(){
+    user.userModel.findOneAndRemove({_id: upUserID}, function(err, data){
+        if (err || data < 1)
+            console.log('failed to remove test user');;
+    });
+});
 
 describe("d4-user", function() {  
     describe(".register()", function() {
@@ -63,6 +85,21 @@ describe("d4-user", function() {
                expect(data).to.not.be.ok;
                done();                
             });            
+        });
+    });
+    
+    describe('.update()', function() {
+        it('should update the user', function (done) {
+            var update = {userID: upUserID,
+                          name: 'Billy Bob Update',
+                          email: 'bb@gmail.com',
+                          mobile: '202-412-0502'}
+            
+            user.update(update, function(err, data){
+                expect(err).to.be.undefined;
+                expect(data).to.be.ok;
+                done();
+           });
         });
     });
 });
