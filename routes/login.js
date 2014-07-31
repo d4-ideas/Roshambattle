@@ -18,7 +18,7 @@ exports.loginPost = function (req, res) {
     var returnData,
         hashedPassword = shaSum.digest('hex');
 
-    user.getUser({email: req.body.emailAddress}, function(err, data){
+    user.getUser({email: req.body.emailAddress.toLowerCase()}, function(err, data){
         if(err){
             console.log('there was an error');
             console.log(err);
