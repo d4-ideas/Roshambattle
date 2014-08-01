@@ -63,14 +63,14 @@ exports.settings = function (req, res) {
     });
 };
 
-exports.lowerEmails = function(req, res) {
-    u.userModel.find({}, function(err, docs){
-        var i = 0;
-        docs.forEach(function(doc){
-            doc.email = doc.email.toLowerCase();
-            doc.save();
-            i++
-        });
-        res.render('generateTurn', {title: 'lowerEmails!', status:'docs updated-'+i + '' + docs});
-    });
-}
+//exports.lowerEmails = function(req, res) {
+//    u.userModel.find({}, function(err, docs){
+//        var i = 0;
+//        docs.forEach(function(doc){
+//            doc.email = doc.email.toLowerCase();
+//            doc.save();
+//            i++
+//        });
+//        res.render('generateTurn', {title: 'lowerEmails!', status:'docs updated-'+i + '' + docs});
+//    });
+//}
