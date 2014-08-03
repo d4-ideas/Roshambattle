@@ -80,6 +80,7 @@ app.get('/register', register.registerGet);
 app.post('/register', register.registerPost);
 app.get('/login', login.loginGet);
 app.post('/login', login.loginPost);
+app.get('/forgotPassword', login.forgotPassword);
 app.get('/logout', users.logout);
 app.get('/userSettings', users.settings); 
 //app.get('/lowerEmails', users.lowerEmails);

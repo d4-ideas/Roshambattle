@@ -1,4 +1,6 @@
 var user = require('d4-user');
+var nodemailer = require("nodemailer");
+var directTransport = require('nodemailer-direct-transport');
 
 exports.loginGet = function (req, res) {
     //Should we check session state and pass through if they user already has a valid session?
@@ -38,4 +40,28 @@ exports.loginPost = function (req, res) {
             }
         }
     });
+};
+
+exports.forgotPassword = function (req, res) {
+    var transporter = nodemailer.createTransport(directTransport());
+
+    var mailOptions= {
+       from: "Anthony Sheetz <asheetz2000@gmail.com>", // sender address.
+       to: "Robert Vignerot <robvignerot@googlemail.com>", // receiver
+       subject: "d4-ideas Password Reset <DO NOT REPLY>", // subject
+       text: "Email Example with nodemailer" // body
+    };
+
+    transporter.sendMail(mailOptions, function(error, response){  //callback
+       if (error) {
+           console.log(error);
+       } else {
+           console.log("Message sent: ");
+           console.log(response);
+       }
+
+       transporter.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
+    });
+    
+    res.end();
 };
