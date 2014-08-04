@@ -15,6 +15,13 @@ before(function(done){
     });
 });
 
+after(function(){
+    node.model.remove(null, function(err, data){
+        if (err || data < 1)
+            throw 'unable to cleanup nodes';
+    });
+});
+
 describe('d4-realmnode', function(){
     describe('addNode', function(){
         it('should create a node', function(done){
