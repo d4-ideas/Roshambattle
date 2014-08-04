@@ -1,12 +1,13 @@
+console.log('mochahooks');
 var mongoose = require('mongoose');
 var ruser = require('d4-roshamuser');
 var user = require('d4-user');
 var testTurn = require('d4-roshamturn');
 var testResult = require('d4-roshamresult');
-var rockUser = {email: 'RockUser@email.com',
+var rockUser = {email: 'rockuser@email.com',
                     password: 'testuser',
                     name: 'RockUser'},
-    paperUser = {email: 'PaperUser@email.com',
+    paperUser = {email: 'paperuser@email.com',
                     password: 'testuser',
                     name: 'PaperUser'};
 

@@ -6,7 +6,7 @@ var existingUser,
     existingUserID;
 
 before(function(done){
-    existingUser = {emailAddress: 'RockUser@email.com',
+    existingUser = {emailAddress: 'rockuser@email.com',
                         password: 'testuser',
                         displayName: 'RockUser'}
     user.userModel.create(existingUser, function(err, noob){

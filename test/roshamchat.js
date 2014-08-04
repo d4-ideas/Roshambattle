@@ -7,13 +7,13 @@ var paperID;
 var chatID;
 
 before(function(){
-    user.userModel.findOne({email:'RockUser@email.com'}, function (err, data) {
+    user.userModel.findOne({email:'rockuser@email.com'}, function (err, data) {
         if (err)
             throw "Couldn't find rock user";
         else
             rockID = data._id;
     });
-    user.userModel.findOne({email:'PaperUser@email.com'}, function (err, data) {
+    user.userModel.findOne({email:'paperuser@email.com'}, function (err, data) {
         if (err)
             throw "Couldn't find paper user";
         else
