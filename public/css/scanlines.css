@@ -86,12 +86,14 @@ body.theme-scanlines #theme-widget input:checked + label {
 
 /* Registration & Login */
 body.theme-scanlines.user-form input[type=text],
+body.theme-scanlines.user-form input[type=email],
 body.theme-scanlines.user-form input[type=password]{
     opacity: 0.8;
     transition-property: opacity;
     transition-duration: 0.5s;
 }
 body.theme-scanlines.user-form input[type=text]:focus,
+body.theme-scanlines.user-form input[type=email]:focus,
 body.theme-scanlines.user-form input[type=password]:focus {
     opacity: 1.0;
 }

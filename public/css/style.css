@@ -57,6 +57,7 @@ td p {
     margin-bottom: 0;
 }
 .user-form input[type=text],
+.user-form input[type=email],
 .user-form input[type=password]{
     min-width: 300px;
     margin-bottom: 15px;
