@@ -21,6 +21,12 @@
         <div id="error"></div>
 		<div id="content">
 			<h3 id="welcome-block">Welcome: <span><%= displayName %></span></h3>
+            <div id="tabs-block">
+                <ul>
+                    <li class="active" data-tabid="design-block">Design</li>
+                    <li data-tabid="explore-block">Explore</li>
+                </ul>
+            </div>
             <div id="theme-widget">
                 <a id="logout" href='/logout'>Logout</a>
                 <span> | Theme:</span>
@@ -28,9 +34,28 @@
                 <input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
                 <input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>
             </div>
-Choose your poison... <br>
-            <a href="/roshambattle">RoshamBattle Now!</a><br>
-            <a href="/realms">Take and adventure</a>
+			<table id="design-block" class="tab-block active">
+				<thead>
+					<tr>
+					</tr>
+                </thead>
+                <tbody>
+					<tr>                     
+					</tr>
+				</tbody>
+			</table>        
+            <div id="explore-block" class="tab-block">
+                <table id="table-results">
+                    <thead>
+                        <tr>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>   
+                </table>
+            </div>
+
         </div>
     </body>
 </html>
