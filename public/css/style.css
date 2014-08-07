@@ -40,6 +40,12 @@ td p {
     text-align: center;
 }
 
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
 #welcome-block {
     float: left;
     margin-top: 0;
@@ -76,6 +82,16 @@ a:hover,
 a:active,
 a:focus {
     text-decoration: underline;
+}
+
+#poison {
+    clear: both;
+    margin: 50px auto 30px;
+    text-align: center;
+}
+
+.wtf {
+    cursor: pointer;
 }
 
 /* Tabs */

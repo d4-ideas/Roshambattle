@@ -81,4 +81,10 @@ $(document).ready(function() {
     var nextTurn = new moment($('#next-turn').data('date'));
     $('#next-turn').html('Next Turn Generation ' + nextTurn.fromNow());
     
+    /* Helpful Information for curious users */
+    $('.wtf').on('click', function(){
+        var info = $(this).data('info');
+        alert($(this).data('info'));
+    });
+    
 });
