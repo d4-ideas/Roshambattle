@@ -76,6 +76,7 @@ app.use(app.router);
 
 
 app.get('/', routes.index);
+app.get('/about', routes.about);
 app.get('/roshambattle', routes.roshambattle);
 app.get('/realms', routes.realms);
 app.get('/register', register.registerGet);

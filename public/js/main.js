@@ -83,8 +83,8 @@ $(document).ready(function() {
     
     /* Helpful Information for curious users */
     $('.wtf').on('click', function(){
-        var info = $(this).data('info');
-        alert($(this).data('info'));
+        console.log('here');
+        $.get('/about');
     });
     
 });

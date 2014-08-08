@@ -90,6 +90,10 @@ a:focus {
     text-align: center;
 }
 
+#poison ul{
+    list-style-type: none;    
+}
+
 .wtf {
     cursor: pointer;
     display: inline-block;

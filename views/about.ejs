@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-    	<title>d4-ides: realms</title>
+    	<title>d4-ideas: about</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="apple-mobile-web-app-capable" content="yes">
 		<script src="/socket.io/socket.io.js"></script>
@@ -12,7 +12,6 @@
         <link rel='stylesheet' href='/css/lcd.css' /> 
 		<script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="/js/main.js"></script>
-        <script type="text/javascript" src="/js/mainEvents.js"></script>
 		<script type="text/javascript" src="/js/scanlines.js"></script>
         <script type="text/javascript" src="/js/moment.min.js"></script>
 	</head>
@@ -21,12 +20,6 @@
         <div id="error"></div>
 		<div id="content">
 			<h3 id="welcome-block">Welcome: <span><%= displayName %></span></h3>
-            <div id="tabs-block">
-                <ul>
-                    <li class="active" data-tabid="design-block">Design</li>
-                    <li data-tabid="explore-block">Explore</li>
-                </ul>
-            </div>
             <div id="theme-widget">
                 <a id="logout" href='/logout'>Logout</a>
                 <span> | Theme:</span>
@@ -34,29 +27,15 @@
                 <input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
                 <input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>
             </div>
-            <h3 class="center">Piss off... nothing to see here yet.</h3>
-			<table id="design-block" class="tab-block active">
-				<thead>
-					<tr>
-					</tr>
-                </thead>
-                <tbody>
-					<tr>                     
-					</tr>
-				</tbody>
-			</table>        
-            <div id="explore-block" class="tab-block">
-                <table id="table-results">
-                    <thead>
-                        <tr>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>   
-                </table>
+            <div id="poison">
+                <h3>Hacked on by a few geeks</h3>
+                <ul>
+                    <li>Mike Elpers aka Reecoh</li>
+                    <li>Anthony Sheetz aka Sheetzam</li>
+                    <li>Rob Vignerot aka Vagabond</li>
+                    <li>Kai Clements aka Zot the Magnificent</li>
+                </ul>
             </div>
-
         </div>
     </body>
 </html>

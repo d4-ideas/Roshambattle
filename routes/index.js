@@ -37,3 +37,16 @@ exports.realms = function(req, res){
         res.redirect('/login');
     }
 };
+
+exports.about = function(req, res){
+    console.log(req.app.get('job').nextInvocation());
+    if (typeof req.session.userID !== 'undefined') {
+        res.render('about', {title: 'Rochambattle',
+                            displayName: req.session.displayName,
+                            userID: req.session.userID,
+                            nextTurn: req.app.get('job').nextInvocation()
+                            });
+    } else {
+        res.redirect('/login');
+    }
+};
