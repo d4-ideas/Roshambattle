@@ -1,6 +1,5 @@
 /* GET home page. */
 exports.index = function(req, res){
-    console.log(req.app.get('job').nextInvocation());
     if (typeof req.session.userID !== 'undefined') {
         res.render('index', {title: 'Rochambattle',
                             displayName: req.session.displayName,
@@ -13,7 +12,6 @@ exports.index = function(req, res){
 };
 
 exports.roshambattle = function(req, res){
-    console.log(req.app.get('job').nextInvocation());
     if (typeof req.session.userID !== 'undefined') {
         res.render('roshambattle', {title: 'Rochambattle',
                             displayName: req.session.displayName,
@@ -26,7 +24,6 @@ exports.roshambattle = function(req, res){
 };
 
 exports.realms = function(req, res){
-    console.log(req.app.get('job').nextInvocation());
     if (typeof req.session.userID !== 'undefined') {
         res.render('realms', {title: 'Rochambattle',
                             displayName: req.session.displayName,
@@ -39,7 +36,6 @@ exports.realms = function(req, res){
 };
 
 exports.about = function(req, res){
-    console.log(req.app.get('job').nextInvocation());
     if (typeof req.session.userID !== 'undefined') {
         res.render('about', {title: 'Rochambattle',
                             displayName: req.session.displayName,

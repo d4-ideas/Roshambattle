@@ -12,7 +12,7 @@
         <link rel='stylesheet' href='/css/lcd.css' /> 
 		<script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="/js/main.js"></script>
-        <script type="text/javascript" src="/js/mainEvents.js"></script>
+        <script type="text/javascript" src="/js/realmEvents.js"></script>
 		<script type="text/javascript" src="/js/scanlines.js"></script>
         <script type="text/javascript" src="/js/moment.min.js"></script>
 	</head>
@@ -38,11 +38,19 @@
 			<table id="design-block" class="tab-block active">
 				<thead>
 					<tr>
+                        <th></th>
+                        <th>Short Description</th>
+                        <th>Long Description</th>
+                        <th>Connections</th>
 					</tr>
                 </thead>
                 <tbody>
-					<tr>                     
-					</tr>
+					<tr>
+                        <td><input type='submit' id='createNode' value='+'></td>
+                        <td><input type='text' id='shortDesc' placeholder='Empty space'></td>
+				        <td><textarea rows='4' cols=50 id='descrption' placeholder='A vast empty place waiting for you to create your world.'></textarea></td>
+                        <td></td>
+					</tr>                    
 				</tbody>
 			</table>        
             <div id="explore-block" class="tab-block">

@@ -11,11 +11,13 @@ before(function(done){
         else
             rockID = data._id;
 
-        node.model.create({user:rockID}, function(err,data){
+        node.model.create({owner:rockID}, function(err,data){
             if (err)
                 throw "Failure to create node";
-            else 
+            else {
+                console.log('node is'+data);
                 nodeID = data._id;
+            }
             
             done();
         });      
@@ -25,18 +27,26 @@ before(function(done){
 });
 
 after(function(){
-    node.model.remove(null, function(err, data){
-        if (err || data < 1)
+    node.model.remove({owner:rockID}, function(err, data){
+        if (err || data.length < 1)
             throw 'unable to cleanup nodes';
     });
 });
 
 describe('d4-realmnode', function(){
     describe('addNode', function(){
+        it('should throw an error for a blank user', function(done){
+            node.addNode({user:null}, function(err, data){
+                expect(err).to.be.ok;
+                expect(data).to.not.be.ok;
+                done();
+            });
+        });        
         it('should create a node', function(done){
             node.addNode({user:rockID}, function(err, data){
                 expect(err).to.not.be.ok;
                 expect(data).to.be.ok;
+                expect(data.owner).to.be.ok;
                 done();
             });
         });

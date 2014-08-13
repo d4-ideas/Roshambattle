@@ -12,7 +12,7 @@ before(function(done){
         else
             rockID = data._id;
         
-            node.model.create({user:rockID}, {user:rockID}, function(err, nodeA, nodeB){
+            node.model.create({owner:rockID}, {owner:rockID}, function(err, nodeA, nodeB){
                 node1 = nodeA;
                 node2 = nodeB;
                 

@@ -18,6 +18,7 @@ var register = require('./routes/register');
 var processTurn = require ('./routes/processTurn');
 var messages = require('./routes/messages');
 var leaderboard = require('./routes/leaderboard');
+var realmDesign = require('./routes/realmDesign');
 
 var app = express().http().io();
 
@@ -96,6 +97,9 @@ app.io.route('getUserScore', users.getUserScore);
 app.io.route('getTurns', users.getTurns);
 app.io.route('getLeaderBoard', leaderboard.getLeaderBoard);
 app.get('/generateTurn', processTurn.generateTurn);
+
+app.io.route('createNode', realmDesign.createNode);
+
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
