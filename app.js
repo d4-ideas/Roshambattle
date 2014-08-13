@@ -98,6 +98,7 @@ app.io.route('getTurns', users.getTurns);
 app.io.route('getLeaderBoard', leaderboard.getLeaderBoard);
 app.get('/generateTurn', processTurn.generateTurn);
 
+app.io.route('getNodes', realmDesign.getNodes);
 app.io.route('createNode', realmDesign.createNode);
 
 
