@@ -17,6 +17,8 @@ if (typeof io !== 'undefined'){
 	io.on('createNodeSuccess', function(data){
         var row = '<tr><td></td><td>'+data.shortDesc+'</td><td>'+data.description+'</td><td>Lobby</td></tr>';
         $('#design-block').append(row);
+        $('#shortDesc').val('');
+        $('#description').val('');
     });
 }
 //------------------------------------------------------------End of IO
