@@ -2,10 +2,16 @@ var leader = require('d4-roshamleader');
 
 exports.getLeaderBoard = function(req){
     var input = { 
-                    scoreType: 'totalWins',
                     numScores: 25,
                     startAtRank: 1 
                 };
+    console.log(req);
+    if(req.data.sortBy){
+        input.scoreType = req.data.sortBy;
+    }
+    else{
+        input.scoreType = 'totalWins';
+    }
     
     leader.getScores(input, function(err, data){
         if (err)

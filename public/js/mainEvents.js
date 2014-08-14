@@ -124,7 +124,7 @@ $(document).ready(function() {
     io.emit('getUserScore', {});    
     io.emit('getTurns', {});
     io.emit('getChats', {});
-    io.emit('getLeaderBoard', {});
+    io.emit('getLeaderBoard', {'sortBy': 'winRate'});
     $('#commit').click(function(){
 		io.emit('selectWeapon', {weapon:$("[name=weapon]:checked").val()});
 	});
