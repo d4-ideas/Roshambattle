@@ -18,9 +18,8 @@ exports.createConnection = function(req){
     else
         connection.node1 = req.data.connection.node1;
     connection.node21Desc = req.data.connection.node21Desc;
-console.log(req.data);    
-    if (req.data.connection.node2 == '(new)'){
-console.log('new node');        
+
+    if (req.data.connection.node2 == '(new)'){     
         //create the new node and wait for the _id back
         var newNode = {};
         newNode.user = req.session.userID;
@@ -46,8 +45,7 @@ console.log('new node');
                 });
             }
         });
-    } else{
-console.log('conn only');                
+    } else{              
         //create the connection only
         connection.node2 = req.data.connection.node2;
         conn.addConnection(connection, function(err, connData){
