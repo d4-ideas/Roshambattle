@@ -77,7 +77,7 @@ if (typeof io !== 'undefined'){
         $('#leader-block tbody').html();
         data.forEach(function(element){
             rowCount = rowCount +1;
-            rows +=  '<tr><td data-label="Rank">'+rowCount+'</td><td data-label="Name">' + element.user.name + '</td><td data-label="WinRate">' + element.score.winRate + '</td><td data-label="TotalWins">' + element.score.totalWins + '</td></tr>'
+            rows +=  '<tr><td data-label="Rank">'+rowCount+'</td><td data-label="Name">' + element.user.name + '</td><td data-label="WinRate">' + element.score.winRate + '</td><td data-label="TotalWins">' + element.score.totalWins + '</td><td data-label="TotalBattles">' + element.score.totalBattles + '</td></tr>'
         });
         $('#leader-block tbody').html(rows);
     });
