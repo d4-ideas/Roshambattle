@@ -5,7 +5,6 @@ exports.getLeaderBoard = function(req){
                     numScores: 25,
                     startAtRank: 1 
                 };
-    console.log(req);
     if(req.data.sortBy){
         input.scoreType = req.data.sortBy;
     }
