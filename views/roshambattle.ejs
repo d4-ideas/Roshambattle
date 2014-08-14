@@ -61,9 +61,15 @@
 				</tbody>
 			</table>        
             <div id="leader-block" class="tab-block">
+                <div id="leaderboard-sort-block">
+                    <span>Sort By:</span>
+                    <input type="radio" id="leaderSortRate" name="leaderSort" value="winRate" selected><label for="leaderSortRate">Win Rate</label>
+                    <input type="radio" id="leaderSortWins" name="leaderSort" value="totalWins"><label for="leaderSortWins">Total Wins</label>
+                </div>
                 <table id="table-results">
                     <thead>
                         <tr>
+                            <th>Rank</th>
                             <th>Name</th>
                             <th>Win Rate</th>
                             <th>Total Wins</th>

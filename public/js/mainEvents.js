@@ -73,8 +73,11 @@ if (typeof io !== 'undefined'){
     
     io.on('getLeaderBoardSuccess', function(data){
         var rows = '';
+        var rowCount = 0;
+        $('#leader-block tbody').html();
         data.forEach(function(element){
-            rows +=  '<tr><td data-label="Name">' + element.user.name + '</td><td data-label="WinRate">' + element.score.winRate + '</td><td data-label="TotalWins">' + element.score.totalWins + '</td></tr>'
+            rowCount = rowCount +1;
+            rows +=  '<tr><td data-label="Rank">'+rowCount+'</td><td data-label="Name">' + element.user.name + '</td><td data-label="WinRate">' + element.score.winRate + '</td><td data-label="TotalWins">' + element.score.totalWins + '</td></tr>'
         });
         $('#leader-block tbody').html(rows);
     });
@@ -145,5 +148,9 @@ $(document).ready(function() {
         setTimeout(function() {
             $("#taunt-box textarea").val('');
         }, 100);
-  	});    
+  	});
+    $('[name=leaderSort]').on('click',function(){
+        var sortType = $(this).attr('value');
+        io.emit('getLeaderBoard', {'sortBy': sortType});
+    });
 });

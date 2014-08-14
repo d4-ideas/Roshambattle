@@ -144,7 +144,9 @@ a:focus {
     background-color: #000;
     cursor: default;
 }
-
+#leaderboard-sort-block {
+    margin-bottom: 20px;
+}
 /* Theme Widget*/
 #theme-widget {
     position: absolute;
