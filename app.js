@@ -99,7 +99,7 @@ app.io.route('getLeaderBoard', leaderboard.getLeaderBoard);
 app.get('/generateTurn', processTurn.generateTurn);
 
 app.io.route('getNodes', realmDesign.getNodes);
-app.io.route('createNode', realmDesign.createNode);
+app.io.route('createConnection', realmDesign.createConnection);
 
 
 /// catch 404 and forwarding to error handler
