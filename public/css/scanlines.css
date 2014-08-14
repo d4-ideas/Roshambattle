@@ -31,7 +31,7 @@ body.theme-scanlines #cover {
 /* Main Styles */
 body.theme-scanlines {
 	background: #000;
-	background-image: url('/images/evenBG.gif');
+	background-image: url('/images/scanlines-green.gif');
 	color: #FFF;
 	font-size: 14px;
 	font-family: "Courier",fixed,monospace;
@@ -41,7 +41,7 @@ body.theme-scanlines a {
 }
 body.theme-scanlines #content {
 	position: relative;
-	opacity: .6;
+	opacity: .7;
 	z-index: 50;
 	color: #0F0;
 	text-shadow: 0px 0px 3px;
@@ -210,6 +210,97 @@ body.theme-scanlines input[type=button]:active {
     }
 	
 	body.theme-scanlines td { 
+		/* Behave  like a "row" */
+		border-bottom: 1px solid #090;
+	}
+}
+
+
+/* Scan Lines Amber */
+body.theme-scanlines.amber #line {
+	background: #FFBF00;
+}
+body.theme-scanlines.amber {
+	background-image: url('/images/scanlines-amber.gif');
+}
+body.theme-scanlines.amber.amber a {
+    color: #FFBF00;
+}
+body.theme-scanlines.amber.amber #content {
+	color: #FFBF00;
+}
+body.theme-scanlines.amber.amber #error {
+    color: #FFBF00;
+}
+body.theme-scanlines.amber #theme-widget input:checked + label {
+    color: #ff0;
+}
+
+body.theme-scanlines.amber.user-form ::-webkit-input-placeholder {
+    color: #060;
+}
+body.theme-scanlines.amber.user-form :-moz-placeholder { /* Firefox 18- */
+    color: #060;
+}
+body.theme-scanlines.amber.user-form  ::-moz-placeholder {  /* Firefox 19+ */
+    color: #060;
+}
+body.theme-scanlines.amber.user-form  :-ms-input-placeholder {  
+    color: #060;
+}
+body.theme-scanlines.amber .n00b-link {
+    color: #FFBF00;
+}
+body.theme-scanlines.amber #tabs-block li:hover {
+    color: #ff0;
+    border-color: #ff0;
+}
+body.theme-scanlines.amber #tabs-block li.active,
+body.theme-scanlines.amber #tabs-block li.active:hover {
+    color: #FFBF00;
+    border-color: #FFBF00;
+}
+body.theme-scanlines.amber #the-shitcan {
+    border: 1px solid #FFBF00;
+    background-color: #202000;
+}
+body.theme-scanlines.amber #taunt-box textarea {
+    background-color: #202000;
+    border-color: #FFBF00;
+    color: #FFBF00;
+}
+body.theme-scanlines.amber .karma-machine .time-machine {
+    color: #999;
+}
+body.theme-scanlines.amber .karma-machine .plusChat {
+    color: #FFBF00;
+}
+body.theme-scanlines.amber .karma-machine .minusChat {
+    color: #FFBF00;
+}
+body.theme-scanlines.amber input[type=submit],
+body.theme-scanlines.amber input[type=button] {
+    background: -webkit-linear-gradient(180deg, rgba(255,210,76,1) 0, rgba(255,172,0,1) 100%);
+    background: -moz-linear-gradient(180deg, rgba(255,210,76,1) 0, rgba(255,172,0,1) 100%);
+    background: linear-gradient(180deg, rgba(255,210,76,1) 0, rgba(255,172,0,1) 100%);
+}
+body.theme-scanlines.amber input[type=submit]:active,
+body.theme-scanlines.amber input[type=button]:active {
+    background: -webkit-linear-gradient(180deg, rgba(255,172,0,1) 0, rgba(255,210,76,1) 100%);
+    background: -moz-linear-gradient(180deg, rgba(255,172,0,1) 0, rgba(255,210,76,1) 100%);
+    background: linear-gradient(180deg, rgba(255,172,0,1) 0, rgba(255,210,76,1) 100%);
+}
+
+/* table adjustments for 760px or lower */
+@media all and (max-device-width: 1024px),
+       all and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2),
+       all and (max-width: 640px) {
+
+    body.theme-scanlines.amber tr { 
+        border: 1px solid #FFBF00; 
+    }
+	
+	body.theme-scanlines.amber td { 
 		/* Behave  like a "row" */
 		border-bottom: 1px solid #090;
 	}

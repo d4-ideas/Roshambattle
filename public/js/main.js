@@ -25,15 +25,15 @@ function eraseCookie(name) {
 
 function setTheme(themeIndex){
     if (themeIndex == 0) {
-        $('body').removeClass('theme-scanlines').removeClass('theme-lcd');
+        $('body').removeClass('theme-scanlines').removeClass('theme-scanlines amber');
         //hideScanlines();
     }
     else if (themeIndex == 1) {
-        $('body').removeClass('theme-lcd').addClass('theme-scanlines');
+        $('body').removeClass('theme-scanlines amber').addClass('theme-scanlines');
         //showScanlines();
     }
     else if (themeIndex == 2) {
-        $('body').removeClass('theme-scanlines').addClass('theme-lcd');
+        $('body').removeClass('theme-scanlines').addClass('theme-scanlines amber');
         //hideScanlines();
     }
 }
