@@ -4,18 +4,23 @@ if (typeof io !== 'undefined'){
         error('get nodes failed with error:' + data.toString());
     });    
 	io.on('getNodesSuccess', function(data){
-        var rows = ''
+        var rows = '',
+            options = '';
+        
         data.forEach(function(row){
-            rows += '<tr><td></td><td>'+row.shortDesc+'</td><td>'+row.description+'</td><td>Lobby</td></tr>';
+            rows += '<tr><td></td><td></td><td>'+row.shortDesc+'</td><td>'+row.description+'</td><td>Lobby</td></tr>';
+            options += '<option value="'+ row._id +'">'+ row.shortDesc +'</option>'
         });
         $('#design-block').append(rows);
+        $('#connectionTo').append(options);
+        $('#connectionFrom').append(options);
     });
     
 	io.on('createNodeFailure', function(data){
         error('create node failed with error:' + data);
     });    
 	io.on('createNodeSuccess', function(data){
-        var row = '<tr><td></td><td>'+data.shortDesc+'</td><td>'+data.description+'</td><td>Lobby</td></tr>';
+        var row = '<tr><td></td><td></td><td>'+data.shortDesc+'</td><td>'+data.description+'</td><td>Lobby</td></tr>';
         $('#design-block').append(row);
         $('#shortDesc').val('');
         $('#description').val('');

@@ -39,17 +39,33 @@
 				<thead>
 					<tr>
                         <th></th>
+                        <th>To</th>
                         <th>Short Description</th>
                         <th>Long Description</th>
-                        <th>Connections</th>
+                        <th>From</th>
 					</tr>
                 </thead>
                 <tbody>
 					<tr>
                         <td><input type='submit' id='createNode' value='+'></td>
-                        <td><input type='text' id='shortDesc' placeholder='Empty space'></td>
-				        <td><textarea rows='4' cols=50 id='description' placeholder='A vast empty place waiting for you to create your world.'></textarea></td>
-                        <td></td>
+                        <td><select id='connectionTo'>
+                                <option value="Lobby">Lobby</option>
+                                <option value="(new)">(new)</option>
+                            </select><br>
+                            <input type='text' id='node21' placeholder='Howya getting here?'>
+                        </td>
+                        <td>
+                            <input type='text' id='shortDesc' placeholder='Empty space'>
+                        </td>
+				        <td>
+                            <textarea rows='4' cols=40 id='description' placeholder='A vast empty place waiting for you to create your world.'></textarea>
+                        </td>
+                        <td>
+                            <select id='connectionFrom'>
+                                <option value="Lobby">Lobby</option>
+                            </select><br>
+                            <input type='text' id='node12'  placeholder='Howya getting outa here?'>
+                        </td>
 					</tr>                      
 				</tbody>
 			</table>        
@@ -57,7 +73,6 @@
                 <table id="table-results">
                     <thead>
                         <tr>
-
                         </tr>
                     </thead>
                     <tbody>
