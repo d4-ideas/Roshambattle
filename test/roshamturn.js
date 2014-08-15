@@ -43,7 +43,6 @@ describe('d4-roshamturn', function() {
                                numberOfTurns:2,
                                userID:undefined}, 
                               function(err,data){
-                console.log(data);
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
                 expect(data).to.be.an('array');
@@ -55,7 +54,6 @@ describe('d4-roshamturn', function() {
             testTurn.getTurns({numberOfTurns:2,
                                userID:rockID}, 
                               function(err,data){
-                console.log(data);
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
                 expect(data).to.be.an('array');

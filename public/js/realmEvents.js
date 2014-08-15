@@ -2,14 +2,38 @@ if (typeof io !== 'undefined'){
 	var io=io.connect();
 	io.on('getNodesFailure', function(data){
         error('get nodes failed with error:' + data.toString());
-    });    
+    }); 
+    
 	io.on('getNodesSuccess', function(data){
         var rows = '',
             options = '';
-        
+
         data.forEach(function(row){
-            rows += '<tr><td></td><td></td><td>'+row.shortDesc+'</td><td>'+row.description+'</td><td></td></tr>';
-            options += '<option value="'+ row._id +'">'+ row.shortDesc +'</option>'
+            rows += '<tr id=' + row.node._id + '><td></td>';
+
+            var connFrom = '';
+            if (row.from.length > 0){
+                connFrom += row.from.reduce(function(prev, curr){
+                    if (prev != null)
+                        return prev + '<br>' + curr.shortDesc;
+                    else
+                        return curr.shortDesc;
+                }, null);            
+            }
+            rows += '<td>' + connFrom + '</td>';
+
+            var connTo = '';
+            if (row.to.length > 0){
+                connTo += row.to.reduce(function(prev, curr){
+                    if (prev != null)
+                        return prev + '<br>' + curr.shortDesc;
+                    else
+                        return curr.shortDesc;
+                }, null);
+            }
+            
+            rows += '<td>'+row.node.shortDesc+'</td><td>'+row.node.description+'</td><td>' + connTo + '</td></tr>';
+            options += '<option value="'+ row.node._id +'">'+ row.node.shortDesc +'</option>'
         });
         $('#design-block').append(rows);
         $('#connectionTo').append(options);
@@ -19,11 +43,9 @@ if (typeof io !== 'undefined'){
 	io.on('createConnectionFailure', function(data){
         error('create node failed with error:' + data);
     });    
-	io.on('createConnectionSuccess', function(data){
-console.log(data);        
-        
+	io.on('createConnectionSuccess', function(data){ 
         if (typeof data.node != 'undefined'){
-            var row = '<tr><td></td><td>' + $('#connectionFrom option:selected').text()+ '</td><td>' + data.node.shortDesc + '</td><td>'+data.node.description+'</td><td></td></tr>';
+            var row = '<tr><td></td><td>' + $('#connectionFrom option:selected').text()+ '</td><td>' + data.node.shortDesc + '</td><td>'+data.node.description+'</td><td>' + $('#connectionTo option:selected').text()+ '</td</tr>';
             $('#design-block').append(row);
             $('#shortDesc').val('');
             $('#description').val('');

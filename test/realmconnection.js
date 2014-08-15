@@ -45,9 +45,7 @@ describe('d4-realmconnection', function(){
             });
         });
     });
-});
 
-describe('d4-realmconnection', function(){
     describe('updateConnection', function(){
         it('should update a connection', function(done){
             conn.updateConnection({connID: connID, desc12: 'A dusty road heads east', desc21: 'A dusty road heads west'}, function(err, data){
@@ -57,4 +55,15 @@ describe('d4-realmconnection', function(){
             });
         });
     });
+    
+    describe('getConnections', function(){
+        it('should get a multiple connections', function(done){
+            var nodes = [node1, node2];
+            conn.getConnections({nodes:nodes}, function(err, data){
+                expect(err).to.not.be.ok;
+                expect(data).to.be.ok;
+                done();
+            });
+        });
+    });    
 });

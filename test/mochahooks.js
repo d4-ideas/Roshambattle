@@ -17,13 +17,11 @@ before(function(done){
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function callback(){
-       console.log('Connected to Mongo');
     });
     
     var i = 0,
         checkDone = function(){
             i++;
-            console.log('checkDone' + i);
             if (i === 2) done();
         }
     user.userModel.create(rockUser, paperUser)
@@ -50,7 +48,6 @@ before(function(done){
                      participants: [{userid: rock._id, weapon: 'Rock'}, {userid: paper._id, weapon: 'Paper'}]},
             turn4 = {turnDate: new Date("May 30, 2014 9:00:00"),
                      participants: [{userid: rock._id, weapon: 'Rock'}, {userid: paper._id, weapon: 'Paper'}]};
-        console.log(turn1);
         testTurn.model.create(turn1, turn2, turn3, turn4)
         .then(checkDone);
     });  
@@ -58,10 +55,8 @@ before(function(done){
 
 
 after(function(){
-    console.log('enter after');
     user.userModel.remove ({password:rockUser.password}, function(err,res){
         if (err) throw new Error ('Failed to remove existingUser');
-        else console.log('remove users');
         done();
     });
     

@@ -13,7 +13,6 @@ before(function(done){
         if (err)
             console.log('failed to add user');
         else{
-            console.log(data._id);
             upUserID = data._id;
         }
         done();

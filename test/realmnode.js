@@ -15,7 +15,6 @@ before(function(done){
             if (err)
                 throw "Failure to create node";
             else {
-                console.log('node is'+data);
                 nodeID = data._id;
             }
             
@@ -51,12 +50,20 @@ describe('d4-realmnode', function(){
             });
         });
     });
-});
 
-describe('d4-realmnode', function(){
     describe('updateNode', function(){
         it('should update the node description', function(done){
             node.updateNode({nodeID: nodeID, description: 'An oasis consisting of a calm pool of water surrounded by lush palm trees.'}, function(err, data){
+                expect(err).to.not.be.ok;
+                expect(data).to.be.ok;
+                done();
+            });
+        });
+    });
+    
+    describe('getNodes', function(){
+        it('should get some nodes', function(done){
+            node.getNodes(rockID, function(err, data){
                 expect(err).to.not.be.ok;
                 expect(data).to.be.ok;
                 done();
