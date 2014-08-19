@@ -19,6 +19,7 @@ var processTurn = require ('./routes/processTurn');
 var messages = require('./routes/messages');
 var leaderboard = require('./routes/leaderboard');
 var realmDesign = require('./routes/realmDesign');
+var realmExplore = require('./routes/realmExplore');
 
 var app = express().http().io();
 
@@ -100,6 +101,7 @@ app.get('/generateTurn', processTurn.generateTurn);
 
 app.io.route('getNodes', realmDesign.getNodes);
 app.io.route('createConnection', realmDesign.createConnection);
+app.io.route('getNode', realmExplore.getNode);
 
 
 /// catch 404 and forwarding to error handler

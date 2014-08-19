@@ -103,11 +103,15 @@ a:focus {
 #stats-block,
 #leader-block,
 #taunt-block,
+#design-block,
+#explore-block,
 #table-rounds{
     display: none;
 }
 #stats-block.active,
 #leader-block.active,
+#design-block.active,
+#explore-block.active,
 #taunt-block.active {
     display: block;
 }

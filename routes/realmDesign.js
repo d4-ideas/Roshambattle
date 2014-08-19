@@ -1,23 +1,14 @@
 var node = require('d4-realmnode');
 var conn = require('d4-realmconnection');
 
-exports.createConnection = function(req){
-//    {connection:{node12:$('#node12').val(),        
-//                                      node12Desc:$('#node12Desc').val(), 
-//                                      node21:$('#node21').val(),
-//                                      node21:$('#node21Desc').val()
-//                                     }, 
-//                          node:{shortDesc:$('#shortDesc').val(),
-//                                description:$('#description').val()
-//                            };
-//    
+exports.createConnection = function (req) {
     var connection = {};
-    connection.node12Desc = req.data.connection.node12Desc;
-    if (req.data.connection.node1 == 'Lobby')
+    connection.desc12 = req.data.connection.node12Desc;
+    if (req.data.connection.node1 === 'Lobby')
         connection.node1 = node.lobbyID;
     else
         connection.node1 = req.data.connection.node1;
-    connection.node21Desc = req.data.connection.node21Desc;
+    connection.desc21 = req.data.connection.node21Desc;
 
     if (req.data.connection.node2 == '(new)'){     
         //create the new node and wait for the _id back
@@ -59,8 +50,6 @@ exports.createConnection = function(req){
             }
         });
     }
-    
-
 }
 
 exports.getNodes = function(req){
@@ -78,27 +67,25 @@ exports.getNodes = function(req){
                 modnode.node = node;
                 modnode.to = new Array();
                 modnode.from = new Array();
-console.log(modnode);
+
                 return modnode;
             });             
             conn.getConnections({nodes:nodeIDs}, function(err, conns){
                if (err)
                    callback({error:err}, undefined);
                 else {
-console.log(conns);
+
                     conns.forEach(function(conn){
                         nodes.forEach(function(node) {             
                             if (conn.node1._id.equals(node.node._id)){
                                 node.to = node.to.concat(conn.node2);
-console.log('concatTo');
                             }
                             if (conn.node2._id.equals(node.node._id)){
                                 node.from = node.from.concat(conn.node1);                               
-console.log('concatFrom');
                             }
                         });
                     });
-console.log(nodes);                        
+
                     req.io.emit('getNodesSuccess', nodes);
                 }
             });

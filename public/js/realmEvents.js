@@ -54,6 +54,35 @@ if (typeof io !== 'undefined'){
             //find the other nodes and add the connections
         }
     });
+
+    //explore section events
+    io.on('getNodeFailure', function(data){
+        console.log(data);
+        error('get node failed with error:' + data);
+    });
+    
+    io.on('getNodeSuccess', function(data){
+        console.log(data);
+        $('#explore-node').html(data.node.description);
+        
+        var conns = '';
+        var connLink = function (item){
+            return '<li data-connID="' + item.node._id + '">' + item.shortDesc + '</li>';
+        }
+        
+        if (data.to.length > 0){
+            conns += data.to.reduce(function(prev, curr){
+                return prev + connLink(curr);
+            }, '');
+        }
+        
+        if (data.from.length > 0){
+            conns += data.from.reduce(function(prev, curr){
+                return prev + connLink(curr);
+            }, '');
+        }
+        $('#explore-connections').html('<ul>' + conns + '</ul>');
+    });
 }
 //------------------------------------------------------------End of IO
 
@@ -91,10 +120,12 @@ $(document).ready(function() {
         }
         
     });
-//
-//    $('#connectionFrom').change(function(){
-//        alert('connectionTo changed');
-//    });
-    
+
+    //explore
     io.emit('getNodes',{});
+    io.emit('getNode', {nodeID:null});
+    
+    $('#explore-connections').on('click', 'li', function(){
+        io.emit('getNode', {nodeID:$(this).data('connid')});
+    });
 });

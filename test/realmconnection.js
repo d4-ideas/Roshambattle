@@ -29,7 +29,7 @@ before(function(done){
 });
 
 after(function(){
-    conn.model.remove(null, function(err, data){
+    conn.model.remove({node1:node1}, function(err, data){
         if (err || data < 1)
             throw 'unable to cleanup connections';
     });

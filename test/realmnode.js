@@ -70,4 +70,14 @@ describe('d4-realmnode', function(){
             });
         });
     });
+    
+    describe('getNode', function(){
+        it('should get a node', function(done){
+            node.getNode({nodeID:nodeID}, function(err, data){
+                expect(err).to.not.be.ok;
+                expect(data).to.be.ok;
+                done();
+            });
+        });
+    });    
 });
