@@ -14,7 +14,7 @@ console.log('first emit' + new Date().getSeconds()+ '.' + new Date().getMillisec
 
                 //explore
                 io.emit('getNode', {nodeID:null}); 
-                leaded = true;
+                loaded = true;
             } else {
                 io.connect();
             }
