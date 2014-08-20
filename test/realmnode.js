@@ -80,4 +80,14 @@ describe('d4-realmnode', function(){
             });
         });
     });    
+    
+    describe('removeNode', function(){
+        it('should remove a node', function(done){
+            node.removeNode({nodeID:nodeID}, function(err, data){
+                expect(err).to.not.be.ok;
+                expect(data).to.equal(1);
+                done();
+            });
+        });
+    });      
 });

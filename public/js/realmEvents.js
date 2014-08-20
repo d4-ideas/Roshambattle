@@ -4,10 +4,7 @@ var loaded = false,
 if (typeof io !== 'undefined'){
 console.log('connect' + new Date().getSeconds()+ '.' + new Date().getMilliseconds());    
 	var io=io.connect();
-	io.on('getNodesFailure', function(data){
-        error('get nodes failed with error:' + data.toString());
-    }); 
-    
+
     io.on('connect', function(data){
         console.log('connection made' + new Date().getSeconds()+ '.' + new Date().getMilliseconds());
         if (!loaded) {
@@ -22,14 +19,18 @@ console.log('first emit' + new Date().getSeconds()+ '.' + new Date().getMillisec
                 io.connect();
             }
         }
-    });
+    });    
+    
+    io.on('getNodesFailure', function(data){
+        error('get nodes failed with error:' + data.toString());
+    }); 
     
 	io.on('getNodesSuccess', function(data){
         var rows = '',
             options = '';
 
         data.forEach(function(row){
-            rows += '<tr id=' + row.node._id + '><td></td>';
+            rows += '<tr id=' + row.node._id + '><td><input type="submit" class="removeNodeButton" value="-"></td>';
 
             var connFrom = '';
             if (row.from.length > 0){
@@ -58,6 +59,7 @@ console.log('first emit' + new Date().getSeconds()+ '.' + new Date().getMillisec
         $('#design-block').append(rows);
         $('#connectionTo').append(options);
         $('#connectionFrom').append(options);
+        $('.removeNodeButton').on('click', removeNode);
     });
     
 	io.on('createConnectionFailure', function(data){
@@ -74,15 +76,23 @@ console.log('first emit' + new Date().getSeconds()+ '.' + new Date().getMillisec
             //find the other nodes and add the connections
         }
     });
+    
+    io.on('removeNodeFailure', function(data){
+        error('remove node failed with error:' + data.toString());
+    });
 
+    io.on('removeNodeSuccess', function(data){
+        var id = '#'+data.removeID;
+        $(id).remove();
+    });
+    
     //explore section events
     io.on('getNodeFailure', function(data){
-        console.log(data);
         error('get node failed with error:' + data);
     });
     
     io.on('getNodeSuccess', function(data){
-        console.log(data);
+console.log(data);        
         $('#explore-node').html(data.node.description);
         
         var conns = '';
@@ -112,6 +122,9 @@ function error(err){
     setTimeout(function(){$('#error').html('');},5000);
 };          
 
+function removeNode(){
+    io.emit('removeNode', {nodeID:$(this).parent().parent().attr('id')});
+};
 
 
 $(document).ready(function() {

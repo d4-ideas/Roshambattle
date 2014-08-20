@@ -92,3 +92,18 @@ exports.getNodes = function(req){
         }
     });    
 }
+
+exports.removeNode = function(req){
+    conn.removeConnections({nodeID: req.data.nodeID}, function(err, data) {
+        if (err)
+            req.io.emit ('removeNodeFailure', err);
+        else {
+            node.removeNode({nodeID:req.data.nodeID}, function(err, data) {
+                if (err)
+                    req.io.emit ('removeNodeFailure', err);
+                else
+                    req.io.emit ('removeNodeSuccess', {removeID:req.data.nodeID});
+            });            
+        }
+    });
+};

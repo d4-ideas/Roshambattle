@@ -66,4 +66,14 @@ describe('d4-realmconnection', function(){
             });
         });
     });    
+    
+    describe('removeConnections', function(){
+        it('should remove connections', function(done){
+            conn.removeConnections({nodeID:node1}, function(err, data){
+                expect(err).to.not.be.ok;
+                expect(data).to.equal(2);                              
+                done();
+            });
+        });
+    });     
 });

@@ -101,6 +101,7 @@ app.get('/generateTurn', processTurn.generateTurn);
 
 app.io.route('getNodes', realmDesign.getNodes);
 app.io.route('createConnection', realmDesign.createConnection);
+app.io.route('removeNode', realmDesign.removeNode);
 app.io.route('getNode', realmExplore.getNode);
 
 
