@@ -1,8 +1,13 @@
 if (typeof io !== 'undefined'){
+console.log('connect' + new Date().getSeconds()+ '.' + new Date().getMilliseconds());    
 	var io=io.connect();
 	io.on('getNodesFailure', function(data){
         error('get nodes failed with error:' + data.toString());
     }); 
+    
+    io.on('connect', function(data){
+        console.log('connection made' + new Date().getSeconds()+ '.' + new Date().getMilliseconds());
+    });
     
 	io.on('getNodesSuccess', function(data){
         var rows = '',
@@ -121,8 +126,10 @@ $(document).ready(function() {
         
     });
 
-    //explore
+console.log('first emit' + new Date().getSeconds()+ '.' + new Date().getMilliseconds());    
     io.emit('getNodes',{});
+    
+    //explore
     io.emit('getNode', {nodeID:null});
     
     $('#explore-connections').on('click', 'li', function(){
