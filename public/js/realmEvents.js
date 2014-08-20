@@ -1,3 +1,6 @@
+var loaded = false,
+    ready = false;
+
 if (typeof io !== 'undefined'){
 console.log('connect' + new Date().getSeconds()+ '.' + new Date().getMilliseconds());    
 	var io=io.connect();
@@ -7,6 +10,18 @@ console.log('connect' + new Date().getSeconds()+ '.' + new Date().getMillisecond
     
     io.on('connect', function(data){
         console.log('connection made' + new Date().getSeconds()+ '.' + new Date().getMilliseconds());
+        if (!loaded) {
+            if (ready) {
+console.log('first emit' + new Date().getSeconds()+ '.' + new Date().getMilliseconds());    
+                io.emit('getNodes',{});
+
+                //explore
+                io.emit('getNode', {nodeID:null}); 
+                leaded = true;
+            } else {
+                io.connect();
+            }
+        }
     });
     
 	io.on('getNodesSuccess', function(data){
@@ -100,6 +115,7 @@ function error(err){
 
 
 $(document).ready(function() {
+    ready = true;
     /* Helpful Information for curious users */
     $('#createConnection').on('click', function(){
         var connection = {connection:{node1:$('#connectionFrom').val(),        
@@ -125,12 +141,6 @@ $(document).ready(function() {
         }
         
     });
-
-console.log('first emit' + new Date().getSeconds()+ '.' + new Date().getMilliseconds());    
-    io.emit('getNodes',{});
-    
-    //explore
-    io.emit('getNode', {nodeID:null});
     
     $('#explore-connections').on('click', 'li', function(){
         io.emit('getNode', {nodeID:$(this).data('connid')});
