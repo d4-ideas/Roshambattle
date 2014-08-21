@@ -23,8 +23,8 @@
 			<h3 id="welcome-block">Welcome: <span><%= displayName %></span></h3>
             <div id="tabs-block">
                 <ul>
-                    <li class="active" data-tabid="design-block">Design</li>
-                    <li data-tabid="explore-block">Explore</li>
+                    <li class="active" data-tabid="explore-block">Explore</li>
+                    <li data-tabid="design-block">Design</li>
                 </ul>
             </div>
             <div id="theme-widget">
@@ -34,7 +34,7 @@
                 <input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
                 <input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>
             </div>
-            <div id="design-block" class="tab-block active">
+            <div id="design-block" class="tab-block">
             <h3 class="center">Design a world that other people can interact with.</h3>                
                 <table>
                     <thead>
@@ -71,8 +71,8 @@
                     </tbody>
                 </table>  
             </div>
-            <div id="explore-block" class="tab-block">
-                <h3 class="center">Explore a world built by someone else.</h3>                       
+            <div id="explore-block" class="tab-block active">
+                <h3 class="center">Explore the world</h3>                       
                 <h3>Your current location:</h3>
                 <div id="explore-node"></div>
                 <br>

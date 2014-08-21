@@ -2,14 +2,11 @@ var loaded = false,
     ready = false;
 
 if (typeof io !== 'undefined'){
-console.log('connect' + new Date().getSeconds()+ '.' + new Date().getMilliseconds());    
 	var io=io.connect();
 
     io.on('connect', function(data){
-        console.log('connection made' + new Date().getSeconds()+ '.' + new Date().getMilliseconds());
         if (!loaded) {
             if (ready) {
-console.log('first emit' + new Date().getSeconds()+ '.' + new Date().getMilliseconds());    
                 io.emit('getNodes',{});
 
                 //explore
@@ -61,17 +58,22 @@ console.log('first emit' + new Date().getSeconds()+ '.' + new Date().getMillisec
         $('#connectionFrom').append(options);
         $('.removeNodeButton').on('click', removeNode);
     });
-    
+
 	io.on('createConnectionFailure', function(data){
         error('create node failed with error:' + data);
     });    
 	io.on('createConnectionSuccess', function(data){ 
+console.log(data);        
         if (typeof data.node != 'undefined'){
-            var row = '<tr><td></td><td>' + $('#connectionFrom option:selected').text()+ '</td><td>' + data.node.shortDesc + '</td><td>'+data.node.description+'</td><td>' + $('#connectionTo option:selected').text()+ '</td</tr>';
+            var row = '<tr id=' + data.node._id + '><td><input type="submit" class="removeNodeButton" value="-"></td><td>' + $('#connectionFrom option:selected').text()+ '</td><td>' + data.node.shortDesc + '</td><td>'+data.node.description+'</td><td></td</tr>';
             $('#design-block').append(row);
             $('#shortDesc').val('');
             $('#description').val('');
-            //find node2 and add the from connection
+            $('.removeNodeButton').on('click', removeNode);
+            
+            var option = '<option value="'+ data.node._id +'">'+ data.node.shortDesc +'</option>'
+            $('#connectionTo').append(option);
+            $('#connectionFrom').append(option);
         } else{
             //find the other nodes and add the connections
         }
@@ -123,7 +125,8 @@ function error(err){
 };          
 
 function removeNode(){
-    io.emit('removeNode', {nodeID:$(this).parent().parent().attr('id')});
+    if (confirm('Are you sure you want to delete this location and all associated connections?'))
+        io.emit('removeNode', {nodeID:$(this).parent().parent().attr('id')});
 };
 
 
