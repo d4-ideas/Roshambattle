@@ -1,0 +1,328 @@
+/* Scan Lines */
+$base_scan_color: #0f0;
+$dark_color: #060;
+$very_dark_color: #020;
+
+$base_opacity: 0.8;
+
+$tab_color: #fff;
+$tab_hover: #ff0;
+
+$font_stack: "Courier New", "Courier",fixed,monospace;
+
+$font_weight_normal: 300;
+$font_weight_bold: 300;
+
+body.theme-scanlines #line {
+	display: block;
+	position: relative;
+	top: 0px;
+	left:0px;
+	width: 100%;
+	height: 2px;
+	background: $base_scan_color;
+	opacity: .2;
+	z-index: 100;
+}
+body.theme-scanlines #dot {
+	display: block;
+	position: relative;
+	left: 10px;
+	width: 20px;
+	height: 2px;
+	background: #000;
+	opacity: 1;
+}
+body.theme-scanlines #cover {
+	display: block;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 200px;
+}
+
+/* Main Styles */
+body.theme-scanlines {
+	background: #000;
+	background-image: url('/images/scanlines-green.gif');
+	color: $base_scan_color;
+	font-size: 14px;
+	font-family: $font_stack;
+	font-weight: $font_weight_normal;
+}
+body.theme-scanlines {
+	h1,, h2, h3, h4, th {
+		font-weight: $font_weight_normal;
+	}
+}
+body.theme-scanlines a {
+	color: $base_scan_color;
+}
+body.theme-scanlines #content {
+	position: relative;
+	opacity: $base_opacity;
+	z-index: 50;
+	text-shadow: 0px 0px 3px;
+	text-transform:uppercase;
+}
+body.theme-scanlines #error {
+	-webkit-animation: opacity 2s infinite;
+	-moz-animation: opacity 2s infinite;
+	-o-animation: opacity 2s infinite;
+	-ms-animation: opacity 2s infinite;
+	animation: opacity 2s infinite;
+}
+@-webkit-keyframes opacity {
+	0% { opacity: 1.0; }
+	50% { opacity: 0.0; }
+	100% { opacity: 1.0; }
+}
+@-moz-keyframes opacity {
+	0% { opacity: 1.0; }
+	50% { opacity: 0.0; }
+	100% { opacity: 1.0; }
+}
+@-ms-keyframes opacity {
+	0% { opacity: 1.0; }
+	50% { opacity: 0.0; }
+	100% { opacity: 1.0; }
+}
+@-o-keyframes opacity {
+	0% { opacity: 1.0; }
+	50% { opacity: 0.0; }
+	100% { opacity: 1.0; }
+}
+@keyframes opacity {
+	0% { opacity: 1.0; }
+	50% { opacity: 0.0; }
+	100% { opacity: 1.0; }
+}
+body.theme-scanlines #theme-widget input:checked + label {
+	color: $tab_hover;
+}
+
+/* Registration & Login */
+body.theme-scanlines.user-form input[type=text],
+body.theme-scanlines.user-form input[type=email],
+body.theme-scanlines.user-form input[type=password]{
+	opacity: 0.8;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+}
+body.theme-scanlines.user-form input[type=text]:focus,
+body.theme-scanlines.user-form input[type=email]:focus,
+body.theme-scanlines.user-form input[type=password]:focus {
+	opacity: 1.0;
+}
+body.theme-scanlines.user-form ::-webkit-input-placeholder {
+	color: $dark_color;
+	font-family: $font_stack;
+	text-transform: uppercase;
+	font-weight: $font_weight_bold;
+	opacity: 1.0;
+}
+body.theme-scanlines.user-form :-moz-placeholder { /* Firefox 18- */
+	color: $dark_color;
+	font-family: $font_stack;
+	text-transform:uppercase;
+	font-weight: $font_weight_bold;
+	opacity: 1.0;
+}
+body.theme-scanlines.user-form  ::-moz-placeholder {  /* Firefox 19+ */
+	color: $dark_color;
+	font-family: $font_stack;
+	text-transform:uppercase;
+	font-weight: $font_weight_bold;
+	opacity: 1.0;
+}
+body.theme-scanlines.user-form  :-ms-input-placeholder {  
+	color: $dark_color;
+	font-family: $font_stack;
+	text-transform:uppercase;
+	font-weight: $font_weight_bold;
+	opacity: 1.0;
+}
+body.theme-scanlines.user-form input {  
+	font-family: $font_stack;
+}
+body.theme-scanlines .n00b-link {
+	color: $base_scan_color;
+	font-family: $font_stack;
+	text-transform:uppercase;
+	font-weight: $font_weight_bold;
+	opacity: 0.6;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+}
+body.theme-scanlines .n00b-link:hover,
+body.theme-scanlines .n00b-link:focus,
+body.theme-scanlines .n00b-link:active {
+	opacity: 1.0;
+}
+
+body.theme-scanlines #tabs-block li {
+	border: 1px solid $tab_color;
+	color: $tab_color;
+}
+body.theme-scanlines #tabs-block li:hover {
+	color: $tab_hover;
+	border-color: $tab_hover;
+	background-color: #000;
+}
+body.theme-scanlines #tabs-block li.active,
+body.theme-scanlines #tabs-block li.active:hover {
+	color: $base_scan_color;
+	border-color: $base_scan_color;
+	background-color: #000;
+}
+body.theme-scanlines #the-shitcan {
+	border: 1px solid $base_scan_color;
+	background-color: $very_dark_color;
+}
+body.theme-scanlines #taunt-box textarea {
+	background-color: $very_dark_color;
+	border-color: $base_scan_color;
+	color: $base_scan_color;
+	font-family: $font_stack;
+	text-transform:uppercase;
+}
+body.theme-scanlines #the-shitcan span.user {
+	font-weight: $font_weight_normal;
+}
+body.theme-scanlines .chat-row:nth-of-type(even) {
+	background-color: #000;
+}
+body.theme-scanlines .karma-machine .time-machine {
+	color: #999;
+}
+body.theme-scanlines .karma-machine .plusChat {
+	color: $base_scan_color;
+}
+body.theme-scanlines .karma-machine .minusChat {
+	color: #F00;
+}
+body.theme-scanlines input[type=submit],
+body.theme-scanlines input[type=button] {
+	background: -webkit-linear-gradient(180deg, rgba(0,255,0,1) 0, rgba(0,138,0,1) 100%);
+	background: -moz-linear-gradient(180deg, rgba(0,255,0,1) 0, rgba(0,138,0,1) 100%);
+	background: linear-gradient(180deg, rgba(0,255,0,1) 0, rgba(0,138,0,1) 100%);
+	border: 0;
+	border-radius: 5px;
+	padding: 3px 7px 2px;
+	font-family: $font_stack;
+	text-transform:uppercase; 
+	font-weight: $font_weight_bold;
+}
+body.theme-scanlines input[type=submit]:active,
+body.theme-scanlines input[type=button]:active {
+	background: -webkit-linear-gradient(180deg, rgba(0,138,0,1) 0, rgba(0,255,0,1) 100%);
+	background: -moz-linear-gradient(180deg, rgba(0,138,0,1) 0, rgba(0,255,0,1) 100%);
+	background: linear-gradient(180deg, rgba(0,138,0,1) 0, rgba(0,255,0,1) 100%);
+}
+
+/* table adjustments for 760px or lower */
+@media all and (max-device-width: 1024px),
+	   all and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2),
+	   all and (max-width: 640px) {
+
+	body.theme-scanlines tr { 
+		border: 1px solid $base_scan_color; 
+	}
+	
+	body.theme-scanlines td { 
+		/* Behave  like a "row" */
+		border-bottom: 1px solid #090;
+	}
+}
+
+
+/* Scan Lines Amber */
+body.theme-scanlines.amber #line {
+	background: #FFBF00;
+}
+body.theme-scanlines.amber {
+	background-image: url('/images/scanlines-amber.gif');
+}
+body.theme-scanlines.amber.amber a {
+	color: #FFBF00;
+}
+body.theme-scanlines.amber.amber #content {
+	color: #FFBF00;
+}
+body.theme-scanlines.amber.amber #error {
+	color: #FFBF00;
+}
+body.theme-scanlines.amber #theme-widget input:checked + label {
+	color: $tab_hover;
+}
+
+body.theme-scanlines.amber.user-form ::-webkit-input-placeholder {
+	color: #000;
+}
+body.theme-scanlines.amber.user-form :-moz-placeholder { /* Firefox 18- */
+	color: #000;
+}
+body.theme-scanlines.amber.user-form  ::-moz-placeholder {  /* Firefox 19+ */
+	color: #000;
+}
+body.theme-scanlines.amber.user-form  :-ms-input-placeholder {  
+	color: #000;
+}
+body.theme-scanlines.amber .n00b-link {
+	color: #FFBF00;
+}
+body.theme-scanlines.amber #tabs-block li:hover {
+	color: $tab_hover;
+	border-color: $tab_hover;
+}
+body.theme-scanlines.amber #tabs-block li.active,
+body.theme-scanlines.amber #tabs-block li.active:hover {
+	color: #FFBF00;
+	border-color: #FFBF00;
+}
+body.theme-scanlines.amber #the-shitcan {
+	border: 1px solid #FFBF00;
+	background-color: #202000;
+}
+body.theme-scanlines.amber #taunt-box textarea {
+	background-color: #202000;
+	border-color: #FFBF00;
+	color: #FFBF00;
+}
+body.theme-scanlines.amber .karma-machine .time-machine {
+	color: #999;
+}
+body.theme-scanlines.amber .karma-machine .plusChat {
+	color: #FFBF00;
+}
+body.theme-scanlines.amber .karma-machine .minusChat {
+	color: #FFBF00;
+}
+body.theme-scanlines.amber input[type=submit],
+body.theme-scanlines.amber input[type=button] {
+	background: -webkit-linear-gradient(180deg, rgba(255,210,76,1) 0, rgba(255,172,0,1) 100%);
+	background: -moz-linear-gradient(180deg, rgba(255,210,76,1) 0, rgba(255,172,0,1) 100%);
+	background: linear-gradient(180deg, rgba(255,210,76,1) 0, rgba(255,172,0,1) 100%);
+}
+body.theme-scanlines.amber input[type=submit]:active,
+body.theme-scanlines.amber input[type=button]:active {
+	background: -webkit-linear-gradient(180deg, rgba(255,172,0,1) 0, rgba(255,210,76,1) 100%);
+	background: -moz-linear-gradient(180deg, rgba(255,172,0,1) 0, rgba(255,210,76,1) 100%);
+	background: linear-gradient(180deg, rgba(255,172,0,1) 0, rgba(255,210,76,1) 100%);
+}
+
+/* table adjustments for 760px or lower */
+@media all and (max-device-width: 1024px),
+	   all and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2),
+	   all and (max-width: 640px) {
+
+	body.theme-scanlines.amber tr { 
+		border: 1px solid #FFBF00; 
+	}
+	
+	body.theme-scanlines.amber td { 
+		/* Behave  like a "row" */
+		border-bottom: 1px solid #090;
+	}
+}  

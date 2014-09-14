@@ -1,0 +1,108 @@
+//Glitch CSS from reddit user /u/flukywhizz & http://codepen.io/lbebber/pen/ypgql
+body.error-page {
+	#theme-widget {
+		position: relative;
+		float: right;
+		top: auto;
+		right: auto;
+	}
+	.diplomatic-message {
+		clear: both;
+		margin: 30px 0 0;
+	}
+	h1 {
+		font-size: 48px;
+		line-height: 48px;
+	}
+	h2 {
+		font-size: 96px;
+		line-height: 96px;
+	}
+	#error-details {
+		width: 400px;
+		max-width: 400px;
+		overflow: hidden444;
+		padding: 80px 0 100px 175px;
+		margin: 20px auto;
+		position: relative;
+		z-index: 0;
+		background: rgba(0,0,0,0.5);
+		border: 1px solid #333;
+
+		#error-glass {
+			display: none;
+			background: url('/images/error-glass.png') center center no-repeat transparent;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0.1;
+		}
+	}
+	.error-text {
+		text-transform: none;
+		opacity: 1;
+		color: inherit;
+		position: relative;
+		margin: 0;
+	}
+	.error-text:after{
+		content: attr(data-text);
+		position: absolute;
+		left: 2px;
+		text-shadow: -1px 0 red;
+		top: 0;
+		color: inherit;
+		background-color: rgba(0,0,0,0.9);
+		overflow: hidden;
+		clip: rect(0,900px,0,0);
+		-webkit-animation: noise-anim 2s infinite linear alternate-reverse;
+		animation: noise-anim 2s infinite linear alternate-reverse;
+	}
+	@-webkit-keyframes noise-anim {
+	  $steps:20;
+	  @for $i from 0 through $steps{
+	    #{percentage($i*(1/$steps))}{
+	      clip:rect(random(100)+px,9999px,random(100)+px,0);
+	    }
+	  }
+	}
+	@keyframes noise-anim {
+	  $steps:20;
+	  @for $i from 0 through $steps{
+	    #{percentage($i*(1/$steps))}{
+	      clip:rect(random(100)+px,9999px,random(100)+px,0);
+	    }
+	  }
+	}
+	.error-text:before{
+		content: attr(data-text);
+		position: absolute;
+		left: -2px;
+		text-shadow: 1px 0 blue;
+		top: 0;
+		color: inherit;
+		background-color: rgba(0,0,0,0.9);
+		overflow: hidden;
+		clip: rect(0,900px,0,0);
+		-webkit-animation: noise-anim-2 3s infinite linear alternate-reverse;
+		animation: noise-anim-2 3s infinite linear alternate-reverse;
+	}
+	@-webkit-keyframes noise-anim-2 {
+	  $steps:20;
+	  @for $i from 0 through $steps{
+	    #{percentage($i*(1/$steps))}{
+	      clip:rect(random(100)+px,9999px,random(100)+px,0);
+	    }
+	  }
+	}
+	@keyframes noise-anim-2 {
+	  $steps:20;
+	  @for $i from 0 through $steps{
+	    #{percentage($i*(1/$steps))}{
+	      clip:rect(random(100)+px,9999px,random(100)+px,0);
+	    }
+	  }
+	}
+}

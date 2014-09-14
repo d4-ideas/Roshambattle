@@ -1,307 +1,306 @@
 /* Scan Lines */
 body.theme-scanlines #line {
-    display: block;
-	position: relative;
-	top: 0px;
-	left:0px;
-	width: 100%;
-	height: 2px;
-	background: #0F0;
-	opacity: .2;
-	z-index: 100;
-}
+  display: block;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 2px;
+  background: #0f0;
+  opacity: .2;
+  z-index: 100; }
+
 body.theme-scanlines #dot {
-    display: block;
-	position: relative;
-	left: 10px;
-	width: 20px;
-	height: 2px;
-	background: #000;
-	opacity: 1;
-}
+  display: block;
+  position: relative;
+  left: 10px;
+  width: 20px;
+  height: 2px;
+  background: #000;
+  opacity: 1; }
+
 body.theme-scanlines #cover {
-    display: block;
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 200px;
-}
+  display: block;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 200px; }
 
 /* Main Styles */
 body.theme-scanlines {
-	background: #000;
-	background-image: url('/images/scanlines-green.gif');
-	color: #FFF;
-	font-size: 14px;
-	font-family: "Courier",fixed,monospace;
-}
+  background: #000;
+  background-image: url("/images/scanlines-green.gif");
+  color: #0f0;
+  font-size: 14px;
+  font-family: "Courier New", "Courier", fixed, monospace;
+  font-weight: 300; }
+
+body.theme-scanlines h1, body.theme-scanlines h2, body.theme-scanlines h3, body.theme-scanlines h4, body.theme-scanlines th {
+  font-weight: 300; }
+
 body.theme-scanlines a {
-    color: #0f0;
-}
+  color: #0f0; }
+
 body.theme-scanlines #content {
-	position: relative;
-	opacity: .7;
-	z-index: 50;
-	color: #0F0;
-	text-shadow: 0px 0px 3px;
-	text-transform:uppercase;
-}
+  position: relative;
+  opacity: 0.8;
+  z-index: 50;
+  text-shadow: 0px 0px 3px;
+  text-transform: uppercase; }
+
 body.theme-scanlines #error {
-    color: #0f0;
-    -webkit-animation: opacity 2s infinite;
-    -moz-animation: opacity 2s infinite;
-    -o-animation: opacity 2s infinite;
-    -ms-animation: opacity 2s infinite;
-    animation: opacity 2s infinite;
-}
+  -webkit-animation: opacity 2s infinite;
+  -moz-animation: opacity 2s infinite;
+  -o-animation: opacity 2s infinite;
+  -ms-animation: opacity 2s infinite;
+  animation: opacity 2s infinite; }
+
 @-webkit-keyframes opacity {
-    0% { opacity: 1.0; }
-    50% { opacity: 0.0; }
-    100% { opacity: 1.0; }
-}
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
 @-moz-keyframes opacity {
-    0% { opacity: 1.0; }
-    50% { opacity: 0.0; }
-    100% { opacity: 1.0; }
-}
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
 @-ms-keyframes opacity {
-    0% { opacity: 1.0; }
-    50% { opacity: 0.0; }
-    100% { opacity: 1.0; }
-}
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
 @-o-keyframes opacity {
-    0% { opacity: 1.0; }
-    50% { opacity: 0.0; }
-    100% { opacity: 1.0; }
-}
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
 @keyframes opacity {
-    0% { opacity: 1.0; }
-    50% { opacity: 0.0; }
-    100% { opacity: 1.0; }
-}
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
 body.theme-scanlines #theme-widget input:checked + label {
-    color: #ff0;
-}
+  color: #ff0; }
 
 /* Registration & Login */
 body.theme-scanlines.user-form input[type=text],
 body.theme-scanlines.user-form input[type=email],
-body.theme-scanlines.user-form input[type=password]{
-    opacity: 0.8;
-    transition-property: opacity;
-    transition-duration: 0.5s;
-}
+body.theme-scanlines.user-form input[type=password] {
+  opacity: 0.8;
+  transition-property: opacity;
+  transition-duration: 0.5s; }
+
 body.theme-scanlines.user-form input[type=text]:focus,
 body.theme-scanlines.user-form input[type=email]:focus,
 body.theme-scanlines.user-form input[type=password]:focus {
-    opacity: 1.0;
-}
+  opacity: 1.0; }
+
 body.theme-scanlines.user-form ::-webkit-input-placeholder {
-    color: #060;
-    font-family: "Courier",fixed,monospace;
-    text-transform:uppercase;
-    font-weight: bold;
-    opacity: 1.0;
-}
-body.theme-scanlines.user-form :-moz-placeholder { /* Firefox 18- */
-    color: #060;
-    font-family: "Courier",fixed,monospace;
-    text-transform:uppercase;
-    font-weight: bold;
-    opacity: 1.0;
-}
-body.theme-scanlines.user-form  ::-moz-placeholder {  /* Firefox 19+ */
-    color: #060;
-    font-family: "Courier",fixed,monospace;
-    text-transform:uppercase;
-    font-weight: bold;
-    opacity: 1.0;
-}
-body.theme-scanlines.user-form  :-ms-input-placeholder {  
-    color: #060;
-    font-family: "Courier",fixed,monospace;
-    text-transform:uppercase;
-    font-weight: bold;
-    opacity: 1.0;
-}
-body.theme-scanlines.user-form input {  
-    font-family: "Courier",fixed,monospace;
-}
+  color: #060;
+  font-family: "Courier New", "Courier", fixed, monospace;
+  text-transform: uppercase;
+  font-weight: 300;
+  opacity: 1.0; }
+
+body.theme-scanlines.user-form :-moz-placeholder {
+  /* Firefox 18- */
+  color: #060;
+  font-family: "Courier New", "Courier", fixed, monospace;
+  text-transform: uppercase;
+  font-weight: 300;
+  opacity: 1.0; }
+
+body.theme-scanlines.user-form ::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #060;
+  font-family: "Courier New", "Courier", fixed, monospace;
+  text-transform: uppercase;
+  font-weight: 300;
+  opacity: 1.0; }
+
+body.theme-scanlines.user-form :-ms-input-placeholder {
+  color: #060;
+  font-family: "Courier New", "Courier", fixed, monospace;
+  text-transform: uppercase;
+  font-weight: 300;
+  opacity: 1.0; }
+
+body.theme-scanlines.user-form input {
+  font-family: "Courier New", "Courier", fixed, monospace; }
+
 body.theme-scanlines .n00b-link {
-    color: #0f0;
-    font-family: "Courier",fixed,monospace;
-    text-transform:uppercase;
-    font-weight: bold;
-    opacity: 0.6;
-    transition-property: opacity;
-    transition-duration: 0.5s;
-}
+  color: #0f0;
+  font-family: "Courier New", "Courier", fixed, monospace;
+  text-transform: uppercase;
+  font-weight: 300;
+  opacity: 0.6;
+  transition-property: opacity;
+  transition-duration: 0.5s; }
+
 body.theme-scanlines .n00b-link:hover,
 body.theme-scanlines .n00b-link:focus,
 body.theme-scanlines .n00b-link:active {
-    opacity: 1.0;
-}
+  opacity: 1.0; }
 
 body.theme-scanlines #tabs-block li {
-    border: 1px solid #fff;
-    color: #fff;
-}
+  border: 1px solid #fff;
+  color: #fff; }
+
 body.theme-scanlines #tabs-block li:hover {
-    color: #ff0;
-    border-color: #ff0;
-    background-color: #000;
-}
+  color: #ff0;
+  border-color: #ff0;
+  background-color: #000; }
+
 body.theme-scanlines #tabs-block li.active,
 body.theme-scanlines #tabs-block li.active:hover {
-    color: #0f0;
-    border-color: #0f0;
-    background-color: #000;
-}
+  color: #0f0;
+  border-color: #0f0;
+  background-color: #000; }
+
 body.theme-scanlines #the-shitcan {
-    border: 1px solid #0f0;
-    background-color: #020;
-}
+  border: 1px solid #0f0;
+  background-color: #020; }
+
 body.theme-scanlines #taunt-box textarea {
-    background-color: #020;
-    border-color: #0f0;
-    color: #0f0;
-    font-family: "Courier",fixed,monospace;
-    text-transform:uppercase;
-}
+  background-color: #020;
+  border-color: #0f0;
+  color: #0f0;
+  font-family: "Courier New", "Courier", fixed, monospace;
+  text-transform: uppercase; }
+
+body.theme-scanlines #the-shitcan span.user {
+  font-weight: 300; }
+
 body.theme-scanlines .chat-row:nth-of-type(even) {
-    background-color: #000;
-}
+  background-color: #000; }
+
 body.theme-scanlines .karma-machine .time-machine {
-    color: #999;
-}
+  color: #999; }
+
 body.theme-scanlines .karma-machine .plusChat {
-    color: #0F0;
-}
+  color: #0f0; }
+
 body.theme-scanlines .karma-machine .minusChat {
-    color: #F00;
-}
+  color: #F00; }
+
 body.theme-scanlines input[type=submit],
 body.theme-scanlines input[type=button] {
-    background: -webkit-linear-gradient(180deg, rgba(0,255,0,1) 0, rgba(0,138,0,1) 100%);
-    background: -moz-linear-gradient(180deg, rgba(0,255,0,1) 0, rgba(0,138,0,1) 100%);
-    background: linear-gradient(180deg, rgba(0,255,0,1) 0, rgba(0,138,0,1) 100%);
-    border: 0;
-    border-radius: 5px;
-    padding: 3px 7px 2px;
-    font-family: "Courier",fixed,monospace;
-    text-transform:uppercase; 
-    font-weight: bold;
-}
+  background: -webkit-linear-gradient(180deg, lime 0, #008a00 100%);
+  background: -moz-linear-gradient(180deg, lime 0, #008a00 100%);
+  background: linear-gradient(180deg, lime 0, #008a00 100%);
+  border: 0;
+  border-radius: 5px;
+  padding: 3px 7px 2px;
+  font-family: "Courier New", "Courier", fixed, monospace;
+  text-transform: uppercase;
+  font-weight: 300; }
+
 body.theme-scanlines input[type=submit]:active,
 body.theme-scanlines input[type=button]:active {
-    background: -webkit-linear-gradient(180deg, rgba(0,138,0,1) 0, rgba(0,255,0,1) 100%);
-    background: -moz-linear-gradient(180deg, rgba(0,138,0,1) 0, rgba(0,255,0,1) 100%);
-    background: linear-gradient(180deg, rgba(0,138,0,1) 0, rgba(0,255,0,1) 100%);
-}
+  background: -webkit-linear-gradient(180deg, #008a00 0, lime 100%);
+  background: -moz-linear-gradient(180deg, #008a00 0, lime 100%);
+  background: linear-gradient(180deg, #008a00 0, lime 100%); }
 
 /* table adjustments for 760px or lower */
-@media all and (max-device-width: 1024px),
-       all and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2),
-       all and (max-width: 640px) {
+@media all and (max-device-width: 1024px), all and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2), all and (max-width: 640px) {
+  body.theme-scanlines tr {
+    border: 1px solid #0f0; }
 
-    body.theme-scanlines tr { 
-        border: 1px solid #0f0; 
-    }
-	
-	body.theme-scanlines td { 
-		/* Behave  like a "row" */
-		border-bottom: 1px solid #090;
-	}
-}
-
-
+  body.theme-scanlines td {
+    /* Behave  like a "row" */
+    border-bottom: 1px solid #090; } }
 /* Scan Lines Amber */
 body.theme-scanlines.amber #line {
-	background: #FFBF00;
-}
+  background: #FFBF00; }
+
 body.theme-scanlines.amber {
-	background-image: url('/images/scanlines-amber.gif');
-}
+  background-image: url("/images/scanlines-amber.gif"); }
+
 body.theme-scanlines.amber.amber a {
-    color: #FFBF00;
-}
+  color: #FFBF00; }
+
 body.theme-scanlines.amber.amber #content {
-	color: #FFBF00;
-}
+  color: #FFBF00; }
+
 body.theme-scanlines.amber.amber #error {
-    color: #FFBF00;
-}
+  color: #FFBF00; }
+
 body.theme-scanlines.amber #theme-widget input:checked + label {
-    color: #ff0;
-}
+  color: #ff0; }
 
 body.theme-scanlines.amber.user-form ::-webkit-input-placeholder {
-    color: #060;
-}
-body.theme-scanlines.amber.user-form :-moz-placeholder { /* Firefox 18- */
-    color: #060;
-}
-body.theme-scanlines.amber.user-form  ::-moz-placeholder {  /* Firefox 19+ */
-    color: #060;
-}
-body.theme-scanlines.amber.user-form  :-ms-input-placeholder {  
-    color: #060;
-}
+  color: #000; }
+
+body.theme-scanlines.amber.user-form :-moz-placeholder {
+  /* Firefox 18- */
+  color: #000; }
+
+body.theme-scanlines.amber.user-form ::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #000; }
+
+body.theme-scanlines.amber.user-form :-ms-input-placeholder {
+  color: #000; }
+
 body.theme-scanlines.amber .n00b-link {
-    color: #FFBF00;
-}
+  color: #FFBF00; }
+
 body.theme-scanlines.amber #tabs-block li:hover {
-    color: #ff0;
-    border-color: #ff0;
-}
+  color: #ff0;
+  border-color: #ff0; }
+
 body.theme-scanlines.amber #tabs-block li.active,
 body.theme-scanlines.amber #tabs-block li.active:hover {
-    color: #FFBF00;
-    border-color: #FFBF00;
-}
+  color: #FFBF00;
+  border-color: #FFBF00; }
+
 body.theme-scanlines.amber #the-shitcan {
-    border: 1px solid #FFBF00;
-    background-color: #202000;
-}
+  border: 1px solid #FFBF00;
+  background-color: #202000; }
+
 body.theme-scanlines.amber #taunt-box textarea {
-    background-color: #202000;
-    border-color: #FFBF00;
-    color: #FFBF00;
-}
+  background-color: #202000;
+  border-color: #FFBF00;
+  color: #FFBF00; }
+
 body.theme-scanlines.amber .karma-machine .time-machine {
-    color: #999;
-}
+  color: #999; }
+
 body.theme-scanlines.amber .karma-machine .plusChat {
-    color: #FFBF00;
-}
+  color: #FFBF00; }
+
 body.theme-scanlines.amber .karma-machine .minusChat {
-    color: #FFBF00;
-}
+  color: #FFBF00; }
+
 body.theme-scanlines.amber input[type=submit],
 body.theme-scanlines.amber input[type=button] {
-    background: -webkit-linear-gradient(180deg, rgba(255,210,76,1) 0, rgba(255,172,0,1) 100%);
-    background: -moz-linear-gradient(180deg, rgba(255,210,76,1) 0, rgba(255,172,0,1) 100%);
-    background: linear-gradient(180deg, rgba(255,210,76,1) 0, rgba(255,172,0,1) 100%);
-}
+  background: -webkit-linear-gradient(180deg, #ffd24c 0, #ffac00 100%);
+  background: -moz-linear-gradient(180deg, #ffd24c 0, #ffac00 100%);
+  background: linear-gradient(180deg, #ffd24c 0, #ffac00 100%); }
+
 body.theme-scanlines.amber input[type=submit]:active,
 body.theme-scanlines.amber input[type=button]:active {
-    background: -webkit-linear-gradient(180deg, rgba(255,172,0,1) 0, rgba(255,210,76,1) 100%);
-    background: -moz-linear-gradient(180deg, rgba(255,172,0,1) 0, rgba(255,210,76,1) 100%);
-    background: linear-gradient(180deg, rgba(255,172,0,1) 0, rgba(255,210,76,1) 100%);
-}
+  background: -webkit-linear-gradient(180deg, #ffac00 0, #ffd24c 100%);
+  background: -moz-linear-gradient(180deg, #ffac00 0, #ffd24c 100%);
+  background: linear-gradient(180deg, #ffac00 0, #ffd24c 100%); }
 
 /* table adjustments for 760px or lower */
-@media all and (max-device-width: 1024px),
-       all and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2),
-       all and (max-width: 640px) {
+@media all and (max-device-width: 1024px), all and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2), all and (max-width: 640px) {
+  body.theme-scanlines.amber tr {
+    border: 1px solid #FFBF00; }
 
-    body.theme-scanlines.amber tr { 
-        border: 1px solid #FFBF00; 
-    }
-	
-	body.theme-scanlines.amber td { 
-		/* Behave  like a "row" */
-		border-bottom: 1px solid #090;
-	}
-}
+  body.theme-scanlines.amber td {
+    /* Behave  like a "row" */
+    border-bottom: 1px solid #090; } }

@@ -1,0 +1,291 @@
+body {
+	min-width: 304px;
+}
+
+#line,
+#dot,
+#cover {
+	display: none;
+}
+
+#content {
+	margin:20px 20px 0px 20px;
+}
+
+table {
+	width: 100%;
+	margin-bottom: 40px;
+	border-collapse: collapse;
+}
+th {
+	font-weight: bold;
+	text-align: left;
+	border-bottom: 1px solid;
+	padding: 0 5px;
+}
+td {
+	vertical-align: top;
+	border-bottom: 1px solid;
+	padding: 10px 5px;
+}
+td p {
+	margin: 0;
+}
+
+#error {
+	color: #C00;
+	margin-bottom: 15px;
+	font-weight: bold;
+	font-size: 16px;
+	text-align: center;
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#welcome-block {
+	float: left;
+	margin-top: 0;
+}
+
+#current-score {
+	clear: both;
+}
+
+/* Registration & Login */
+.user-form {
+	text-align: center;
+}
+.user-form h1 {
+	margin-bottom: 0;
+}
+.user-form input[type=text],
+.user-form input[type=email],
+.user-form input[type=password]{
+	min-width: 300px;
+	margin-bottom: 15px;
+}
+.n00b-link {
+	display: inline-block;
+	margin-top: 10px;
+	color: #000;
+	text-decoration: none;
+}
+a {
+	color: #000;
+	text-decoration: none;
+}
+a:hover,
+a:active,
+a:focus {
+	text-decoration: underline;
+}
+
+#poison {
+	clear: both;
+	margin: 50px auto 30px;
+	text-align: center;
+}
+
+#poison ul{
+	list-style-type: none;
+}
+
+.wtf {
+	cursor: pointer;
+	display: inline-block;
+}
+
+/* Tabs */
+#stats-block,
+#leader-block,
+#taunt-block,
+#design-block,
+#explore-block,
+#table-rounds{
+	display: none;
+}
+#stats-block.active,
+#leader-block.active,
+#design-block.active,
+#explore-block.active,
+#taunt-block.active {
+	display: block;
+}
+#table-rounds.active {
+	display: table;
+}
+
+#tabs-block {
+	width: 250px;
+	margin: 0 auto;
+	text-align: center;
+}
+#tabs-block ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#tabs-block li {
+	display: inline-block;
+	border: 1px solid #999;
+	padding: 0 3px;
+	color: #999;
+	cursor: pointer;
+}
+#tabs-block li:hover {
+	color: #fff;
+	border-color: #999;
+	background-color: #999;
+}
+#tabs-block li.active,
+#tabs-block li.active:hover {
+	color: #fff;
+	border-color: #000;
+	background-color: #000;
+	cursor: default;
+}
+#leaderboard-sort-block {
+	margin-bottom: 20px;
+}
+/* Theme Widget*/
+#theme-widget {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+#theme-widget input {
+	display: none;
+}
+#theme-widget input:checked + label {
+	font-weight: bold;
+}
+#theme-widget label:hover,
+#theme-widget label:active,
+#theme-widget label:focus {
+	text-decoration: underline;
+}
+#the-shitcan {
+	border: 1px solid #999;
+	width: 98%;
+	padding: 0;
+	background-color: #eee;
+	margin: 0 auto 20px;
+}
+#the-shitcan span.user {
+	font-weight: bold;
+	padding-right: 5px;
+}
+.chat-row {
+	padding: 1% 2%;
+	clear: both;
+}
+.chat-row p {
+	margin: 0;
+}
+.chat-row:nth-of-type(even) {
+	background-color: #ddd;
+}
+.karma-machine {
+	float: right;
+	padding: 0 0 5px 5px;
+}
+.karma-machine .time-machine {
+	display: inline-block;
+	margin-right: 5px;
+	color: #666;
+}
+.karma-machine .count {
+	cursor: pointer;
+	padding: 0px 6px 1px 5px;
+	display: inline-block;
+	
+}
+.karma-machine .plusChat {
+	color: #090;
+}
+.karma-machine .minusChat {
+	color: #900;
+}
+#taunt-box {
+	margin-bottom: 10px;
+	text-align: center;
+}
+#taunt-box textarea {
+	width: 98%;
+	padding: 1%;
+	border-color: #999;
+	margin-bottom: 10px;
+}
+
+/* table adjustments for mobile */
+@media all and (max-device-width: 1024px),
+	   all and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2),
+	   all and (max-width: 640px) {
+
+	#welcome-block {
+		display: block;
+		margin: 0 0 10px 0;
+		float: none;
+	}
+	#theme-widget {
+		position: relative;
+		top: auto;
+		right: auto;
+		display: inline-block;
+	}
+	#tabs-block {
+		clear: both;
+		width: auto;
+		margin: 0 0 20px;
+		text-align: left;
+	}
+		   
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { 
+		border: 1px solid #000; 
+		margin-bottom: 20px;
+	}
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #999; 
+		position: relative;
+		padding-left: 40%; 
+	}
+	
+	td:last-of-type {
+		border-bottom: none;
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 40%;
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	/*
+	Label the data
+	*/
+	td:before { content: attr(data-label); }
+}
