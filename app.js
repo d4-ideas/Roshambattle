@@ -119,7 +119,7 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
-        res.render('error', {
+        res.render('fourohfour', {
             message: err.message,
             error: err
         });
@@ -129,7 +129,7 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-    res.render('error', {
+    res.render('fourohfour', {
         message: err.message,
         error: {}
     });
@@ -165,6 +165,5 @@ var passTheWord = function(theTurnDate){
 	}
 };
 
-// Finally our 404
-app.get ('*', fourohfour.dumbass);
+//setInterval(function(){passTheWord('foo')}, 10000);
 //setInterval(function(){passTheWord('foo')}, 10000);
