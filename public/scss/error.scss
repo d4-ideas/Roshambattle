@@ -21,7 +21,8 @@ body.error-page {
 	#error-details {
 		width: 400px;
 		max-width: 400px;
-		overflow: hidden444;
+		min-height: 170px;
+		overflow: hidden;
 		padding: 80px 0 100px 175px;
 		margin: 20px auto;
 		position: relative;
