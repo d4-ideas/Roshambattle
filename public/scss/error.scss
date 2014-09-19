@@ -1,4 +1,15 @@
 //Glitch CSS from reddit user /u/flukywhizz & http://codepen.io/lbebber/pen/ypgql
+@font-face {
+    font-family: '1942_report';
+    src: url('/fonts/1942-webfont.eot');
+    src: url('/fonts/1942-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/1942-webfont.woff') format('woff'),
+         url('/fonts/1942-webfont.ttf') format('truetype'),
+         url('/fonts/1942-webfont.svg#1942_report1942_report') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body.error-page.theme-scanlines {
 	#theme-widget {
 		position: relative;
@@ -41,6 +52,7 @@ body.error-page.theme-scanlines {
 		}
 	}
 	.error-text {
+		font-family: '1942_report';
 		text-transform: none;
 		opacity: 1;
 		color: inherit;
