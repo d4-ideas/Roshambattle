@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>PBKC Response Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel='stylesheet' href='public/css/style.css' />
+        <link rel='stylesheet' href='public/css/scanlines.css' />
+		<link rel='stylesheet' href='public/css/error.css' />
+		<script type="text/javascript" src="public/js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="public/js/scanlines.js"></script>
+        <script type="text/javascript" src="public/js/error.js"></script>
+	</head>
+	<body class="error-page theme-scanlines" data-uid="<%= userID %>" style="background-image: url('public/images/scanlines-green.gif');">
+		<div id="cover"><div id="line"><div id="dot"></div></div></div>
+		<div id="content">
+            <div id="theme-widget">
+                <span> Theme:</span>
+                <input type="radio" id="theme0" name="theme-options" value="0" data-themeName="none"><label for="theme0">0</label> | 
+                <input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
+                <input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>
+            </div>
+			<p class="diplomatic-message">Nice going genius. You broke the site.</p>
+			<div id="error-details">
+				<h2 class="error-text" data-text="4o4">404</h2>
+				<h1 class="error-text" data-text="nOT fOUnd">Not Found</h1>
+				<div id="error-glass" style="background-image: url('public/images/error-glass.png');"></div>
+			</div>
+			<p class="error-stack"><pre>Error: Not Found
+    at Object.app.use.res.render.message [as handle] (/Sites/D4/Roshambattle/app.js:110:15)
+    at next (/Sites/D4/Roshambattle/node_modules/express/node_modules/connect/lib/proto.js:193:15)
+    at pass (/Sites/D4/Roshambattle/node_modules/express/lib/router/index.js:110:24)
+    at Router._dispatch (/Sites/D4/Roshambattle/node_modules/express/lib/router/index.js:173:5)
+    at Object.router (/Sites/D4/Roshambattle/node_modules/express/lib/router/index.js:33:10)
+    at next (/Sites/D4/Roshambattle/node_modules/express/node_modules/connect/lib/proto.js:193:15)
+    at resume (/Sites/D4/Roshambattle/node_modules/express/node_modules/connect/lib/middleware/static.js:65:7)
+    at SendStream.error (/Sites/D4/Roshambattle/node_modules/express/node_modules/connect/lib/middleware/static.js:80:37)
+    at SendStream.emit (events.js:95:17)
+    at SendStream.error (/Sites/D4/Roshambattle/node_modules/express/node_modules/send/lib/send.js:147:51)</pre></p>
+<!-- Add back once this is a route. Also - remove the 'public' from the CSS & JS paths above. Remove the inline image styles
+<h1><%= message %></h1>
+<h2><%= error.status %></h2>
+<pre><%= error.stack %></pre>
+-->
+        </div>
+    </body>
+</html>

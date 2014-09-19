@@ -20,6 +20,7 @@ var messages = require('./routes/messages');
 var leaderboard = require('./routes/leaderboard');
 var realmDesign = require('./routes/realmDesign');
 var realmExplore = require('./routes/realmExplore');
+var fourohfour = require('./routes/fourohfour.js');
 
 var app = express().http().io();
 
@@ -164,4 +165,6 @@ var passTheWord = function(theTurnDate){
 	}
 };
 
+// Finally our 404
+app.get ('*', fourohfour.dumbass);
 //setInterval(function(){passTheWord('foo')}, 10000);
