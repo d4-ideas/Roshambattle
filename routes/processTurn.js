@@ -1,6 +1,7 @@
 var ruser = require('d4-roshamuser');
 var turn = require('d4-roshamturn');
 var d4sockets = require('d4-sockets');
+var d4sendEmail = require('d4-sendEmail');
 var leaderBoard = require('d4-roshamleader');
 
 
@@ -23,6 +24,7 @@ exports.generateTurn = function (req,res){
     turn.generateTurn(function(err, data){
         if (data){
             d4sockets.contactConnectedSockets(data);
+            d4sendEmail.sendResults(data);
             leaderBoard.genScores();
             res.render('generateTurn', { title: 'RoshamBattle!', status: 'ok'});
         } else {
