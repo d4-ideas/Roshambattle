@@ -21,6 +21,7 @@ var leaderboard = require('./routes/leaderboard');
 var realmDesign = require('./routes/realmDesign');
 var realmExplore = require('./routes/realmExplore');
 var fourohfour = require('./routes/fourohfour.js');
+var roshamWar = require('./routes/roshamWar');
 
 var app = express().http().io();
 
@@ -89,6 +90,7 @@ app.post('/login', login.loginPost);
 app.get('/forgotPassword', login.forgotPassword);
 app.get('/logout', users.logout);
 app.get('/userSettings', users.settings); 
+app.get('/roshamWar', routes.roshamWar);
 //app.get('/lowerEmails', users.lowerEmails);
 app.io.route('selectWeapon', processTurn.selectWeapon);
 app.io.route('taunt', messages.taunt);
