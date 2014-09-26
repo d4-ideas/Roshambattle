@@ -25,7 +25,7 @@ exports.roshambattle = function(req, res){
 
 exports.realms = function(req, res){
     if (typeof req.session.userID !== 'undefined') {
-        res.render('realms', {title: 'Rochambattle',
+        res.render('realms', {title: 'Realms',
                             displayName: req.session.displayName,
                             userID: req.session.userID,
                             nextTurn: req.app.get('job').nextInvocation()
@@ -38,6 +38,18 @@ exports.realms = function(req, res){
 exports.about = function(req, res){
     if (typeof req.session.userID !== 'undefined') {
         res.render('about', {title: 'Rochambattle',
+                            displayName: req.session.displayName,
+                            userID: req.session.userID,
+                            nextTurn: req.app.get('job').nextInvocation()
+                            });
+    } else {
+        res.redirect('/login');
+    }
+};
+
+exports.roshamWar = function(req, res){
+    if (typeof req.session.userID !== 'undefined') {
+        res.render('roshamWar', {title: 'RochamWar!',
                             displayName: req.session.displayName,
                             userID: req.session.userID,
                             nextTurn: req.app.get('job').nextInvocation()
