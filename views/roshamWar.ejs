@@ -1,205 +1,185 @@
 <!DOCTYPE html>
-<style>
-
-.link {
-  fill: none;
-  stroke: #666;
-  stroke-width: 1.5px;
-}
-
-#licensing {
-  fill: green;
-}
-
-.link.licensing {
-  stroke: green;
-}
-
-.link.resolved {
-  stroke-dasharray: 0,2 1;
-}
-
-circle {
-  fill: #ccc;
-  stroke: #333;
-  stroke-width: 1.5px;
-}
-
-text {
-  font: 10px sans-serif;
-  pointer-events: none;
-  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
-}
-
-</style>
-
 <html>
 	<head>
-    	<title>d4-ides: realms</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="apple-mobile-web-app-capable" content="yes">
+		<title>d4-ides: realms</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
 		<script src="/socket.io/socket.io.js"></script>
-		<script>
-		</script>
-        <link rel='stylesheet' href='/css/style.css' />
-        <link rel='stylesheet' href='/css/scanlines.css' />
+		<link rel='stylesheet' href='/css/style.css' />
+		<link rel='stylesheet' href='/css/scanlines.css' />
+		<link rel='stylesheet' href='/css/nodes.css' />
 		<script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="/js/main.js"></script>
-        <script type="text/javascript" src="/js/realmEvents.js"></script>
+		<script type="text/javascript" src="/js/main.js"></script>
+		<script type="text/javascript" src="/js/realmEvents.js"></script>
 		<script type="text/javascript" src="/js/scanlines.js"></script>
-        <script type="text/javascript" src="/js/moment.min.js"></script>
+		<script type="text/javascript" src="/js/moment.min.js"></script>
 	</head>
 	<body class="theme-scanlines" data-uid="<%= userID %>">
 		<div id="cover"><div id="line"><div id="dot"></div></div></div>
-        <div id="error"></div>
+		<div id="error"></div>
 		<div id="content">
 			<h3 id="welcome-block">Welcome: <span><%= displayName %></span></h3>
-            <h3 class="center">What are you looking at?!  Nothing!</h3> 
-            <div id="theme-widget">
-                <a id="logout" href='/logout'>Logout</a>
-                <span> | Theme:</span>
-                <input type="radio" id="theme0" name="theme-options" value="0" data-themeName="none"><label for="theme0">0</label> | 
-                <input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
-                <input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>
-            </div>
-            
-            <div id="tabs-block">
-                <ul>
-                    <li class="active" data-tabid="explore-block">Graphical</li>
-                    <li data-tabid="design-block">Text only</li>
-                </ul>
-            </div>
+			<div id="theme-widget">
+				<a id="logout" href='/logout'>Logout</a>
+				<span> | Theme:</span>
+				<input type="radio" id="theme0" name="theme-options" value="0" data-themeName="none"><label for="theme0">0</label> | 
+				<input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
+				<input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>
+			</div>
 
-            <!--<div id="design-block" class="tab-block">
-            <h3 class="center">What are you looking at?!  Nothing!</h3>                
-                <table>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>From</th>
-                            <th>Short Description</th>
-                            <th>Long Description</th>
-                            <th>To</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td data-label=""><input type='submit' id='createConnection' value='+'></td>
-                            <td data-label="From">
-                                <select id='connectionFrom'>
-                                    <option value="Lobby">Lobby</option>
-                                </select><br>
-                                <input type='text' id='node12Desc'  placeholder='Howya getting outa here?'>
-                            </td>                        
-                            <td data-label="Short Desc">
-                                <input type='text' id='shortDesc' placeholder='Empty space'>
-                            </td>
-                            <td data-label="Long Desc">
-                                <textarea rows='4' cols=40 id='description' placeholder='A vast empty place waiting for you to create your world.'></textarea>
-                            </td>
-                            <td data-label="To"><select id='connectionTo'>
-                                    <option value="Lobby">Lobby</option>
-                                    <option value="(new)" selected>(new)</option>
-                                </select><br>
-                                <input type='text' id='node21Desc' placeholder='Howya getting here?'>
-                            </td>
-                        </tr>      
-                    </tbody>
-                </table>  
-            </div>-->
-            <div id="explore-block" class="tab-block active">
-                <div id="mysvg"></div>
-            </div>
-        </div>
-    </body>
+			<div id="tabs-block">
+				<ul>
+					<li class="active" data-tabid="explore-block">Graphical</li>
+					<li data-tabid="design-block">Text only</li>
+				</ul>
+			</div>
+
+			<!--<div id="design-block" class="tab-block">
+				<table>
+					<thead>
+						<tr>
+							<th></th>
+							<th>From</th>
+							<th>Short Description</th>
+							<th>Long Description</th>
+							<th>To</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td data-label=""><input type='submit' id='createConnection' value='+'></td>
+							<td data-label="From">
+								<select id='connectionFrom'>
+									<option value="Lobby">Lobby</option>
+								</select><br>
+								<input type='text' id='node12Desc'	placeholder='Howya getting outa here?'>
+							</td>						
+							<td data-label="Short Desc">
+								<input type='text' id='shortDesc' placeholder='Empty space'>
+							</td>
+							<td data-label="Long Desc">
+								<textarea rows='4' cols=40 id='description' placeholder='A vast empty place waiting for you to create your world.'></textarea>
+							</td>
+							<td data-label="To"><select id='connectionTo'>
+									<option value="Lobby">Lobby</option>
+									<option value="(new)" selected>(new)</option>
+								</select><br>
+								<input type='text' id='node21Desc' placeholder='Howya getting here?'>
+							</td>
+						</tr>		
+					</tbody>
+				</table>	
+			</div>-->
+			<div id="explore-block" class="tab-block active">
+				<div id="mysvg"></div>
+			</div>
+		</div>
+	</body>
 </html>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
+	var links = [ { __v: 0,
+		_id: '54110510d1902664ba8cbafc',
+		desc12: 'A dusty road heads east',
+		desc21: 'A dusty road heads west',
+		source: 0,
 
-var links = [ { __v: 0,
-    _id: '54110510d1902664ba8cbafc',
-    desc12: 'A dusty road heads east',
-    desc21: 'A dusty road heads west',
-    source: 0,
+		target: 1 } ]
 
-    target: 1 } ]
+	var nodes = [{ owner: '54110510d1902664ba8cbae6',
+			 shortDesc: '<%= displayName %>',
+			 _id: '54110510d1902664ba8cbaf6',
+			 __v: 0 },
+	{ owner: '54110510d1902664ba8cbae6',
+			 shortDesc: '<%= displayName %>\'s Mom',
+			 _id: '54110510d1902664ba8cbaf7',
+			 __v: 0 }
+	];
+	
+	var width = 960,
+		height = 500;
 
-var nodes = [{ owner: '54110510d1902664ba8cbae6',
-       shortDesc: 'Node1',
-       _id: '54110510d1902664ba8cbaf6',
-       __v: 0 },
-{ owner: '54110510d1902664ba8cbae6',
-       shortDesc: 'Node2',
-       _id: '54110510d1902664ba8cbaf7',
-       __v: 0 }
-];
-    
-var width = 960,
-    height = 500;
+	var force = d3.layout.force()
+		.nodes(d3.values(nodes))
+		.links(links)
+		.size([width, height])
+		.linkDistance(200)
+		.charge(-300)
+		.on("tick", tick)
+		.start();
 
-var force = d3.layout.force()
-    .nodes(d3.values(nodes))
-    .links(links)
-    .size([width, height])
-    .linkDistance(200)
-    .charge(-300)
-    .on("tick", tick)
-    .start();
+	var svg = d3.select("#mysvg").append("svg")
+		.attr("width", width)
+		.attr("height", height);
 
-var svg = d3.select("#mysvg").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+	// Per-type markers, as they don't inherit styles.
+	svg.append("defs").selectAll("marker")
+		.data(["suit", "licensing", "resolved"])
+		.enter().append("marker")
+		.attr("id", function(d) { return d; })
+		.attr("viewBox", "0 -5 10 10")
+		.attr("refX", 15)
+		.attr("refY", -1.5)
+		.attr("markerWidth", 6)
+		.attr("markerHeight", 6)
+		.attr("orient", "auto")
+		.append("path")
+		.attr("d", "M0,-5L10,0L0,5");
 
-// Per-type markers, as they don't inherit styles.
-svg.append("defs").selectAll("marker")
-    .data(["suit", "licensing", "resolved"])
-  .enter().append("marker")
-    .attr("id", function(d) { return d; })
-    .attr("viewBox", "0 -5 10 10")
-    .attr("refX", 15)
-    .attr("refY", -1.5)
-    .attr("markerWidth", 6)
-    .attr("markerHeight", 6)
-    .attr("orient", "auto")
-  .append("path")
-    .attr("d", "M0,-5L10,0L0,5");
+	var path = svg.append("g").selectAll("path")
+		.data(force.links())
+		.enter().append("path")
+		.attr("class", function(d) { return "link " + d.type; });
+		// Removing the Arrow for now
+		//.attr("marker-end", function(d) { return "url(#" + "suit"/*d.type*/ + ")"; });
 
-var path = svg.append("g").selectAll("path")
-    .data(force.links())
-  .enter().append("path")
-    .attr("class", function(d) { return "link " + d.type; })
-    .attr("marker-end", function(d) { return "url(#" + "suit"/*d.type*/ + ")"; });
+	var circle = svg.append("g").selectAll("circle")
+		.data(force.nodes())
+		.enter().append("circle")
+		.attr("r", 12)
+		.call(force.drag);
 
-var circle = svg.append("g").selectAll("circle")
-    .data(force.nodes())
-  .enter().append("circle")
-    .attr("r", 6)
-    .call(force.drag);
+	var text = svg.append("g").selectAll("text")
+		.data(force.nodes())
+		.enter().append("text")
+		.attr("x", 15)
+		.attr("y", ".31em")
+	//	.text(function(d) { return d.name; });
+		.text(function(d) { return d.shortDesc; });
 
-var text = svg.append("g").selectAll("text")
-    .data(force.nodes())
-  .enter().append("text")
-    .attr("x", 8)
-    .attr("y", ".31em")
-//    .text(function(d) { return d.name; });
-    .text(function(d) { return d.shortDesc; });
+	// Use elliptical arc path segments to doubly-encode directionality.
+	function tick() {
+		path.attr("d", linkArc);
+		circle.attr("transform", transform);
+		text.attr("transform", transform);
+	}
 
-// Use elliptical arc path segments to doubly-encode directionality.
-function tick() {
-  path.attr("d", linkArc);
-  circle.attr("transform", transform);
-  text.attr("transform", transform);
-}
+	function linkArc(d) {
+		var dx = d.target.x - d.source.x,
+			dy = d.target.y - d.source.y,
+			dr = Math.sqrt(dx * dx + dy * dy);
+		return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+	}
 
-function linkArc(d) {
-  var dx = d.target.x - d.source.x,
-      dy = d.target.y - d.source.y,
-      dr = Math.sqrt(dx * dx + dy * dy);
-  return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
-}
+	function transform(d) {
+		return "translate(" + d.x + "," + d.y + ")";
+	}
 
-function transform(d) {
-  return "translate(" + d.x + "," + d.y + ")";
-}
+	// MMMmmm.. beer
+	setTimeout(function(){
+		$('circle:last-of-type').attr('r','18');
+	},3000);
+	setTimeout(function(){
+		$('circle:last-of-type').attr('r','24');
+	},6000);
+	setTimeout(function(){
+		$('circle:last-of-type').attr('r','30');
+	},9000);
+	setTimeout(function(){
+		$('circle:last-of-type').attr('r','36');
+	},12000);
+	setTimeout(function(){
+		$('circle:last-of-type').attr('r','72');
+	},18000);
 
 </script>

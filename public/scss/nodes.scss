@@ -1,0 +1,49 @@
+$text-stroke-color: #0f0;
+$stroke-width: 1.5px;
+
+$node-fill-color: #000;
+$node-stroke-color: #0f0;
+
+$font_stack: "Courier New", "Courier",fixed,monospace;
+$font_weight_normal: 300;
+$text-shadow: 0 1px 0 #0f0, 1px 0 0 #0f0, 0 -1px 0 #0f0, -1px 0 0 #0f0;
+
+.link {
+	fill: none;
+	stroke: $text-stroke-color;
+	stroke-width: $stroke-width;
+	opacity: 0.5;
+}
+.link:hover,
+.link:active,
+.link:focus {
+	opacity: 1.0;
+	stroke-width: $stroke-width*2;
+};
+.link.resolved {
+	stroke-dasharray: 0,2 1;
+}
+circle {
+	fill: $node-fill-color;
+	stroke: $node-stroke-color;
+	stroke-width: $stroke-width;
+	opacity: 0.5;
+}
+circle:hover,
+circle:active,
+circle:focus {
+	opacity: 1.0;
+};
+text {
+	font-size: 18px;
+	font-family: $font_stack;
+	font-weight: $font_weight_normal;
+	pointer-events: none;
+	text-shadow: $text-shadow;
+}
+#licensing {
+	fill: green;
+}
+.link.licensing {
+	stroke: green;
+}
