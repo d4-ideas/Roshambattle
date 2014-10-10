@@ -228,13 +228,13 @@ body.theme-scanlines.amber #line {
 body.theme-scanlines.amber {
   background-image: url("/images/scanlines-amber.gif"); }
 
-body.theme-scanlines.amber.amber a {
+body.theme-scanlines.amber a {
   color: #FFBF00; }
 
-body.theme-scanlines.amber.amber #content {
+body.theme-scanlines.amber #content {
   color: #FFBF00; }
 
-body.theme-scanlines.amber.amber #error {
+body.theme-scanlines.amber #error {
   color: #FFBF00; }
 
 body.theme-scanlines.amber #theme-widget input:checked + label {

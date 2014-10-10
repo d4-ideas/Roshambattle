@@ -1,6 +1,6 @@
 .link {
   fill: none;
-  stroke: #0f0;
+  stroke: #000;
   stroke-width: 1.5px;
   opacity: 0.5; }
 
@@ -15,7 +15,7 @@
 
 circle {
   fill: #000;
-  stroke: #0f0;
+  stroke: #000;
   stroke-width: 1.5px;
   opacity: 0.5; }
 
@@ -29,10 +29,32 @@ text {
   font-family: "Courier New", "Courier", fixed, monospace;
   font-weight: 300;
   pointer-events: none;
-  text-shadow: 0 1px 0 #0f0, 1px 0 0 #0f0, 0 -1px 0 #0f0, -1px 0 0 #0f0; }
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff; }
 
 #licensing {
-  fill: green; }
+  fill: black; }
 
 .link.licensing {
+  stroke: black; }
+
+body.theme-scanlines .link {
+  stroke: #0f0; }
+body.theme-scanlines circle {
+  stroke: #0f0; }
+body.theme-scanlines #licensing {
+  fill: green; }
+body.theme-scanlines .link.licensing {
   stroke: green; }
+body.theme-scanlines text {
+  text-shadow: 0 1px 0 #0f0, 1px 0 0 #0f0, 0 -1px 0 #0f0, -1px 0 0 #0f0; }
+
+body.theme-scanlines.amber .link {
+  stroke: #FFBF00; }
+body.theme-scanlines.amber circle {
+  stroke: #FFBF00; }
+body.theme-scanlines.amber #licensing {
+  fill: #FFBF00; }
+body.theme-scanlines.amber .link.licensing {
+  stroke: #FFBF00; }
+body.theme-scanlines.amber text {
+  text-shadow: 0 1px 0 #FFBF00, 1px 0 0 #FFBF00, 0 -1px 0 #FFBF00, -1px 0 0 #FFBF00; }

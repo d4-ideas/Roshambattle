@@ -1,12 +1,18 @@
-$text-stroke-color: #0f0;
+$text-stroke-color: #000;
+$text-stroke-color-green: #0f0;
+$text-stroke-color-amber: #FFBF00;
 $stroke-width: 1.5px;
 
 $node-fill-color: #000;
-$node-stroke-color: #0f0;
+$node-stroke-color: #000;
+$node-stroke-color-green: #0f0;
+$node-stroke-color-amber: #FFBF00;
 
 $font_stack: "Courier New", "Courier",fixed,monospace;
 $font_weight_normal: 300;
-$text-shadow: 0 1px 0 #0f0, 1px 0 0 #0f0, 0 -1px 0 #0f0, -1px 0 0 #0f0;
+$text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+$text-shadow-green: 0 1px 0 #0f0, 1px 0 0 #0f0, 0 -1px 0 #0f0, -1px 0 0 #0f0;
+$text-shadow-amber: 0 1px 0 #FFBF00, 1px 0 0 #FFBF00, 0 -1px 0 #FFBF00, -1px 0 0 #FFBF00;
 
 .link {
 	fill: none;
@@ -42,8 +48,44 @@ text {
 	text-shadow: $text-shadow;
 }
 #licensing {
-	fill: green;
+	fill: black;
 }
 .link.licensing {
-	stroke: green;
+	stroke: black;
+}
+
+body.theme-scanlines {
+	.link {
+		stroke: $text-stroke-color-green;
+	}
+	circle {
+		stroke: $node-stroke-color-green;
+	}
+	#licensing {
+		fill: green;
+	}
+	.link.licensing {
+		stroke: green;
+	}
+	text {
+		text-shadow: $text-shadow-green;
+	}
+}
+
+body.theme-scanlines.amber {
+	.link {
+		stroke: $text-stroke-color-amber;
+	}
+	circle {
+		stroke: $node-stroke-color-amber;
+	}
+	#licensing {
+		fill: $text-stroke-color-amber;
+	}
+	.link.licensing {
+		stroke: $text-stroke-color-amber;
+	}
+	text {
+		text-shadow: $text-shadow-amber;
+	}
 }
