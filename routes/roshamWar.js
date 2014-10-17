@@ -2,7 +2,7 @@ var realmUser = require('d4-realmuser');
  
 exports.roshamWar = function(req, res){
     if (typeof req.session.userID !== 'undefined') {
-        realmUser.joinGame({userid:req.session.userD}, function(err, data){
+        realmUser.joinGame({userid:req.session.userID}, function(err, data){
             if (err){
                 console.log('You really fucked joinGame up this time');
                 res.render('fourohfour', {
