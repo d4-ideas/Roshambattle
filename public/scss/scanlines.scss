@@ -238,6 +238,9 @@ body.theme-scanlines input[type=button]:active {
 
 
 /* Scan Lines Amber */
+body.theme-scanlines.amber {
+	color: #FFBF00;
+}
 body.theme-scanlines.amber #line {
 	background: #FFBF00;
 }
