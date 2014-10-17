@@ -1,4 +1,4 @@
-var realmUser = require('d4-realmUser');
+var realmUser = require('d4-realmuser');
  
 
 /* GET home page. */
