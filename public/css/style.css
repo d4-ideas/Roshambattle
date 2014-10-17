@@ -209,14 +209,14 @@ a:focus {
 #pansy-filter-block {
   padding: 15px 0;
   width: 80%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  font-family: inherit; }
   #pansy-filter-block h1 {
-    font-size: 1.5em; }
+    font-size: 1.1em; }
   #pansy-filter-block ul {
     list-style-type: none; }
     #pansy-filter-block ul li {
-      padding: 10px;
-      font-size: 1.2em; }
+      padding: 10px; }
 
 /* table adjustments for mobile */
 @media all and (max-device-width: 1024px), all and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2), all and (max-width: 640px) {

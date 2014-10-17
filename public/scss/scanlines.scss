@@ -221,6 +221,10 @@ body.theme-scanlines input[type=button]:active {
 	background: linear-gradient(180deg, rgba(0,138,0,1) 0, rgba(0,255,0,1) 100%);
 }
 
+body.theme-scanlines #pansy-filter-block {
+	text-transform: uppercase;
+}
+
 /* table adjustments for 760px or lower */
 @media all and (max-device-width: 1024px),
 	   all and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2),

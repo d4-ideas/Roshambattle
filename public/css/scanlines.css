@@ -213,6 +213,9 @@ body.theme-scanlines input[type=button]:active {
   background: -moz-linear-gradient(180deg, #008a00 0, lime 100%);
   background: linear-gradient(180deg, #008a00 0, lime 100%); }
 
+body.theme-scanlines #pansy-filter-block {
+  text-transform: uppercase; }
+
 /* table adjustments for 760px or lower */
 @media all and (max-device-width: 1024px), all and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2), all and (max-width: 640px) {
   body.theme-scanlines tr {
