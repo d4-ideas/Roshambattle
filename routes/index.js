@@ -47,9 +47,9 @@ exports.about = function(req, res){
     }
 };
 
-exports.roshamWar = function(req, res){
+exports.joinRoshamWar = function(req, res){
     if (typeof req.session.userID !== 'undefined') {
-        res.render('roshamWar', {title: 'RochamWar!',
+        res.render('joinRoshamWar', {title: 'Join RochamWar!',
                             displayName: req.session.displayName,
                             userID: req.session.userID,
                             nextTurn: req.app.get('job').nextInvocation()
