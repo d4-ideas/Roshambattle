@@ -206,6 +206,18 @@ a:focus {
   border-color: #999;
   margin-bottom: 10px; }
 
+#pansy-filter-block {
+  padding: 15px 0;
+  width: 80%;
+  margin: 0 auto; }
+  #pansy-filter-block h1 {
+    font-size: 1.5em; }
+  #pansy-filter-block ul {
+    list-style-type: none; }
+    #pansy-filter-block ul li {
+      padding: 10px;
+      font-size: 1.2em; }
+
 /* table adjustments for mobile */
 @media all and (max-device-width: 1024px), all and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2), all and (max-width: 640px) {
   #welcome-block {

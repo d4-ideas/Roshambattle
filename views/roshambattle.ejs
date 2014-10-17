@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html>
 	<head>
-    	<title>d4-ideas: roshambattle</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="apple-mobile-web-app-capable" content="yes">
+		<title>d4-ideas: roshambattle</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
 		</script>
-        <link rel='stylesheet' href='/css/style.css' />
-        <link rel='stylesheet' href='/css/scanlines.css' />
+		<link rel='stylesheet' href='/css/style.css' />
+		<link rel='stylesheet' href='/css/scanlines.css' />
 		<script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="/js/main.js"></script>
-        <script type="text/javascript" src="/js/mainEvents.js"></script>
+		<script type="text/javascript" src="/js/main.js"></script>
+		<script type="text/javascript" src="/js/mainEvents.js"></script>
 		<script type="text/javascript" src="/js/scanlines.js"></script>
-        <script type="text/javascript" src="/js/moment.min.js"></script>
+		<script type="text/javascript" src="/js/moment.min.js"></script>
 	</head>
 	<body class="theme-scanlines" data-uid="<%= userID %>">
 		<div id="cover"><div id="line"><div id="dot"></div></div></div>
-        <div id="error"></div>
+		<div id="error"></div>
 		<div id="content">
 			<h3 id="welcome-block">Welcome: <span><%= displayName %></span></h3>
-            <div id="tabs-block">
-                <ul>
-                    <li class="active" data-tabid="table-rounds">Results</li>
-                    <!-- <li data-tabid="stats-block">Stats</li> -->
-                    <li data-tabid="leader-block">Leaders</li>
-                    <li data-tabid="taunt-block">Taunts</li>
-                </ul>
-            </div>
-            <div id="theme-widget">
-                <a id="logout" href='/logout'>Logout</a>
-                <span> | Theme:</span>
-                <input type="radio" id="theme0" name="theme-options" value="0" data-themeName="none"><label for="theme0">0</label> | 
-                <input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
-                <input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>
-            </div>
-            <h4 id="current-score"></h4>
-            <h4 id="next-turn" data-date="<%= nextTurn %>"></h4>
+			<div id="tabs-block">
+				<ul>
+					<li class="active" data-tabid="table-rounds">Results</li>
+					<!-- <li data-tabid="stats-block">Stats</li> -->
+					<li data-tabid="leader-block">Leaders</li>
+					<li data-tabid="taunt-block">Taunts</li>
+				</ul>
+			</div>
+			<div id="theme-widget">
+				<a id="logout" href='/logout'>Logout</a>
+				<span> | Theme:</span>
+				<input type="radio" id="theme0" name="theme-options" value="0" data-themeName="none"><label for="theme0">0</label> | 
+				<input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
+				<input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>
+			</div>
+			<h4 id="current-score"></h4>
+			<h4 id="next-turn" data-date="<%= nextTurn %>"></h4>
 			<table id="table-rounds" class="tab-block active">
 				<thead>
 					<tr>
@@ -44,51 +44,51 @@
 						<th>Turn Time</th>
 						<th>Results</th>
 					</tr>
-                </thead>
-                <tbody>
-					<tr>                     
+				</thead>
+				<tbody>
+					<tr>					 
 						<td data-label="Weapon">
 							<input class="setfocus" type="radio" id="w0" name="weapon" value="Rock"><label for="w0" checked="checked">Rock</label><br>
 							<input type="radio" id="w1" name="weapon" value="Paper"><label for="w1">Paper</label><br>
 							<input type="radio" id="w2" name="weapon" value="Scissors"><label for="w2">Scissors</label>
 						</td>
 						<td data-label="TurnTime">
-							<input type="submit" value="Commit Weapon" id="commit">                           
+							<input type="submit" value="Commit Weapon" id="commit">						   
 						</td>
 						<td data-label="Results" id='makeItEasyToFindMe'>TBD</td>
 					</tr>
 				</tbody>
-			</table>        
-            <div id="leader-block" class="tab-block">
-                <div id="leaderboard-sort-block">
-                    <span>Sort By:</span>
-                    <input type="radio" id="leaderSortRate" name="leaderSort" value="winRate" checked><label for="leaderSortRate">Win Rate</label>
-                    <input type="radio" id="leaderSortWins" name="leaderSort" value="totalWins"><label for="leaderSortWins">Total Wins</label>
-                    <input type="radio" id="leaderSortBattles" name="leaderSort" value="totalBattles"><label for="leaderSortBattles">Total Battles</label>
-                </div>
-                <table id="table-results">
-                    <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Name</th>
-                            <th>Win Rate</th>
-                            <th>Total Wins</th>
-                            <th>Total Battles</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>   
-                </table>
-            </div>
-            
-            <div id="taunt-block" class="tab-block">
-                <form id="taunt-box" name="taunt-box">
-                    <textarea rows="2" cols="50" placeholder="Use psychological warfare on your opponents..."></textarea><br>
-                    <input type="button" value="Taunt Away!" name="taunt">
-                </form>
-                <div id="the-shitcan">
-                </div>
-            </div>
-        </div>
-    </body>
+			</table>		
+			<div id="leader-block" class="tab-block">
+				<div id="leaderboard-sort-block">
+					<span>Sort By:</span>
+					<input type="radio" id="leaderSortRate" name="leaderSort" value="winRate" checked><label for="leaderSortRate">Win Rate</label>
+					<input type="radio" id="leaderSortWins" name="leaderSort" value="totalWins"><label for="leaderSortWins">Total Wins</label>
+					<input type="radio" id="leaderSortBattles" name="leaderSort" value="totalBattles"><label for="leaderSortBattles">Total Battles</label>
+				</div>
+				<table id="table-results">
+					<thead>
+						<tr>
+							<th>Rank</th>
+							<th>Name</th>
+							<th>Win Rate</th>
+							<th>Total Wins</th>
+							<th>Total Battles</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>   
+				</table>
+			</div>
+			
+			<div id="taunt-block" class="tab-block">
+				<form id="taunt-box" name="taunt-box">
+					<textarea rows="2" cols="50" placeholder="Use psychological warfare on your opponents..."></textarea><br>
+					<input type="button" value="Taunt Away!" name="taunt">
+				</form>
+				<div id="the-shitcan">
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
