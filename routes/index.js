@@ -1,3 +1,6 @@
+var realmUser = require('d4-realmUser');
+ 
+
 /* GET home page. */
 exports.index = function(req, res){
     if (typeof req.session.userID !== 'undefined') {
@@ -49,11 +52,27 @@ exports.about = function(req, res){
 
 exports.joinRoshamWar = function(req, res){
     if (typeof req.session.userID !== 'undefined') {
-        res.render('joinRoshamWar', {title: 'Join RochamWar!',
-                            displayName: req.session.displayName,
-                            userID: req.session.userID,
-                            nextTurn: req.app.get('job').nextInvocation()
-                            });
+        realmUser.model.find({user:req.session.userID}, function(err, user){
+            if(err){
+                console.log('sumtin if fucked with joinRoshamWar');
+                res.redirect('/');
+            }
+            else{
+                if (user.length > 0)
+                    res.render('roshamWar', {title: 'RochamWar!',
+                                        displayName: req.session.displayName,
+                                        userID: req.session.userID,
+                                        nextTurn: req.app.get('job').nextInvocation()
+                                        });    
+                else
+                    res.render('joinRoshamWar', {title: 'Join RochamWar!',
+                                        displayName: req.session.displayName,
+                                        userID: req.session.userID,
+                                        nextTurn: req.app.get('job').nextInvocation()
+                                        });
+                            
+            }
+        });
     } else {
         res.redirect('/login');
     }
