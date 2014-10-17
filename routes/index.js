@@ -58,8 +58,6 @@ exports.joinRoshamWar = function(req, res){
                 res.redirect('/');
             }
             else{
-                console.log('here');
-                console.log(user);
                 if (user.length > 0)
                     res.render('roshamWar', {title: 'RochamWar!',
                                         displayName: req.session.displayName,
