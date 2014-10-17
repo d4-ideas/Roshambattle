@@ -55,7 +55,7 @@ exports.joinRoshamWar = function(req, res){
         realmUser.model.find({user:req.session.userID}, function(err, user){
             if(err){
                 console.log('sumtin if fucked with joinRoshamWar');
-                res.redirect('/');
+                res.redirect('/fourohfour');
             }
             else{
                 if (user.length > 0)
