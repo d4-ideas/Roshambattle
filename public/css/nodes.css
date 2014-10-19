@@ -37,6 +37,31 @@ text {
 .link.licensing {
   stroke: black; }
 
+.warWeapon {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  border-radius: 3px;
+  cursor: pointer; }
+
+.warWeapon:hover,
+.warWeapon:active,
+.warWeapon:focus {
+  background-color: #ff0; }
+
+.warWeapon.roshamRock {
+  background-image: url("../images/rosham-rock-32.png"); }
+
+.warWeapon.roshamPaper {
+  background-image: url("../images/rosham-paper-32.png"); }
+
+.warWeapon.roshamScissors {
+  background-image: url("../images/rosham-scissors-32.png"); }
+
+.warWeapon.active {
+  background-color: #f00; }
+
 body.theme-scanlines .link {
   stroke: #0f0; }
 body.theme-scanlines circle {
@@ -47,6 +72,14 @@ body.theme-scanlines .link.licensing {
   stroke: green; }
 body.theme-scanlines text {
   text-shadow: 0 1px 0 #0f0, 1px 0 0 #0f0, 0 -1px 0 #0f0, -1px 0 0 #0f0; }
+body.theme-scanlines .warWeapon {
+  background-color: #0f0; }
+body.theme-scanlines .warWeapon:hover,
+body.theme-scanlines .warWeapon:active,
+body.theme-scanlines .warWeapon:focus {
+  background-color: #ff0; }
+body.theme-scanlines .warWeapon.active {
+  background-color: #f00; }
 
 body.theme-scanlines.amber .link {
   stroke: #FFBF00; }
@@ -58,3 +91,11 @@ body.theme-scanlines.amber .link.licensing {
   stroke: #FFBF00; }
 body.theme-scanlines.amber text {
   text-shadow: 0 1px 0 #FFBF00, 1px 0 0 #FFBF00, 0 -1px 0 #FFBF00, -1px 0 0 #FFBF00; }
+body.theme-scanlines.amber .warWeapon {
+  background-color: #FFBF00; }
+body.theme-scanlines.amber .warWeapon:hover,
+body.theme-scanlines.amber .warWeapon:active,
+body.theme-scanlines.amber .warWeapon:focus {
+  background-color: #ff0; }
+body.theme-scanlines.amber .warWeapon.active {
+  background-color: #f00; }

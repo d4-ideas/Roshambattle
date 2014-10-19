@@ -35,7 +35,19 @@
 			</div>
 
 			<div id="design-block" class="tab-block">
-				<h1 style="margin: 50px auto; width: 80%; text-align: center;">Your mother is so fat, the recursive function computing her mass causes a stack overflow.</h1>
+				<h1 style="margin: 50px auto; width: 80%; text-align: center;">
+					<script>
+					var coinFlip = Math.random();
+					var salutation = 'Your mama\'s so fat, ';
+					if (coinFlip < 0.5) {
+						salutation += 'the recursive function computing her mass causes a stack overflow.';
+					}
+					else {
+						salutation += 'she can\'t save files bigger than 4GB.';
+					}
+					document.write(salutation);
+					</script>
+				</h1>
 			
 				<table id="node-farm">
 					<thead>
@@ -60,7 +72,11 @@
 								Sever | Attack<br>
 								Create New Connection
 							</td>
-							<td>Rock | Paper | Scissors</td>
+							<td>
+								<span class="warWeapon roshamRock" data-nodeID="1" title="Rock"></span>
+								<span class="warWeapon roshamPaper" data-nodeID="1" title="Paper"></span>
+								<span class="warWeapon roshamScissors" data-nodeID="1" title="Scissors"></span>
+							</td>
 						</tr>
 						<tr>
 							<td>Node 101</td>
@@ -75,10 +91,12 @@
 								Sever | Attack<br>
 								Create New Connection
 							</td>
-							<td>Rock | Paper | Scissors</td>
+							<td>
+								<span class="warWeapon roshamRock" data-nodeID="101" title="Rock"></span>
+								<span class="warWeapon roshamPaper" data-nodeID="101" title="Paper"></span>
+								<span class="warWeapon roshamScissors" data-nodeID="101" title="Scissors"></span>
+							</td>
 						</tr>
-				
-				
 					</tbody>
 				</table>
 			

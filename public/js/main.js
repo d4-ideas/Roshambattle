@@ -73,7 +73,27 @@ $(document).ready(function() {
             $(target).addClass('active');
         }
     });
-    
+	
+	/* RoshamWar Icons 
+								<span class="warWeapon roshamRock" data-nodeID="1" title="Rock"></span>
+								<span class="warWeapon roshamPaper" data-nodeID="1" title="Paper"></span>
+								<span class="warWeapon roshamScissors" data-nodeID="1" title="Scissors"></span>
+	
+	*/
+	$('.warWeapon').on('click',function(){
+		if (!$(this).hasClass('active')) {
+			var that = this;
+			var target = $(that).attr('data-nodeID');
+			console.log('nodeID='+target);
+			$('.warWeapon[data-nodeID = "'+target+'"]').each(function(){
+				if ($(this).hasClass('active')) {
+					$(this).removeClass('active');
+				}
+			});
+			$(that).addClass('active');
+		}
+	});
+	
     /* Turns on the scan line bit */
     initScanlines();
     
