@@ -32,7 +32,18 @@ exports.roshamWar = function(req, res){
 
 exports.getRoshamWarUserView = function(req, res){
     if (typeof req.session.userID !== 'undefined'){
-        req.io.emit('getRoshamWarUserViewSuccess', {res:'success'});
+        realmUser.getUserView({userid:req.session.userID}, function(err, data){
+            if (err){
+                console.log('You really fucked getRoshamWarUserView up this time');
+                console.log(err);
+            } else 
+                if (data) {
+                    req.io.emit('getRoshamWarUserViewSuccess', data);                    
+                }
+                else {
+                    console.log('Forget about joining the game');         
+                }
+        });
     } else {
         res.redirect('/login');
     }

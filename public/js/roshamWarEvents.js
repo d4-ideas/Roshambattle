@@ -25,6 +25,7 @@ if (typeof io !== 'undefined'){
     
     io.on('getRoshamWarUserViewSuccess', function(data){
         console.log('yep');
+        console.log(data);
     });
 };
           
