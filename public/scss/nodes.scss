@@ -99,15 +99,18 @@ body.theme-scanlines {
 		text-shadow: $text-shadow-green;
 	}
 	.warWeapon {
-		background-color: $text-stroke-color-green;
+		border-color: #fff;
+		background-color: #fff;
 	}
 	.warWeapon:hover,
 	.warWeapon:active,
 	.warWeapon:focus {
 		background-color: #ff0;
+		border-color: #ff0;
 	}
 	.warWeapon.active {
-		background-color: #f00;
+		background-color: $text-stroke-color-green;
+		border-color: $text-stroke-color-green;
 	}
 }
 
@@ -128,14 +131,17 @@ body.theme-scanlines.amber {
 		text-shadow: $text-shadow-amber;
 	}
 	.warWeapon {
-		background-color: $text-stroke-color-amber;
+		border-color: #fff;
+		background-color: #fff;
 	}
 	.warWeapon:hover,
 	.warWeapon:active,
 	.warWeapon:focus {
-		background-color: #ff0;
+		background-color: #f00;
+		border-color: #f00;
 	}
 	.warWeapon.active {
-		background-color: #f00;
+		background-color: $text-stroke-color-amber;
+		border-color: $text-stroke-color-amber;
 	}
 }

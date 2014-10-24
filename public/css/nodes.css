@@ -76,13 +76,16 @@ body.theme-scanlines .link.licensing {
 body.theme-scanlines text {
   text-shadow: 0 1px 0 #0f0, 1px 0 0 #0f0, 0 -1px 0 #0f0, -1px 0 0 #0f0; }
 body.theme-scanlines .warWeapon {
-  background-color: #0f0; }
+  border-color: #fff;
+  background-color: #fff; }
 body.theme-scanlines .warWeapon:hover,
 body.theme-scanlines .warWeapon:active,
 body.theme-scanlines .warWeapon:focus {
-  background-color: #ff0; }
+  background-color: #ff0;
+  border-color: #ff0; }
 body.theme-scanlines .warWeapon.active {
-  background-color: #f00; }
+  background-color: #0f0;
+  border-color: #0f0; }
 
 body.theme-scanlines.amber .link {
   stroke: #FFBF00; }
@@ -95,10 +98,13 @@ body.theme-scanlines.amber .link.licensing {
 body.theme-scanlines.amber text {
   text-shadow: 0 1px 0 #FFBF00, 1px 0 0 #FFBF00, 0 -1px 0 #FFBF00, -1px 0 0 #FFBF00; }
 body.theme-scanlines.amber .warWeapon {
-  background-color: #FFBF00; }
+  border-color: #fff;
+  background-color: #fff; }
 body.theme-scanlines.amber .warWeapon:hover,
 body.theme-scanlines.amber .warWeapon:active,
 body.theme-scanlines.amber .warWeapon:focus {
-  background-color: #ff0; }
+  background-color: #f00;
+  border-color: #f00; }
 body.theme-scanlines.amber .warWeapon.active {
-  background-color: #f00; }
+  background-color: #FFBF00;
+  border-color: #FFBF00; }
