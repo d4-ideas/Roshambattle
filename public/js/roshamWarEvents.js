@@ -21,8 +21,12 @@ if (typeof io !== 'undefined'){
     }); 
     
 	io.on('joinSuccess', function(data){
-    }
-}
+    });
+    
+    io.on('getRoshamWarUserViewSuccess', function(data){
+        console.log('yep');
+    });
+};
           
 function error(err){
     $('#error').html(err);
@@ -31,11 +35,5 @@ function error(err){
 
 $(document).ready(function() {
     ready = true;
-
-    
-    });
-    
-    $('#explore-connections').on('click', 'li', function(){
-        io.emit('getNode', {nodeID:$(this).data('connid')});
-    });
+    io.emit ('getRoshamWarUserView', {});
 });

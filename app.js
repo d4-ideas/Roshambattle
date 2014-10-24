@@ -107,7 +107,8 @@ app.io.route('getNodes', realmDesign.getNodes);
 app.io.route('createConnection', realmDesign.createConnection);
 app.io.route('removeNode', realmDesign.removeNode);
 app.io.route('getNode', realmExplore.getNode);
-
+app.io.route('getRoshamWarUserView', roshamWar.getRoshamWarUserView);
+app.io.route('updateRoshamWarTurn', roshamWar.updateRoshamWarTurn);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

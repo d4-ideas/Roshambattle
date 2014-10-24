@@ -29,3 +29,15 @@ exports.roshamWar = function(req, res){
         res.redirect('/login');
     }
 };
+
+exports.getRoshamWarUserView = function(req, res){
+    if (typeof req.session.userID !== 'undefined'){
+        req.io.emit('getRoshamWarUserViewSuccess', {res:'success'});
+    } else {
+        res.redirect('/login');
+    }
+}
+
+exports.updateRoshamWarTurn = function(req, res){
+    req.io.emit('updateRoshamWarTurnSuccess', {res:'success'});
+}
