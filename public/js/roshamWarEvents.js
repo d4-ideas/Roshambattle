@@ -49,6 +49,15 @@ if (typeof io !== 'undefined'){
           link.target = nodes[link.target._id] || (nodes[link.target._id] = link.target);
         });        
 
+        nodes['555'] = { owner: '54110510d1902664ba8cbae6',
+                 shortDesc: 'Other',
+                 _id: '555',
+                 __v: 0 } ;
+        nodes['666'] = { owner: '54110510d1902664ba8cbae6',
+                 shortDesc: 'Other666',
+                 _id: '666',
+                 __v: 0 } ;        
+          
         var width = 960,
             height = 500;
 
