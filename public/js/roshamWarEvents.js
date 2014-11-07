@@ -34,20 +34,22 @@ if (typeof io !== 'undefined'){
             nodes[elem._id] = elem;
         });
         
-        connections = connections.map(function(elem){
-            var mapNode = function(node){
-                if (!nodes[node._id]){
-                    var newNode = node;
-                    newNode.friend = false;
-                    nodes[node._id] = newNode;
-                } 
-                return nodes[node._id];                
-            }
+        if (connections.length > 0){
+            connections = connections.map(function(elem){
+                var mapNode = function(node){
+                    if (!nodes[node._id]){
+                        var newNode = node;
+                        newNode.friend = false;
+                        nodes[node._id] = newNode;
+                    } 
+                    return nodes[node._id];                
+                }
 
-            elem.source = mapNode(elem.node1);
-            elem.target =  mapNode(elem.node2);
-            return elem;
-        });
+                elem.source = mapNode(elem.node1);
+                elem.target =  mapNode(elem.node2);
+                return elem;
+            });
+        }
         console.log(connections);
         console.log(nodes);   
           
