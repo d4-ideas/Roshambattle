@@ -24,46 +24,39 @@ if (typeof io !== 'undefined'){
     });
     
     io.on('getRoshamWarUserViewSuccess', function(data){
-        console.log('yep');
         console.log(data);
         
-        var links = [ { __v: 0,
-            _id: '54110510d1902664ba8cbafc',
-            desc12: 'A dusty road heads east',
-            desc21: 'A dusty road heads west',
-            source: { owner: '54110510d1902664ba8cbae6',
-                 shortDesc: 'You',
-                 _id: '54110510d1902664ba8cbaf6',
-                 __v: 0 },
-
-            target: { owner: '54110510d1902664ba8cbae6',
-                 shortDesc: 'Me',
-                 _id: '54110510d1902664ba8cbaf7',
-                 __v: 0 } } ]
-
+        var connections = data.connections;
         var nodes = new Array();
         
-        // Compute the distinct nodes from the links.
-        links.forEach(function(link) {    
-          link.source = nodes[link.source._id] || (nodes[link.source._id] = link.source);
-          link.target = nodes[link.target._id] || (nodes[link.target._id] = link.target);
-        });        
+        data.nodes.forEach(function(elem){
+            elem.friend = true;
+            nodes[elem._id] = elem;
+        });
+        
+        connections = connections.map(function(elem){
+            var mapNode = function(node){
+                if (!nodes[node._id]){
+                    var newNode = node;
+                    newNode.friend = false;
+                    nodes[node._id] = newNode;
+                } 
+                return nodes[node._id];                
+            }
 
-        nodes['555'] = { owner: '54110510d1902664ba8cbae6',
-                 shortDesc: 'Other',
-                 _id: '555',
-                 __v: 0 } ;
-        nodes['666'] = { owner: '54110510d1902664ba8cbae6',
-                 shortDesc: 'Other666',
-                 _id: '666',
-                 __v: 0 } ;        
+            elem.source = mapNode(elem.node1);
+            elem.target =  mapNode(elem.node2);
+            return elem;
+        });
+        console.log(connections);
+        console.log(nodes);   
           
         var width = 960,
             height = 500;
 
         var force = d3.layout.force()
             .nodes(d3.values(nodes))
-            .links(links)
+            .links(connections)
             .size([width, height])
             .linkDistance(200)
             .charge(-300)
