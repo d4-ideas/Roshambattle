@@ -19,6 +19,12 @@ circle {
   stroke-width: 1.5px;
   opacity: 0.5; }
 
+circle.foe {
+  fill: #f00;
+  stroke: #000;
+  stroke-width: 1.5px;
+  opacity: 0.5; }
+
 circle:hover,
 circle:active,
 circle:focus {

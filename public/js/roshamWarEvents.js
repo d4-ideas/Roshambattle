@@ -94,6 +94,10 @@ if (typeof io !== 'undefined'){
             .data(force.nodes())
             .enter().append("circle")
             .attr("r", 12)
+            .classed('foe', function(d){
+                console.log(d);
+                return !d.friend;
+            })
             .call(force.drag);
 
         var text = svg.append("g").selectAll("text")
