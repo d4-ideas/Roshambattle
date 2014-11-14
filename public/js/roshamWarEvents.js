@@ -1,5 +1,7 @@
 var loaded = false,
-    ready = false;
+    ready = false,
+    nodes = new Object(),
+    connections;
 
 if (typeof io !== 'undefined'){
 	var io=io.connect();
@@ -24,10 +26,7 @@ if (typeof io !== 'undefined'){
     });
     
     io.on('getRoshamWarUserViewSuccess', function(data){
-        console.log(data);
-        
-        var connections = data.connections;
-        var nodes = new Array();
+        connections = data.connections;
         
         data.nodes.forEach(function(elem){
             elem.friend = true;
@@ -49,10 +48,12 @@ if (typeof io !== 'undefined'){
                 elem.target =  mapNode(elem.node2);
                 return elem;
             });
-        }
-        console.log(connections);
-        console.log(nodes);   
-          
+        } 
+        buildModel();
+        buildText();
+    });
+    
+    function buildModel(){
         var width = 960,
             height = 500;
 
@@ -95,7 +96,6 @@ if (typeof io !== 'undefined'){
             .enter().append("circle")
             .attr("r", 12)
             .classed('foe', function(d){
-                console.log(d);
                 return !d.friend;
             })
             .call(force.drag);
@@ -125,7 +125,28 @@ if (typeof io !== 'undefined'){
         function transform(d) {
             return "translate(" + d.x + "," + d.y + ")";
         } 
-    });
+    };
+    
+    function buildText(){
+        var markup = new Object(),
+            html = '';
+        console.log(nodes);
+        console.log(connections);
+        
+       for(var node in nodes){
+            markup[nodes[node]._id] = '<tr><td>'+nodes[node].shortDesc+'</td><td></td><td>Create New Connection</td><td><span class="warWeapon roshamRock" data-nodeID="1" title="Rock"></span><span class="warWeapon roshamPaper" data-nodeID="1" title="Paper"></span><span class="warWeapon roshamScissors" data-nodeID="1" title="Scissors"></span></td></tr>';
+        };
+        console.log(markup);
+        
+        connections.forEach(function(conn){
+            console.log(conn);
+        });
+        for(var row in markup){
+            html += markup[row];
+        }
+        console.log(html)
+        $('#node-farm tbody').append(html);
+    }
 };
           
 function error(err){
