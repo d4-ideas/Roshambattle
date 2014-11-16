@@ -18,16 +18,18 @@ var numPlayers = 2;
 var numNodes = 2;
 
 
+var addPlayers = function (){
+    var newname;
+    for(var i=1;i<=numPlayers; i++){
+        newname = 'Player' + i;
 
-var addNodes = function(user){
-    for(var i=0;i<numNodes; i++){
-        node.model.create({   owner: user._id, 
-                shortDesc: 'Fist',
-                description: 'A lonely island',
-                type: 'roshamwar'},
-            function(err, newNode){
-                console.log(newNode);
-            }
+        user.userModel.findOneAndUpdate(
+            {name: newname},
+            {email: newname + '@d4.com',
+            name: newname,
+            password: playerPassword},
+            {upsert:true},
+            newUser
         );
     };
 };
@@ -35,26 +37,61 @@ var addNodes = function(user){
 var newUser = function(err, user){
     if(user){    
         console.log(user);
+        addRealmUser(user);
         node.model.remove({owner:user._id}, function(err){
             addNodes(user);
         });
-    }
+    };
 };
 
-var newname;
-for(var i=1;i<=numPlayers; i++){
-    newname = 'Player' + i;
-    
-    user.userModel.findOneAndUpdate(
-        {name: newname},
-        {email: newname + '@d4.com',
-        name: newname,
-        password: playerPassword},
+
+var addRealmUser = function(user){
+    realmuser.model.findOneAndUpdate(
+        {user: user._id},
+        {user: user._id},
         {upsert:true},
-        newUser
+        function(err, newRU){
+            console.log(newRU);
+        }
     );
-
 };
+
+var addNodes = function(user){
+    var numReturned = 0;
+    var userNodes = [];
+    var nodeReturns = function(err, newNode){
+        console.log(newNode);
+        numReturned++;
+        if(newNode){
+            userNodes.push(newNode);    
+        }
+        if(numReturned === numNodes){
+            addConns(userNodes);
+        }
+    };
+    
+    
+    for(var i=0;i<numNodes; i++){
+        node.model.create({   owner: user._id, 
+            shortDesc: 'Fist',
+            description: 'A lonely island',
+            type: 'roshamwar'},
+            nodeReturns
+        );
+    };
+};
+
+
+var addConns = function(userNodes){
+    
+    
+    
+};
+
+
+
+// and now run the whole damn thing
+addPlayers();
 
 
 
