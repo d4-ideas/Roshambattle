@@ -10,7 +10,7 @@ if (typeof io !== 'undefined'){
                 io.emit('getNodes',{});
 
                 //explore
-                io.emit('getNode', {nodeID:null}); 
+                io.emit('navToLoc', {nodeID:null}); 
                 loaded = true;
             } else {
                 io.connect();
@@ -89,11 +89,11 @@ console.log(data);
     });
     
     //explore section events
-    io.on('getNodeFailure', function(data){
-        error('get node failed with error:' + data);
+    io.on('navToLocFailure', function(data){
+        error('navtoLoc failed with error:' + data);
     });
     
-    io.on('getNodeSuccess', function(data){
+    io.on('navToLocSuccess', function(data){
 console.log(data);        
         $('#explore-node').html(data.node.description);
         
@@ -159,6 +159,6 @@ $(document).ready(function() {
     });
     
     $('#explore-connections').on('click', 'li', function(){
-        io.emit('getNode', {nodeID:$(this).data('connid')});
+        io.emit('navToLoc', {nodeID:$(this).data('connid')});
     });
 });
