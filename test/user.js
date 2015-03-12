@@ -92,8 +92,7 @@ describe("d4-user", function() {
             var update = {userID: upUserID,
                           name: 'Billy Bob Update',
                           email: 'bb@gmail.com',
-                          mobile: '202-412-0502'}
-            
+                          mobile: '202-412-0502'}     
             user.update(update, function(err, data){
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;

@@ -54,7 +54,6 @@ describe('d4-realmconnection', function(){
         it('should get a multiple connections', function(done){
             var nodes = [node1, node2];
             conn.getConnections({nodes:nodes}, function(err, data){
-                console.log(data);
                 expect(err).to.not.be.ok;
                 expect(data).to.be.ok;
                 done();
