@@ -8,11 +8,8 @@ var user = require('d4-realmuser');
 // arguments    : nodeID - the location we are navigating to.  If this is null, the current location of the user or the lobby (if not current location) will be returned.
 //***************************************************************************************
 exports.navToLoc = function (req) {
-    console.log(req);
     if (typeof req.data.nodeID === 'undefined' || req.data.nodeID === null) {
-        user.getCurrentLoc({userid: req.session.userID}, function (err, data) {
-            console.log(err);
-            console.log(data);
+        user.getCurrentLoc({userid: req.session.userID}, function (err, data) {;
             if (err || !data.currentLoc) {
                 getNode(node.lobbyID, req);
             } else {
