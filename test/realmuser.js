@@ -28,11 +28,12 @@ before(function(done){
 });
 
 after(function(){
-    node.model.remove({owner:rockID}, function(err, data){
+    console.log('here');
+//    node.model.remove({owner:rockID}, function(err, data){
+//        console.log(data);
         realmUser.model.remove({user: rockID}, function (err, data){
-            done();
         });
-    });
+//    });
 });
 
 describe('d4-realmuser', function(){
