@@ -31,10 +31,11 @@ after(function(){
 describe('d4-realmconnection', function(){
     describe('addConnection', function(){
         it('should create a connection', function(done){
-            conn.addConnection({node1: node1, node2: node2}, function(err, data){
+            conn.addConnection({node1: node1, desc12:'this is a fucking test', node2: node2}, function(err, data){
                 expect(err).to.not.be.ok;
                 expect(data).to.be.ok;
                 connID = data._id;
+                console.log(data);
                 done();
             });
         });
@@ -50,8 +51,19 @@ describe('d4-realmconnection', function(){
         });
     });
     
+    describe('updateConnection', function(){
+        it('should update a connection with a blank desc', function(done){
+            conn.updateConnection({connID: connID, desc12: 'A dusty road heads east', desc21: ''}, function(err, data){
+                expect(err).to.not.be.ok;
+                expect(data).to.be.ok;
+                expect(data.desc21).to.be.empty;
+                done();
+            });
+        });
+    });    
+    
     describe('getConnections', function(){
-        it('should get a multiple connections', function(done){
+        it('should get multiple connections', function(done){
             var nodes = [node1, node2];
             conn.getConnections({nodes:nodes}, function(err, data){
                 expect(err).to.not.be.ok;

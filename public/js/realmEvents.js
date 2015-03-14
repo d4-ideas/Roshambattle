@@ -93,26 +93,31 @@ console.log(data);
         error('navtoLoc failed with error:' + data);
     });
     
-    io.on('navToLocSuccess', function(data){
-console.log(data);        
+    io.on('navToLocSuccess', function(data){    
         $('#explore-node').html(data.node.description);
         
         var conns = '';
-        var connLink = function (item){
-            return '<li data-connID="' + item.node._id + '">' + item.shortDesc + '</li>';
+        var connLink = function (prev, curr){
+
+            if (curr.shortDesc && curr.shortDesc != '')
+                return prev + '<li data-connID="' + curr.node._id + '">' + curr.shortDesc + '</li>';
+            else
+                return prev;
         }
         
         if (data.to.length > 0){
-            conns += data.to.reduce(function(prev, curr){
-                return prev + connLink(curr);
-            }, '');
+            conns += data.to.reduce(connLink, '');
         }
         
         if (data.from.length > 0){
-            conns += data.from.reduce(function(prev, curr){
-                return prev + connLink(curr);
-            }, '');
+            conns += data.from.reduce(connLink, '');
         }
+        
+        //show the teleport if we aren't in the lobby
+        if (data.node.description != 'You are in a dimly lit lobby surrounded by exits to various realms.') {
+            conns = connLink(conns, {node: {'_id':'Lobby'}, shortDesc: 'Teleport to Lobby'});
+        }
+        
         $('#explore-connections').html('<ul>' + conns + '</ul>');
     });
 }
