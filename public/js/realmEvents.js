@@ -62,8 +62,7 @@ if (typeof io !== 'undefined'){
 	io.on('createConnectionFailure', function(data){
         error('create node failed with error:' + data);
     });    
-	io.on('createConnectionSuccess', function(data){ 
-console.log(data);        
+	io.on('createConnectionSuccess', function(data){       
         if (typeof data.node != 'undefined'){
             var row = '<tr id=' + data.node._id + '><td><input type="submit" class="removeNodeButton" value="-"></td><td>' + $('#connectionFrom option:selected').text()+ '</td><td>' + data.node.shortDesc + '</td><td>'+data.node.description+'</td><td></td</tr>';
             $('#design-block').append(row);
@@ -88,35 +87,22 @@ console.log(data);
         $(id).remove();
     });
     
-    //explore section events
+//explore section events----------------------------------------------------------------
     io.on('navToLocFailure', function(data){
         error('navtoLoc failed with error:' + data);
     });
     
-    io.on('navToLocSuccess', function(data){    
+    
+    io.on('navToLocSuccess', function(data){          
         $('#explore-node').html(data.node.description);
+        exNode = data.node;
         
         var conns = '';
-        var connLink = function (prev, curr){
-
-            if (curr.shortDesc && curr.shortDesc != '')
-                return prev + '<li data-connID="' + curr.node._id + '">' + curr.shortDesc + '</li>';
-            else
-                return prev;
-        }
         
-        if (data.to.length > 0){
-            conns += data.to.reduce(connLink, '');
-        }
-        
-        if (data.from.length > 0){
-            conns += data.from.reduce(connLink, '');
-        }
-        
-        //show the teleport if we aren't in the lobby
-        if (data.node.description != 'You are in a dimly lit lobby surrounded by exits to various realms.') {
-            conns = connLink(conns, {node: {'_id':'Lobby'}, shortDesc: 'Teleport to Lobby'});
-        }
+        if (data.conns.length > 0){
+            exConnections = data.conns;
+            conns = data.conns.reduce(connLink, '');
+        }        
         
         $('#explore-connections').html('<ul>' + conns + '</ul>');
     });
@@ -125,6 +111,7 @@ console.log(data);
 
 
 function error(err){
+    console.log(err);    
     $('#error').html(err);
     setTimeout(function(){$('#error').html('');},5000);
 };          
@@ -134,7 +121,21 @@ function removeNode(){
         io.emit('removeNode', {nodeID:$(this).parent().parent().attr('id')});
 };
 
-
+var exConnections, exNode;
+function connLink(prev, curr, index){
+    var connDesc, destNode;
+    if (curr.node1._id === exNode._id) {
+        connDesc = curr.desc12;
+        destNode = 2;
+    } else {
+        connDesc = curr.desc21;
+        destNode = 1;
+    }
+    if (connDesc && connDesc != '')
+        return prev + '<li data-index=' + index + ' data-destnode=' + destNode + '>' + connDesc + '</li>';
+    else
+        return prev;
+}
 $(document).ready(function() {
     ready = true;
     /* Helpful Information for curious users */
@@ -164,6 +165,7 @@ $(document).ready(function() {
     });
     
     $('#explore-connections').on('click', 'li', function(){
-        io.emit('navToLoc', {nodeID:$(this).data('connid')});
+        io.emit('navToLoc', {conn: exConnections[$(this).data('index')],
+                            destNode: $(this).data('destnode')});
     });
 });

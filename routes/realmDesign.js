@@ -74,7 +74,6 @@ exports.getNodes = function(req){
                if (err)
                    callback({error:err}, undefined);
                 else {
-
                     conns.forEach(function(conn){
                         nodes.forEach(function(node) {             
                             if (conn.node1._id.equals(node.node._id)){

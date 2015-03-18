@@ -1,14 +1,19 @@
 var node = require('d4-realmnode');
 var conn = require('d4-realmconnection');
 var user = require('d4-realmuser');
+var exLog = require('d4-realmexplorelog');
 
 //************************************************************************************************************
 // function     : realmExplore.navToLoc
 // developer    : Rob
 // arguments    : nodeID - the location we are navigating to.  If this is null, the current location of the user or the lobby (if not current location) will be returned.
 //***************************************************************************************
-exports.navToLoc = function (req) {   
-    if (typeof req.data.nodeID === 'undefined' || req.data.nodeID === null) {
+exports.navToLoc = function (req) {
+    var conn = req.data.conn,
+        destNode = req.data.destNode,
+        destNodeID;
+    
+    if (typeof conn === 'undefined' || conn === null) {
         user.getCurrentLoc({userid: req.session.userID}, function (err, data) {;
             if (err || !data.currentLoc) {
                 getNode(node.lobbyID, req);
@@ -16,10 +21,13 @@ exports.navToLoc = function (req) {
                 getNode(data.currentLoc._id, req);
             }
         });
-    } else if (req.data.nodeID === 'Lobby'){        
-        getNode(node.lobbyID, req);
-    } else {     
-        getNode(req.data.nodeID, req);
+    } else { 
+        
+        destNodeID = (destNode === 1)?conn.node1._id:conn.node2._id;
+        getNode(destNodeID, req);
+        exLog.addLog ({userID: req.session.userID,
+                       connUsed: conn,
+                       destNode: destNode}, function(err,data){});
     }
 };
 
@@ -29,25 +37,24 @@ var getNode = function (nodeID, req) {
             req.io.emit('navToLocFailure', err);
         } else {
             conn.getConnections({nodes: [nodeID]}, function (err, conns) {
-
                 if (err) {
                     req.io.emit('navToLocFailure', err);
                 } else {
-                    var node = {};
-                    node.node = data[0];
-                    node.from = new Array();
-                    node.to = new Array();
+                    var loc = {};
+                    loc.node = data[0];
+                    loc.conns = conns;
 
-                    conns.forEach(function (conn) {
-                        if (conn.node1._id.equals(node.node._id)) {
-                            node.to = node.to.concat({shortDesc: conn.desc12, node: conn.node2});
-                        } else {
-                            node.from = node.from.concat({shortDesc: conn.desc21, node: conn.node1});
-                        }
-                    });
+                    if (!loc.node._id.equals(node.lobbyID)){
+
+                        var lobbyConn = {desc12: '',
+                                       node1: {"_id": node.lobbyID},
+                                       desc21: 'Teleport to Lobby',
+                                       node2: loc.node}; 
+                        loc.conns.push(lobbyConn);
+                    }
                     
                     user.setCurrentLoc({userid: req.session.userID, nodeID: nodeID}, function (err, data) {});
-                    req.io.emit('navToLocSuccess', node);
+                    req.io.emit('navToLocSuccess', loc);
                 }
             });
         }
