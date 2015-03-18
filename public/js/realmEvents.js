@@ -53,7 +53,7 @@ if (typeof io !== 'undefined'){
             rows += '<td>'+row.node.shortDesc+'</td><td>'+row.node.description+'</td><td>' + connTo + '</td></tr>';
             options += '<option value="'+ row.node._id +'">'+ row.node.shortDesc +'</option>'
         });
-        $('#design-block').append(rows);
+        $('#design-blockbody').append(rows);
         $('#connectionTo').append(options);
         $('#connectionFrom').append(options);
         $('.removeNodeButton').on('click', removeNode);
@@ -93,18 +93,25 @@ if (typeof io !== 'undefined'){
     });
     
     
-    io.on('navToLocSuccess', function(data){          
+    io.on('navToLocSuccess', function(data){         
+console.log(data);        
         $('#explore-node').html(data.node.description);
         exNode = data.node;
         
-        var conns = '';
+        var conns = '',
+            exLog = '';
         
         if (data.conns.length > 0){
             exConnections = data.conns;
             conns = data.conns.reduce(connLink, '');
         }        
         
+        if (data.history.length > 0) {
+            exLog = data.history.reduce(buildLog, '');
+        }
+        
         $('#explore-connections').html('<ul>' + conns + '</ul>');
+        $('#explore-blocklog').html(exLog);
     });
 }
 //------------------------------------------------------------End of IO
@@ -136,6 +143,28 @@ function connLink(prev, curr, index){
     else
         return prev;
 }
+
+function buildLog (prev, curr) {
+console.log(curr);
+    var to, via, from;
+    if (curr.destNode === 1){
+        from = curr.connUsed.node2.shortDesc;
+        via = curr.connUsed.desc21;
+        to = curr.connUsed.node1.shortDesc;
+    } 
+    else {
+        from = curr.connUsed.node1.shortDesc;
+        via = curr.connUsed.desc12;
+        to = curr.connUsed.node2.shortDesc;
+    }
+    var row = '<tr><td data-label="Date">' + curr.createdDate + '</td>';
+    row += '<td data-label="From">' + from + '</td>';  
+    row += '<td data-label="Via">' + via+ '</td>';
+    row += '<td data-label="To">' + to + '</td></tr>';
+    
+    return prev + row;
+}
+
 $(document).ready(function() {
     ready = true;
     /* Helpful Information for curious users */

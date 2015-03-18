@@ -37,9 +37,12 @@ describe('d4-realmexplorelog', function(){
     
     describe('getLogbyUser', function(){
         it('should get the user log', function(done){
-            exLog.getLogbyUser({userID: rockID}, function (err, data){
+            exLog.getLogbyUser({userID: rockID
+                               , limit: 2
+                               , sort: '-createdDate'}, function (err, data){
                 expect(err).to.be.not.ok;
                 expect(data).to.be.ok;
+console.log(data);                
                 done();
             });
         });

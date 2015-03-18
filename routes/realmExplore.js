@@ -47,14 +47,22 @@ var getNode = function (nodeID, req) {
                     if (!loc.node._id.equals(node.lobbyID)){
 
                         var lobbyConn = {desc12: '',
-                                       node1: {"_id": node.lobbyID},
+                                       node1: {"_id": node.lobbyID,
+                                              shortDesc: 'Lobby'},
                                        desc21: 'Teleport to Lobby',
                                        node2: loc.node}; 
                         loc.conns.push(lobbyConn);
                     }
                     
                     user.setCurrentLoc({userid: req.session.userID, nodeID: nodeID}, function (err, data) {});
-                    req.io.emit('navToLocSuccess', loc);
+                    exLog.getLogbyUser({userID: req.session.userID
+                               , limit: 10
+                               , sort: '-createdDate'}, function (err, data){
+                        if (data)
+                            loc.history = data;
+                        
+                        req.io.emit('navToLocSuccess', loc);
+                    });
                 }
             });
         }
