@@ -1,0 +1,50 @@
+.design-block-row {
+	position: relative;
+	clear: both;
+	
+	label {
+		display: inline-block;
+		width: 90%;
+	}
+	label.shortLabel {
+		width: 10%;
+	}
+	select {
+		width: 80%;
+		margin-bottom: 10px;
+	}
+	input[type='text']{
+		width: 90%;
+	}
+	textarea {
+		width: 90%;
+		height: 60px;
+	}
+	&.wideRow {
+		label {
+			width: auto;
+		}
+	}
+	
+}
+.design-block-row-col-left {
+	width: 50%;
+	float: left;
+	margin: 10px 0 20px;
+	clear: both;
+}
+.design-block-row-col-right {
+	width: 50%;
+	float: right;
+	margin: 10px 0;
+}
+
+@media all and (max-device-width: 1024px),
+	   all and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2),
+	   all and (max-width: 640px) {
+	.design-block-row-col-left,
+	.design-block-row-col-right {
+		float: none;
+		width: 100%;
+	}
+}
