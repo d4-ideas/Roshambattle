@@ -65,10 +65,10 @@ if (typeof io !== 'undefined'){
 	io.on('createConnectionSuccess', function(data){       
         if (typeof data.node != 'undefined'){
             var row = '<tr id=' + data.node._id + '><td><input type="submit" class="removeNodeButton" value="-"></td><td>' + $('#connectionFrom option:selected').text()+ '</td><td>' + data.node.shortDesc + '</td><td>'+data.node.description+'</td><td></td</tr>';
-            $('#design-block').append(row);
+            $('#design-blockbody').append(row);
             $('#shortDesc').val('');
             $('#description').val('');
-            $('.removeNodeButton').on('click', removeNode);
+            $('#' + data.node._id + ' .removeNodeButton').on('click', removeNode);
             
             var option = '<option value="'+ data.node._id +'">'+ data.node.shortDesc +'</option>'
             $('#connectionTo').append(option);
@@ -79,6 +79,7 @@ if (typeof io !== 'undefined'){
     });
     
     io.on('removeNodeFailure', function(data){
+        console.log(data);
         error('remove node failed with error:' + data.toString());
     });
 
@@ -89,6 +90,7 @@ if (typeof io !== 'undefined'){
     
 //explore section events----------------------------------------------------------------
     io.on('navToLocFailure', function(data){
+        console.log(data);
         error('navtoLoc failed with error:' + data);
     });
     
@@ -124,6 +126,7 @@ function error(err){
 };          
 
 function removeNode(){
+console.log(this);    
     if (confirm('Are you sure you want to delete this location and all associated connections?'))
         io.emit('removeNode', {nodeID:$(this).parent().parent().attr('id')});
 };
@@ -139,13 +142,12 @@ function connLink(prev, curr, index){
         destNode = 1;
     }
     if (connDesc && connDesc != '')
-        return prev + '<li data-index=' + index + ' data-destnode=' + destNode + '>' + connDesc + '</li>';
+        return prev + '<li data-index=' + index + ' data-destnode=' + destNode + '><a href=#>' + connDesc + '</a></li>';
     else
         return prev;
 }
 
 function buildLog (prev, curr) {
-console.log(curr);
     var to, via, from;
     if (curr.destNode === 1){
         from = curr.connUsed.node2.shortDesc;
@@ -196,5 +198,6 @@ $(document).ready(function() {
     $('#explore-connections').on('click', 'li', function(){
         io.emit('navToLoc', {conn: exConnections[$(this).data('index')],
                             destNode: $(this).data('destnode')});
+        return false;
     });
 });
