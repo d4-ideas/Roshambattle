@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>d4-ides: realms</title>
+		<title>d4-ideas: realms</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<script src="/socket.io/socket.io.js"></script>
@@ -88,11 +88,11 @@
 
 			<div id="explore-block" class="tab-block active">
 				<h3 class="center">Explore the world</h3>
-				<h3>Your current location:</h3>
+                <div id="explore-blockloc"></div>
 				<div id="explore-node"></div>
-				<br>
 				<h3>Travel to:</h3>
 				<div id="explore-connections"><ul><li>this</li></ul></div>
+                <div id="explore-blockauthor"></div>
 				<h3>Travel History:</h3>
 				<table>
 					<thead>

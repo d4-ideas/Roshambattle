@@ -98,6 +98,13 @@ if (typeof io !== 'undefined'){
     io.on('navToLocSuccess', function(data){         
 console.log(data);        
         $('#explore-node').html(data.node.description);
+  
+        $('#explore-blockloc').html(data.node.shortDesc);
+        if (data.node.owner)
+            $('#explore-blockauthor').html('Created By: ' + data.node.owner.name);
+        else
+            $('#explore-blockauthor').html('Created By: D4');
+        
         exNode = data.node;
         
         var conns = '',
