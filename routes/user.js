@@ -52,7 +52,10 @@ exports.logout = function (req, res) {
     res.redirect('/login');
 };
 
-
+exports.updateUser = function (req){
+    console.log(req);
+    req.io.emit('updateUserSuccess', {data:'test'});
+};
 
 //exports.lowerEmails = function(req, res) {
 //    u.userModel.find({}, function(err, docs){

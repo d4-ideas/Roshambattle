@@ -103,6 +103,7 @@ app.io.route('addPlus', messages.addPlus);
 app.io.route('addMinus', messages.addMinus);
 app.io.route('getUserScore', users.getUserScore);
 app.io.route('getTurns', users.getTurns);
+app.io.route('updateUser', users.updateUser);
 app.io.route('getLeaderBoard', leaderboard.getLeaderBoard);
 app.get('/generateTurn', processTurn.generateTurn);
 

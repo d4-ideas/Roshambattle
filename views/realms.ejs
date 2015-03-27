@@ -4,35 +4,20 @@
 		<title>d4-ideas: realms</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="apple-mobile-web-app-capable" content="yes">
-		<script src="/socket.io/socket.io.js"></script>
-		<script>
-		</script>
 		<link rel='stylesheet' href='/css/style.css' />
 		<link rel='stylesheet' href='/css/scanlines.css' />
 		<link rel='stylesheet' href='/css/realms.css' />
-		<script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="/js/main.js"></script>
+		<% include ./partials/commonJS %>
 		<script type="text/javascript" src="/js/realmEvents.js"></script>
-		<script type="text/javascript" src="/js/scanlines.js"></script>
-		<script type="text/javascript" src="/js/moment.min.js"></script>
 	</head>
 	<body class="theme-scanlines" data-uid="<%= userID %>">
-		<div id="cover"><div id="line"><div id="dot"></div></div></div>
-		<div id="error"></div>
+        <% include ./partials/header %>
 		<div id="content">
-            <h3 id="welcome-block">Welcome: <a href="./usersettings"><span><%= displayName %></span>...</a></h3>
 			<div id="tabs-block">
 				<ul>
 					<li class="active" data-tabid="explore-block">Explore</li>
 					<li data-tabid="design-block">Design</li>
 				</ul>
-			</div>
-			<div id="theme-widget">
-				<a id="logout" href='/logout'>Logout</a>
-				<span> | Theme:</span>
-				<input type="radio" id="theme0" name="theme-options" value="0" data-themeName="none"><label for="theme0">0</label> | 
-				<input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
-				<input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>
 			</div>
 			<div id="design-block" class="tab-block">
 				<h3 class="center">Design a world that other people can interact with.</h3>

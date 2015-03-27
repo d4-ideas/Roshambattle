@@ -38,6 +38,12 @@ function setTheme(themeIndex){
     }
 }
 
+function error(err){
+    console.log(err);    
+    $('#error').html(err);
+    setTimeout(function(){$('#error').html('');},5000);
+};          
+
 $(document).ready(function() {
     /* Licking the paint */
     var cookieValue = readCookie('theme');

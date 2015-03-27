@@ -96,7 +96,6 @@ if (typeof io !== 'undefined'){
     
     
     io.on('navToLocSuccess', function(data){         
-console.log(data);        
         $('#explore-node').html(data.node.description);
   
         $('#explore-blockloc').html(data.node.shortDesc);
@@ -124,13 +123,6 @@ console.log(data);
     });
 }
 //------------------------------------------------------------End of IO
-
-
-function error(err){
-    console.log(err);    
-    $('#error').html(err);
-    setTimeout(function(){$('#error').html('');},5000);
-};          
 
 function removeNode(){
 console.log(this);    

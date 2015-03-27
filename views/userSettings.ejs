@@ -6,11 +6,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel='stylesheet' href='/css/style.css' />
     <link rel='stylesheet' href='/css/scanlines.css' />
-    <script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
-    <script src="/js/register.js"></script>
     <script src="/js/md5-min.js"></script>
-    <script type="text/javascript" src="/js/main.js"></script>
-	<script type="text/javascript" src="/js/scanlines.js"></script>
+    <% include ./partials/commonJS %>
+    <script type="text/javascript" src="/js/userSettings.js"></script>
     <script>
     </script>
 	</head>
@@ -24,7 +22,7 @@
 			</div>
             <br>
             <div id="settings">
-                <form name="userSettings" action="/updateUser" method="post">
+
                     <input type="text" name="displayName" placeholder="What name on your tombstone?" value="<%= name %>" autofocus>
                     <br>
                     <input type="text" name="emailAddress" placeholder="Where to send the e-card?" value="<%= email %>">
@@ -35,8 +33,8 @@
                     <br>
                     <input type="password" name="confirm" placeholder="Security Key autocorrect validation">
                     <br>
-                    <input type="submit" value="Make it so" name="Submit">
-                </form>
+                    <input id='submitUser' type="submit" value="Make it so" name="Submit">
+
             </div>
         </div>
 	</body>
