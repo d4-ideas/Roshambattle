@@ -53,8 +53,26 @@ exports.logout = function (req, res) {
 };
 
 exports.updateUser = function (req){
-    console.log(req);
-    req.io.emit('updateUserSuccess', {data:'test'});
+    console.log(req.data);
+
+    var update = {userID: req.session.userID,
+              name: req.data.name,
+              email: req.data.email,
+              mobile: req.data.mail};  
+    
+    u.update(update, function(err, data){
+        if (err) {
+console.log('err');
+console.log(err);
+            req.io.emit('updateUserFailure', err)
+        }
+        else {
+console.log('success');
+console.log(data);
+            req.io.emit('updateUserSuccess', data);
+        }
+   });
+    
 };
 
 //exports.lowerEmails = function(req, res) {

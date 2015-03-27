@@ -14,7 +14,8 @@ if (typeof io !== 'undefined'){
     });    
     
     io.on('updateUserFailure', function(data){
-        error('get nodes failed with error:' + data.toString());
+        console.log(data);
+        error('update user failed with error:' + data.toString());
     }); 
     
 	io.on('updateUserSuccess', function(data){
@@ -27,6 +28,12 @@ console.log(data);
 $(document).ready(function() {
     ready = true;    
     $('#submitUser').on('click', function(){
-        io.emit('updateUser', {});
+        var user = {name: $('#name').val(),
+                    email: $('#email').val()};
+//        if ($('newPassword1').val()  && $('newPassword2').val() && $('oldPassword').val()){
+//            if (
+//        }
+        console.log(user);
+        io.emit('updateUser', user);
     });
 });
