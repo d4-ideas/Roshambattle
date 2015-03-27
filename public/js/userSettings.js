@@ -29,7 +29,8 @@ $(document).ready(function() {
     ready = true;    
     $('#submitUser').on('click', function(){
         var user = {name: $('#name').val(),
-                    email: $('#email').val()};
+                    email: $('#email').val(),
+                    mobile: $('#mobile').val()};
 //        if ($('newPassword1').val()  && $('newPassword2').val() && $('oldPassword').val()){
 //            if (
 //        }

@@ -58,7 +58,7 @@ exports.updateUser = function (req){
     var update = {userID: req.session.userID,
               name: req.data.name,
               email: req.data.email,
-              mobile: req.data.mail};  
+              mobile: req.data.mobile};  
     
     u.update(update, function(err, data){
         if (err) {
