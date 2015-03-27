@@ -98,9 +98,8 @@ $(document).ready(function() {
     initScanlines();
     
     /* Setup the turn countdown */
-    var nextTurn = new moment($('#next-turn').data('date'));
-    $('#next-turn').html('Next Turn Generation ' + nextTurn.fromNow());
-    
-
-    
+    if (typeof moment != 'undefined'){
+        var nextTurn = new moment($('#next-turn').data('date'));
+        $('#next-turn').html('Next Turn Generation ' + nextTurn.fromNow());
+    }
 });

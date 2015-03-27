@@ -4,7 +4,7 @@ var directTransport = require('nodemailer-direct-transport');
 
 exports.loginGet = function (req, res) {
     //Should we check session state and pass through if they user already has a valid session?
-    console.log('get login');
+    //console.log('get login');
     res.render('login', { title: 'Login' });
 };
 
@@ -42,26 +42,78 @@ exports.loginPost = function (req, res) {
     });
 };
 
-exports.forgotPassword = function (req, res) {
-    var transporter = nodemailer.createTransport(directTransport());
+exports.forgotPasswordGet = function (req, res) {
+    res.render('forgotPassword', { title: 'Forgot Password' });
+}
 
-    var mailOptions= {
-       from: "Anthony Sheetz <asheetz2000@gmail.com>", // sender address.
-       to: "Robert Vignerot <robvignerot@googlemail.com>", // receiver
-       subject: "d4-ideas Password Reset <DO NOT REPLY>", // subject
-       text: "Email Example with nodemailer" // body
-    };
+exports.forgotPasswordPost = function (req, res) {
+    user.getUser({email: req.body.emailAddress.toLowerCase()}, function(err, data){
+        if (err) {
+            console.log('someone wants to reset ' + req.body.emailAddress + ', but we did not find it in the database');
+            console.log(err);
+            res.status(500).json({result:'error', reason: 'No Such Address'});
+        }
+        else {
+            var transporter = nodemailer.createTransport(directTransport());
 
-    transporter.sendMail(mailOptions, function(error, response){  //callback
-       if (error) {
-           console.log(error);
-       } else {
-           console.log("Message sent: ");
-           console.log(response);
-       }
+            var mailOptions= {
+               from: "The FSM <fsm@d4-ideas.com>", // sender address.
+               to: req.body.emailAddress, // receiver
+               subject: "d4-ideas Password Reset <DO NOT REPLY>", // subject
+               text: "We Got This Far" // body
+            };
 
-       transporter.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
+            console.log('password reset ready');
+        //    transporter.sendMail(mailOptions, function(error, response){  //callback
+        //       if (error) {
+        //           console.log(error);
+        //       } else {
+        //           console.log("Message sent: ");
+        //           console.log(response);
+        //       }
+        //
+        //       transporter.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
+        //    });
+
+            res.json({result: 'ok'});
+        }
     });
-    
-    res.end();
+};
+
+exports.rememberPasswordGet = function (req, res) {
+    res.render('rememberPassword', { title: 'Remember Password' });
+}
+
+exports.rememberPasswordPost = function (req, res) {
+    user.getUser({email: req.body.emailAddress.toLowerCase()}, function(err, data){
+        if (err) {
+            console.log('someone wants to reset ' + req.body.emailAddress + ', but we did not find it in the database');
+            console.log(err);
+            res.status(500).json({result:'error', reason: 'No Such Address'});
+        }
+        else {
+            var transporter = nodemailer.createTransport(directTransport());
+
+            var mailOptions= {
+               from: "The FSM <fsm@d4-ideas.com>", // sender address.
+               to: req.body.emailAddress, // receiver
+               subject: "d4-ideas Password Reset <DO NOT REPLY>", // subject
+               text: "We Got This Far" // body
+            };
+
+            console.log('password reset ready');
+        //    transporter.sendMail(mailOptions, function(error, response){  //callback
+        //       if (error) {
+        //           console.log(error);
+        //       } else {
+        //           console.log("Message sent: ");
+        //           console.log(response);
+        //       }
+        //
+        //       transporter.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
+        //    });
+
+            res.json({result: 'ok'});
+        }
+    });
 };

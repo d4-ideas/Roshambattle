@@ -10,7 +10,6 @@ $(document).ready(function () {
             url = $form.attr("action"),
             posting;
         if (password !== confirm) {
-            console.log('got here');
             $("#error").text("Your passwords don't match");
             return false;
         }
@@ -22,7 +21,6 @@ $(document).ready(function () {
             };
         });    
         posting.fail(function (data) {
-            console.log(data);
             $("#error").text(data.responseJSON.reason);
         });
     });
