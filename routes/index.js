@@ -1,3 +1,4 @@
+var u = require('d4-user');
 var realmUser = require('d4-realmuser');
  
 
@@ -71,6 +72,22 @@ exports.joinRoshamWar = function(req, res){
                                         nextTurn: req.app.get('job').nextInvocation()
                                         });
                             
+            }
+        });
+    } else {
+        res.redirect('/login');
+    }
+};
+
+exports.settings = function (req, res) {
+    if (typeof req.session.userID !== 'undefined') {    
+        u.getUser({_id: req.session.userID}, function(err, data){
+            if (err)
+                res.status(500).json({result:'error', reason: 'Sumtin went very wrong.'});
+            else {
+                data.displayName = req.session.displayName;
+                data.title = 'User Makeover';
+                res.render('userSettings', data);
             }
         });
     } else {

@@ -41,7 +41,7 @@ td p {
   text-align: center; }
 
 #welcome-block {
-  float: left;
+  position: relative;
   margin-top: 0; }
 
 #current-score {

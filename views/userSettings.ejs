@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<title>d4-ideas: settings</title>
+	<title>d4-ideas: <%= title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel='stylesheet' href='/css/style.css' />
@@ -15,10 +15,14 @@
     </script>
 	</head>
 	<body class="user-form theme-scanlines">
-        <div id="cover"><div id="line"><div id="dot"></div></div></div>
+        <% include ./partials/header %>
         <div id="content">
-            <h1><%= title %></h1>
-            <div id="error"></div>
+            <div id="tabs-block">
+				<ul>
+					<li class="active" data-tabid="settings">Manage Settings</li>
+				</ul>
+			</div>
+            <br>
             <div id="settings">
                 <form name="userSettings" action="/updateUser" method="post">
                     <input type="text" name="displayName" placeholder="What name on your tombstone?" value="<%= name %>" autofocus>
@@ -33,12 +37,6 @@
                     <br>
                     <input type="submit" value="Make it so" name="Submit">
                 </form>
-            </div>
-            <div id="theme-widget">
-                <span>Theme:</span>
-                <input type="radio" id="theme0" name="theme-options" value="0" data-themeName="none"><label for="theme0">0</label> | 
-                <input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
-                <input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>
             </div>
         </div>
 	</body>

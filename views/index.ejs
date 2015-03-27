@@ -16,17 +16,8 @@
         <script type="text/javascript" src="/js/moment.min.js"></script>
 	</head>
 	<body class="theme-scanlines" data-uid="<%= userID %>">
-		<div id="cover"><div id="line"><div id="dot"></div></div></div>
-        <div id="error"></div>
+        <% include ./partials/header %>
 		<div id="content">
-			<h3 id="welcome-block">Welcome: <span><%= displayName %></span></h3>
-            <div id="theme-widget">
-                <a id="logout" href='/logout'>Logout</a>
-                <span> | Theme:</span>
-                <input type="radio" id="theme0" name="theme-options" value="0" data-themeName="none"><label for="theme0">0</label> | 
-                <input type="radio" id="theme1" name="theme-options" value="1" data-themeName="scanlines" checked="checked"><label for="theme1">1</label> | 
-                <input type="radio" id="theme2" name="theme-options" value="2" data-themeName="lcd"><label for="theme2">2</label>
-            </div>
             <div id="poison">
                 <h3>Choose your poison...</h3>
                 <ul>

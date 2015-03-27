@@ -89,7 +89,7 @@ app.get('/login', login.loginGet);
 app.post('/login', login.loginPost);
 app.get('/forgotPassword', login.forgotPassword);
 app.get('/logout', users.logout);
-app.get('/userSettings', users.settings); 
+app.get('/userSettings', routes.settings); 
 app.get('/joinRoshamWar', routes.joinRoshamWar);
 app.get('/roshamWar', roshamWar.roshamWar);
 //app.get('/lowerEmails', users.lowerEmails);

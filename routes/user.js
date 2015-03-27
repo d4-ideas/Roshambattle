@@ -52,16 +52,7 @@ exports.logout = function (req, res) {
     res.redirect('/login');
 };
 
-exports.settings = function (req, res) {
-    u.getUser({_id: req.session.userID}, function(err, data){
-        if (err)
-            res.status(500).json({result:'error', reason: 'Sumtin went very wrong.'});
-        else {
-            data.title = 'User Makeover';
-            res.render('userSettings', data);
-        }
-    });
-};
+
 
 //exports.lowerEmails = function(req, res) {
 //    u.userModel.find({}, function(err, docs){
