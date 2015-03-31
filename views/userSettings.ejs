@@ -15,27 +15,30 @@
 	<body class="user-form theme-scanlines">
         <% include ./partials/header %>
         <div id="content">
-            <div id="tabs-block">
+            <div id="tabs-block" >
 				<ul>
-					<li class="active" data-tabid="settings">Manage Settings</li>
+					<li id='usersettingstab' class="active" data-tabid="usersettings-block">Settings</li>
+                    <li id='changepasswordtab' data-tabid="userpassword-block">Password</li>
 				</ul>
 			</div>
             <br>
-            <div id="settings">
+            <div id="usersettings-block"  class="tab-block active">
                     <input type="text" id="name" placeholder="What name on your tombstone?" value="<%= name %>" autofocus>
                     <br>
                     <input type="text" id="email" placeholder="Where to send the e-card?" value="<%= email %>">
                     <br>
                     <input type="text" id="mobile" placeholder="What's your mobile?" value="<%= mobile %>">
                     <br>
-                    <input type="password" name="existingPassword" placeholder="Your Current Security Key">
+                    <input id='submitUserSettings' type="submit" value="Make it so" name="Submit">
+            </div>
+            <div id="userpassword-block"  class="tab-block">
+                    <input id='oldpassword' type="password" name="existingPassword" placeholder="Your Current Security Key">
                     <br>
-                    <input type="password" name="password" placeholder="Your New Security Key">
+                    <input id='newpassword1' type="password" name="password" placeholder="Your New Security Key">
                     <br>
-                    <input type="password" name="confirm" placeholder="Security Key autocorrect validation">
+                    <input id='newpassword2' type="password" name="confirm" placeholder="Security Key autocorrect validation">
                     <br>
-                    <input id='submitUser' type="submit" value="Make it so" name="Submit">
-
+                    <input id='submitUserPassword' type="submit" value="Make it so" name="Submit">
             </div>
         </div>
 	</body>

@@ -101,4 +101,25 @@ describe("d4-user", function() {
            });
         });
     });
+    
+    describe('.verifyPassword', function() {
+       it('should not verify', function (done) {
+           var verify = {userID: upUserID,
+                         password: 'nope'}
+           user.verifyPassword(verify, function (err, data){
+               expect(err).to.be.undefined;
+               expect(data).to.be.false;
+               done();
+           })
+       });
+       it('should verify', function (done) {
+           var verify = {userID: upUserID,
+                         password: 'blah'}
+           user.verifyPassword(verify, function (err, data){
+               expect(err).to.be.undefined;
+               expect(data).to.be.true;
+               done();
+           })
+       });        
+    });
 });

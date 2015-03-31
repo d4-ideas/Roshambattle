@@ -93,6 +93,8 @@ a:focus {
 #taunt-block,
 #design-block,
 #explore-block,
+#usersettings-block,
+#userpassword-block,
 #table-rounds {
   display: none; }
 
@@ -100,6 +102,8 @@ a:focus {
 #leader-block.active,
 #design-block.active,
 #explore-block.active,
+#usersettings-block.active,
+#userpassword-block.active,
 #taunt-block.active {
   display: block; }
 

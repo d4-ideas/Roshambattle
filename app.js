@@ -14,7 +14,7 @@ var leaderBoard = require('d4-roshamleader');
 var routes = require('./routes');
 var users = require('./routes/user');
 var login = require('./routes/login');
-var register = require('./routes/register');
+var roshamUser = require('./routes/roshamUser');
 var processTurn = require ('./routes/processTurn');
 var messages = require('./routes/messages');
 var leaderboard = require('./routes/leaderboard');
@@ -83,8 +83,8 @@ app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/roshambattle', routes.roshambattle);
 app.get('/realms', routes.realms);
-app.get('/register', register.registerGet);
-app.post('/register', register.registerPost);
+app.get('/register', users.registerGet);
+app.post('/register', users.registerPost);
 app.get('/login', login.loginGet);
 app.post('/login', login.loginPost);
 app.get('/forgotPassword', login.forgotPasswordGet);
@@ -101,9 +101,13 @@ app.io.route('taunt', messages.taunt);
 app.io.route('getChats', messages.getChats);
 app.io.route('addPlus', messages.addPlus);
 app.io.route('addMinus', messages.addMinus);
-app.io.route('getUserScore', users.getUserScore);
-app.io.route('getTurns', users.getTurns);
+
+app.io.route('getUserScore', roshamUser.getUserScore);
+app.io.route('getTurns', roshamUser.getTurns);
+
 app.io.route('updateUser', users.updateUser);
+app.io.route('changePassword', users.changePassword);
+
 app.io.route('getLeaderBoard', leaderboard.getLeaderBoard);
 app.get('/generateTurn', processTurn.generateTurn);
 
