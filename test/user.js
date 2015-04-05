@@ -3,7 +3,8 @@ var expect = require("chai").expect;
 var user = require("d4-user");
 var testUser = {emailAddress: 'TestUser@email.com',
                     password: 'testuser',
-                    displayName: 'TestUser'},
+                    displayName: 'TestUser'
+               },
     upUserID;
 
 before(function(done){
@@ -60,6 +61,24 @@ describe("d4-user", function() {
        });       
    });
     
+    describe('.update()', function() {
+        it('should update the user', function (done) {
+            var update = {userID: upUserID,
+                          name: 'Billy Bob Update',
+                          email: 'bb@gmail.com',
+                          mobile: '202-412-0502',
+                          password: 'blah',
+                          token: {tokenDate: Date.now(), 
+                                  tokenKey: 'myToken'} 
+                         }
+            user.update(update, function(err, data){
+                expect(err).to.be.undefined;
+                expect(data).to.be.ok;                       
+                done();
+           });
+        });
+    });
+    
     describe('.getUser()', function() {
         it('should return a password for a valid emailAddress', function(done) {
             user.getUser({email: testUser.emailAddress}, function(err, data){
@@ -68,6 +87,14 @@ describe("d4-user", function() {
                 done();
             });
         });
+        it('should return a password for a valid tokenKey', function(done) {
+            user.getUser({tokenKey: 'myToken'}, function(err, data){
+console.log(err);                
+                expect(err).to.be.undefined;
+                expect(data).to.be.ok;
+                done();
+            });
+        });        
     });
     
     describe('.getUserID()', function(){
@@ -87,20 +114,7 @@ describe("d4-user", function() {
         });
     });
     
-    describe('.update()', function() {
-        it('should update the user', function (done) {
-            var update = {userID: upUserID,
-                          name: 'Billy Bob Update',
-                          email: 'bb@gmail.com',
-                          mobile: '202-412-0502',
-                          password: 'blah'}     
-            user.update(update, function(err, data){
-                expect(err).to.be.undefined;
-                expect(data).to.be.ok;
-                done();
-           });
-        });
-    });
+
     
     describe('.verifyPassword', function() {
        it('should not verify', function (done) {
