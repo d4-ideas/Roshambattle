@@ -24,8 +24,6 @@ exports.registerPost = function (req, res) {
         ourContent = {emailAddress: req.body.emailAddress,
                       password: hashedPassword,
                       displayName: req.body.displayName};
-    console.log('call register');
-
     u.register(ourContent, function(err, data){
         if (err){
             //should improve error cases
@@ -43,8 +41,6 @@ exports.logout = function (req, res) {
 };
 
 exports.updateUser = function (req){
-    console.log(req.data);
-
     var update = {userID: req.session.userID,
               name: req.data.name,
               email: req.data.email,
@@ -52,13 +48,9 @@ exports.updateUser = function (req){
     
     u.update(update, function(err, data){
         if (err) {
-console.log('err');
-console.log(err);
             req.io.emit('updateUserFailure', err)
         }
         else {
-console.log('success');
-console.log(data);
             req.io.emit('updateUserSuccess', data);
         }
    });
@@ -66,12 +58,10 @@ console.log(data);
 };
     
 exports.changePassword = function (req) {
-console.log(req.data);     
     if (req.data.oldpassword && req.data.newpassword){
         var oldHash = hashPwd(req.data.oldpassword),
-            newHash = hashPwd(req.data.newpassword);
-        var verify = {userID: req.session.userID,
-                      password: oldHash};
+            newHash = hashPwd(req.data.newpassword),
+            verify = {userID: req.session.userID, password: oldHash};
         
         u.verifyPassword (verify, function (err, data) {
             if (err){
