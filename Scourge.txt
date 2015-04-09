@@ -1,0 +1,88 @@
+splash screen
+	distract while it's loading
+
+MVP
+
+Map image
+nodes & connections
+way to move ship between nodes
+ship icon
+Ship info
+	Flag
+	Hull
+	Sail
+	Cannons
+	Crew
+	Cargo
+Your info
+	arg
+	gold
+	infamy
+	nation status
+Your hand
+	combat
+	harbor
+Node metadata
+Harbor information
+Diplomacy
+Quests
+	Treasure map
+	smugling
+	Kill x ships
+Sea Events
+	Rumors
+	Ships
+	Upgrades
+	Diplomacy
+	Random bad things
+Harbor Events
+	Constabulary
+	Rumors
+	Upgrades
+	Random bad things
+	Job Contracts
+	Diplomacy
+Harbor Actions
+Combat
+Flag
+Weather
+Sounds
+
+Record number of turns
+
+Sequence of events
+	movement
+		weather
+		change flag
+		change ship location
+	harbor action
+		See governor
+			letter of marque
+		Tavern
+			recruit
+			trade rumors for quests
+		Market
+			trade cargo
+			repair ship
+		Quest action
+	Treasure Locations
+		Treasure map
+		Bury Treasure
+	event
+
+
+Views
+	map
+	ship
+	you
+	harbor
+	combat
+	Overview / Info
+	Help
+	Toast / Events
+
+Map from Kai
+Book to Mike
+New route
+New view & subview
+Forgot password
