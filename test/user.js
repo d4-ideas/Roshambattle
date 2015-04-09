@@ -80,14 +80,14 @@ describe("d4-user", function() {
     });
     
     describe('.getUser()', function() {
-        it('should return a password for a valid emailAddress', function(done) {
+        it('should return a user for a valid emailAddress', function(done) {
             user.getUser({email: testUser.emailAddress}, function(err, data){
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;
                 done();
             });
         });
-        it('should return a password for a valid tokenKey', function(done) {
+        it('should return a user for a valid tokenKey', function(done) {
             user.getUser({tokenKey: 'myToken'}, function(err, data){
 console.log(err);                
                 expect(err).to.be.undefined;

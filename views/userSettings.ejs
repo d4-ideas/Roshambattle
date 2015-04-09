@@ -6,13 +6,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel='stylesheet' href='/css/style.css' />
     <link rel='stylesheet' href='/css/scanlines.css' />
+        
     <script src="/js/md5-min.js"></script>
     <% include ./partials/commonJS %>
     <script type="text/javascript" src="/js/userSettings.js"></script>
     <script>
     </script>
 	</head>
-	<body class="user-form theme-scanlines">
+	<body class="theme-scanlines">
         <% include ./partials/header %>
         <div id="content">
             <div id="tabs-block" >
@@ -22,7 +23,7 @@
 				</ul>
 			</div>
             <br>
-            <div id="usersettings-block"  class="tab-block active">
+            <div id="usersettings-block"  class="user-form tab-block active">
                     <input type="text" id="name" placeholder="What name on your tombstone?" value="<%= name %>" autofocus>
                     <br>
                     <input type="text" id="email" placeholder="Where to send the e-card?" value="<%= email %>">
@@ -31,7 +32,7 @@
                     <br>
                     <input id='submitUserSettings' type="submit" value="Make it so" name="Submit">
             </div>
-            <div id="userpassword-block"  class="tab-block">
+            <div id="userpassword-block"  class="user-form tab-block">
                     <input id='oldpassword' type="password" name="existingPassword" placeholder="Your Current Security Key">
                     <br>
                     <input id='newpassword1' type="password" name="password" placeholder="Your New Security Key">
