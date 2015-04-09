@@ -47,35 +47,40 @@ exports.forgotPasswordGet = function (req, res) {
 }
 
 exports.forgotPasswordPost = function (req, res) {
-    user.getUser({email: req.body.emailAddress.toLowerCase()}, function(err, data){
+    var uuid = require('node-uuid');
+    user.getUser({email: req.body.emailAddress.toLowerCase()}, function(err, theUser){
         if (err) {
             console.log('someone wants to reset ' + req.body.emailAddress + ', but we did not find it in the database');
             console.log(err);
             res.status(500).json({result:'error', reason: 'No Such Address'});
         }
         else {
-            var transporter = nodemailer.createTransport(directTransport());
-
-            var mailOptions= {
-               from: "The FSM <fsm@d4-ideas.com>", // sender address.
-               to: req.body.emailAddress, // receiver
-               subject: "d4-ideas Password Reset <DO NOT REPLY>", // subject
-               text: "We Got This Far" // body
+            var transporter = nodemailer.createTransport(directTransport()),
+                token = uuid.v4(),
+                messageText = "Please visit http://d4-ideas.com/remember?token=" + token + " to reset your password.";
+                mailOptions = {
+                    from: "The FSM <fsm@d4-ideas.com>", // sender address.
+                    to: req.body.emailAddress, // receiver
+                    subject: "d4-ideas Password Reset <DO NOT REPLY>", // subject
+                    text: messageText // body
             };
+            theUser.token = token;
+            user.update(theUser, function(){
+                console.log('password reset ready');
+                transporter.sendMail(mailOptions, function(error, response){  //callback
+                   if (error) {
+                       console.log(error);
+                    }
+                    else {
+                        console.log("Message sent: ");
+                        console.log(response);
+                        res.json({result: 'ok'});
+                   }
 
-            console.log('password reset ready');
-        //    transporter.sendMail(mailOptions, function(error, response){  //callback
-        //       if (error) {
-        //           console.log(error);
-        //       } else {
-        //           console.log("Message sent: ");
-        //           console.log(response);
-        //       }
-        //
-        //       transporter.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
-        //    });
+                   transporter.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
+                });
 
-            res.json({result: 'ok'});
+            })
         }
     });
 };
