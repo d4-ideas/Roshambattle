@@ -64,7 +64,7 @@ exports.forgotPasswordPost = function (req, res) {
                     subject: "d4-ideas Password Reset <DO NOT REPLY>", // subject
                     text: messageText // body
             };
-            theUser.token = t   oken;
+            theUser.token = token;
             user.update(theUser, function(){
                 console.log(mailOptions);
                 transporter.sendMail(mailOptions, function(error, response){  //callback
