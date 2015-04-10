@@ -1,6 +1,6 @@
 var nodemailer = require("nodemailer");
-var directTransport = require('nodemailer-direct-transport');
-var transporter = nodemailer.createTransport(directTransport());
+var sendmailTransport = require('nodemailer-sendmail-transport');
+var transporter = nodemailer.createTransport(sendmailTransport());
 
 var mailOptions= {
    from: "Anthony Sheetz <asheetz2000@gmail.com>", // sender address.
