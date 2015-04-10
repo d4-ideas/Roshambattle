@@ -68,7 +68,8 @@ exports.forgotPasswordPost = function (req, res) {
             user.update(theUser, function(){
                 console.log('password reset ready');
                 transporter.sendMail(mailOptions, function(error, response){  //callback
-                   if (error) {
+                    console.log("in transporter");
+                    if (error) {
                        console.log(error);
                     }
                     else {
