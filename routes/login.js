@@ -1,6 +1,6 @@
-var user = require('d4-user');
-var nodemailer = require("nodemailer");
-var directTransport = require('nodemailer-direct-transport');
+var user = require('d4-user'),
+    nodemailer = require("nodemailer"),
+    sendmailTransport = require('nodemailer-sendmail-transport');
 
 exports.loginGet = function (req, res) {
     //Should we check session state and pass through if the user already has a valid session?
@@ -55,7 +55,7 @@ exports.forgotPasswordPost = function (req, res) {
             res.status(500).json({result:'error', reason: 'No Such Address'});
         }
         else {
-            var transporter = nodemailer.createTransport(directTransport()),
+            var transporter = nodemailer.createTransport(sendmailTransport()),
                 token = uuid.v4(),
                 messageText = "Please visit http://d4-ideas.com/remember?token=" + token + " to reset your password.";
                 mailOptions = {
@@ -64,7 +64,7 @@ exports.forgotPasswordPost = function (req, res) {
                     subject: "d4-ideas Password Reset <DO NOT REPLY>", // subject
                     text: messageText // body
             };
-            theUser.token = token;
+            theUser.token = t   oken;
             user.update(theUser, function(){
                 console.log(mailOptions);
                 transporter.sendMail(mailOptions, function(error, response){  //callback
@@ -98,13 +98,12 @@ exports.rememberPasswordPost = function (req, res) {
             res.status(500).json({result:'error', reason: 'No Such Address'});
         }
         else {
-            var transporter = nodemailer.createTransport(directTransport());
-
-            var mailOptions= {
-               from: "The FSM <fsm@d4-ideas.com>", // sender address.
-               to: req.body.emailAddress, // receiver
-               subject: "d4-ideas Password Reset <DO NOT REPLY>", // subject
-               text: "We Got This Far" // body
+            var transporter = nodemailer.createTransport(sendmailTransport()),
+                mailOptions= {
+                    from: "The FSM <fsm@d4-ideas.com>", // sender address.
+                    to: req.body.emailAddress, // receiver
+                    subject: "d4-ideas Password Reset <DO NOT REPLY>", // subject
+                    text: "We Got This Far" // body
             };
 
             console.log('password reset ready');
