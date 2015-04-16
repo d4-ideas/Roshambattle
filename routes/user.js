@@ -39,7 +39,7 @@ exports.logout = function (req, res) {
 };
 
 exports.updateUser = function (req) {
-    var update = {userID: req.session.userID,
+    var update = {_id: req.session.userID,
               name: req.data.name,
               email: req.data.email,
               mobile: req.data.mobile};
@@ -58,7 +58,7 @@ exports.changePassword = function (req) {
     if (req.data.oldpassword && req.data.newpassword) {
         var oldHash = hashPwd(req.data.oldpassword),
             newHash = hashPwd(req.data.newpassword),
-            verify = {userID: req.session.userID, password: oldHash};
+            verify = {_id: req.session.userID, password: oldHash};
         
         u.verifyPassword(verify, function (err, data) {
             if (err) {
