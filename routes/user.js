@@ -1,14 +1,12 @@
-var u = require('d4-user');
+var u = require('d4-user'),
+    hashPwd = function (password) {
+        var crypto = require('crypto'),
+            shaSum = crypto.createHash('md5');
+        password = password + 'd4bacon';
 
-
-var hashPwd = function (password) {
-    var crypto = require('crypto'),
-        shaSum = crypto.createHash('md5');
-    password = password + 'd4bacon';
-    
-    shaSum.update(password);
-    return shaSum.digest('hex');
-};
+        shaSum.update(password);
+        return shaSum.digest('hex');
+    };
 
 exports.registerGet = function (req, res) {
     res.render('register', { title: 'Registration' });
