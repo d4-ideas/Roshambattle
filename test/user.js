@@ -71,6 +71,22 @@ describe("d4-user", function() {
                           token: {tokenDate: Date.now(), 
                                   tokenKey: 'myToken'} 
                          }
+            user.update(update, function(err, data){
+console.log(data);                
+                expect(err).to.be.undefined;
+                expect(data).to.be.ok;                       
+                done();
+           });
+        });
+        it('should update the user2', function (done) {
+            var update = {_id: upUserID,
+                          name: 'Billy Bob Update',
+                          email: 'bb@gmail.com',
+                          mobile: '202-412-0502',
+                          password: 'blah2',
+                          token: {tokenDate: Date.now(), 
+                                  tokenKey: 'myToken'} 
+                         }
             user.getUser({email: testUser.emailAddress}, function(err, data){
             user.update(data, function(err, data){
 console.log(data);                
@@ -84,7 +100,7 @@ console.log(data);
 //                expect(data).to.be.ok;                       
 //                done();
            });
-        });
+        });        
     });
     
     describe('.getUser()', function() {
