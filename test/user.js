@@ -63,18 +63,26 @@ describe("d4-user", function() {
     
     describe('.update()', function() {
         it('should update the user', function (done) {
-            var update = {userID: upUserID,
+            var update = {_id: upUserID,
                           name: 'Billy Bob Update',
                           email: 'bb@gmail.com',
                           mobile: '202-412-0502',
-                          password: 'blah',
+                          password: 'blah2',
                           token: {tokenDate: Date.now(), 
                                   tokenKey: 'myToken'} 
                          }
-            user.update(update, function(err, data){
+            user.getUser({email: testUser.emailAddress}, function(err, data){
+            user.update(data, function(err, data){
+console.log(data);                
                 expect(err).to.be.undefined;
                 expect(data).to.be.ok;                       
                 done();
+            });
+//            user.update(update, function(err, data){
+//console.log(data);                
+//                expect(err).to.be.undefined;
+//                expect(data).to.be.ok;                       
+//                done();
            });
         });
     });
@@ -118,7 +126,7 @@ console.log(err);
     
     describe('.verifyPassword', function() {
        it('should not verify', function (done) {
-           var verify = {userID: upUserID,
+           var verify = {_id: upUserID,
                          password: 'nope'}
            user.verifyPassword(verify, function (err, data){
                expect(err).to.be.undefined;
@@ -127,8 +135,8 @@ console.log(err);
            })
        });
        it('should verify', function (done) {
-           var verify = {userID: upUserID,
-                         password: 'blah'}
+           var verify = {_id: upUserID,
+                         password: 'blah2'}
            user.verifyPassword(verify, function (err, data){
                expect(err).to.be.undefined;
                expect(data).to.be.true;
