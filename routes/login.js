@@ -65,7 +65,7 @@ exports.forgotPasswordPost = function (req, res) {
         else {
             var transporter = nodemailer.createTransport(sendmailTransport()),
                 tokenKey = uuid.v4(),
-                messageText = "Please visit http://d4-ideas.com/rememberPassword?tokenKey=" + tokenKey + " to reset your password.";
+                messageText = "Please visit http://d4-ideas.com/rememberPassword?tokenKey=" + tokenKey + "&email=" + req.body.emailAddress + " to reset your password.";
                 mailOptions = {
                     from: "The FSM <fsm@d4-ideas.com>", // sender address.
                     to: req.body.emailAddress, // receiver
@@ -73,7 +73,6 @@ exports.forgotPasswordPost = function (req, res) {
                     text: messageText // body
             };
             theUser.token = {tokenDate: Date.now(), tokenKey: tokenKey};
-            console.log(theUser);
             user.update(theUser, function(err, data){
                 if (err){
                     console.log('shit hitting fan');
@@ -87,6 +86,7 @@ exports.forgotPasswordPost = function (req, res) {
                         }
                         else {
                             console.log("Message sent: ");
+                            console.log(mailOptions);
                             console.log(response);
                             res.json({result: 'ok'});
                        }
@@ -101,15 +101,29 @@ exports.forgotPasswordPost = function (req, res) {
 
 exports.rememberPasswordGet = function (req, res) {
 //    console.log(req.query);
-    var tokenKey = req.query.tokenKey;
+    var tokenKey = req.query.tokenKey,
+        givenEmail = req.query.email;
 //    console.log(tokenKey);
-    user.getUser({tokenKey: tokenKey}, function (err, data){
+//    console.log(givenEmail);
+    user.getUser({tokenKey: tokenKey}, function (err, foundUser){
+//        console.log(foundUser);
         if (err || typeof tokenKey === 'undefined' || tokenKey ==='') {
             console.log('Someone is trying to reset a password with a bad tokenKey: ' + tokenKey);
             console.log(err);
             res.render('rememberPassword', {title: 'Remember Password', tokenKey: '', error: 'Sorry, can not find that tokenKey'});
         }
+        else if (typeof givenEmail === 'undefined' || givenEmail === '') {
+            console.log('Someone is trying to reset a password without giving us an email');
+            res.render('rememberPassword', {title: 'Remember Password', tokenKey: '', error: 'Sorry, we need an email.'});
+        }
+        else if (foundUser.email !== givenEmail){
+            console.log ('got a mismatch on user and token');
+            console.log(tokenKey);
+            console.log(givenEmail);
+            res.render('rememberPassword', {title: 'Remember Password', tokenKey: '', error: 'email and token do not match'});
+        }
         else {
+            console.log('Woot! everything checks out for a password reset');
             res.render('rememberPassword', { title: 'Remember Password', tokenKey: tokenKey });
         }
     });
@@ -127,7 +141,7 @@ exports.rememberPasswordPost = function (req, res) {
         else {
             theUser.token.tokenKey='';
             theUser.password=hashPwd(req.body.password);
-            console.log(theuser);
+            console.log(theUser);
             user.update(theUser, function(error, data){
                 if (err){
                     console.log('Something went wrong resetting a password');
