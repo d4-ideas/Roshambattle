@@ -8,6 +8,25 @@ var user = require('d4-user'),
 
         shaSum.update(password);
         return shaSum.digest('hex');
+    },
+    // single function to check if the user supplied good info for a password reset
+    badResetItems = function(checkO, userO, callback){
+        if (typeof userO === 'undefined'){
+            callback("We'll need the correct email and token, por favor.");
+        }
+        //good token
+        else if (checkO.token === userO.token.tokenKey){
+            if (checkO.email === userO.email) {
+                callback(false);
+            }
+            else {
+                callback("Sorry, that token and email do not match.");
+            }
+        }
+        //got a bad token
+        else {
+            callback("Sorry, that token and email do not match.");
+        }
     };
 
 exports.loginGet = function (req, res) {
@@ -56,7 +75,7 @@ exports.forgotPasswordGet = function (req, res) {
 
 exports.forgotPasswordPost = function (req, res) {
     var uuid = require('node-uuid');
-    user.getUser({email: req.body.emailAddress.toLowerCase()}, function(err, theUser){
+    user.getUser({email: req.body.emailAddress.toLowerCase()}, function(err, foundUser){
         if (err) {
             console.log('someone wants to reset ' + req.body.emailAddress + ', but we did not find it in the database');
             console.log(err);
@@ -72,8 +91,8 @@ exports.forgotPasswordPost = function (req, res) {
                     subject: "d4-ideas Password Reset <DO NOT REPLY>", // subject
                     text: messageText // body
             };
-            theUser.token = {tokenDate: Date.now(), tokenKey: tokenKey};
-            user.update(theUser, function(err, data){
+            foundUser.token = {tokenDate: Date.now(), tokenKey: tokenKey};
+            user.update(foundUser, function(err, data){
                 if (err){
                     console.log('shit hitting fan');
                     console.log(err);
@@ -100,59 +119,55 @@ exports.forgotPasswordPost = function (req, res) {
 };
 
 exports.rememberPasswordGet = function (req, res) {
-//    console.log(req.query);
-    var tokenKey = req.query.tokenKey,
-        givenEmail = req.query.email;
-//    console.log(tokenKey);
-//    console.log(givenEmail);
-    user.getUser({tokenKey: tokenKey}, function (err, foundUser){
-//        console.log(foundUser);
-        if (err || typeof tokenKey === 'undefined' || tokenKey ==='') {
-            console.log('Someone is trying to reset a password with a bad tokenKey: ' + tokenKey);
-            console.log(err);
-            res.render('rememberPassword', {title: 'Remember Password', tokenKey: '', error: 'Sorry, can not find that tokenKey'});
-        }
-        else if (typeof givenEmail === 'undefined' || givenEmail === '') {
-            console.log('Someone is trying to reset a password without giving us an email');
-            res.render('rememberPassword', {title: 'Remember Password', tokenKey: '', error: 'Sorry, we need an email.'});
-        }
-        else if (foundUser.email !== givenEmail){
-            console.log ('got a mismatch on user and token');
-            console.log(tokenKey);
-            console.log(givenEmail);
-            res.render('rememberPassword', {title: 'Remember Password', tokenKey: '', error: 'email and token do not match'});
-        }
-        else {
-            console.log('Woot! everything checks out for a password reset');
-            res.render('rememberPassword', { title: 'Remember Password', tokenKey: tokenKey });
-        }
+    var supplied = {token: req.query.tokenKey || '', email: req.query.email || ''},
+        tokenKey,
+        givenEmail;
+    
+    user.getUser({tokenKey: supplied.token}, function (err, foundUser){
+        badResetItems(supplied, foundUser, function(errorMessage){
+            if (errorMessage){
+                console.log(errorMessage);
+//                console.log('bad reset info');
+                res.render('rememberPassword', {title: 'Remember Password', tokenKey: '', givenEmail: supplied.email, error: errorMessage});
+            }
+            else {
+//                console.log('Woot! everything checks out for a password reset');
+                res.render('rememberPassword', { title: 'Remember Password', tokenKey: supplied.token, givenEmail: supplied.email, error: ''});
+            }
+        });
     });
 }
 
 exports.rememberPasswordPost = function (req, res) {
-//    console.log(req.body);
-    var tokenKey = req.body.tokenKey;
-    user.getUser({tokenKey: tokenKey}, function (err, theUser){
-        if (err) {
-            console.log('Something went wrong when trying to reset a password.');
+    var supplied = {token: req.body.tokenKey || '', email: req.body.email || ''},
+        tokenKey,
+        givenEmail;
+    
+    user.getUser({tokenKey: supplied.token}, function (err, foundUser){
+        if (typeof err !== 'undefined'){
             console.log(err);
-            res.render('rememberPassword', {title: 'Remember Password', tokenKey: '', error: 'Sorry, can not find that tokenKey'});
+            res.status(500).json({result:'error', reason: 'That email and token do not match.'});
         }
         else {
-            theUser.token.tokenKey='';
-            theUser.password=hashPwd(req.body.password);
-            console.log(theUser);
-            user.update(theUser, function(error, data){
-                if (err){
-                    console.log('Something went wrong resetting a password');
-                    console.log(err);
-                    res.status(500).json({result:'error', reason: 'Yeah, something went wrong'});
+            badResetItems(supplied, foundUser, function(errorMessage){
+                if (errorMessage){
+//                    console.log(errorMessage);
+                    res.status(500).json({result:'error', reason: errorMessage});
                 }
                 else {
-                    console.log('woot! Passord reset!');
-                    res.json({result: 'ok'});
-                };
+                    user.update(foundUser, function(error, data){
+                        if (err){
+                            console.log('Something went wrong resetting a password');
+                            console.log(err);
+                            res.status(500).json({result:'error', reason: 'Yeah, something went wrong'});
+                        }
+                        else {
+                            console.log('woot! Passord reset!');
+                            res.json({result: 'ok'});
+                        };
+                    });
+                }
             });
-        }
+        };
     });
 };
