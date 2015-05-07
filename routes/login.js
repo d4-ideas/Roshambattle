@@ -32,7 +32,7 @@ var user = require('d4-user'),
 exports.loginGet = function (req, res) {
     //Should we check session state and pass through if the user already has a valid session?
     //console.log('get login');
-    res.render('login', { title: 'Login', error: '' });
+    res.render('login', { title: 'Login' });
 };
 
 exports.loginPost = function (req, res) {
@@ -70,7 +70,7 @@ exports.loginPost = function (req, res) {
 };
 
 exports.forgotPasswordGet = function (req, res) {
-    res.render('forgotPassword', { title: 'Forgot Password' });
+    res.render('forgotPassword', { title: 'Forgot Password', error: '' });
 }
 
 exports.forgotPasswordPost = function (req, res) {
