@@ -148,13 +148,21 @@ exports.rememberPasswordPost = function (req, res) {
             console.log(err);
             res.status(500).json({result:'error', reason: 'That email and token do not match.'});
         }
+        if (typeof req.body.password ==='undefined' || req.body.password == ''){
+            console.log('blank password provided in password reset');
+            res.status(500).json({result:'error', reason: 'We are gonna need a new password.'});
+        }
         else {
             badResetItems(supplied, foundUser, function(errorMessage){
                 if (errorMessage){
-//                    console.log(errorMessage);
                     res.status(500).json({result:'error', reason: errorMessage});
                 }
                 else {
+                    foundUser.token.tokenKey='';
+                    foundUser.token.tokenDate='';
+                    foundUser.password=hashPwd(req.body.password);
+                    console.log(foundUser);
+
                     user.update(foundUser, function(error, data){
                         if (err){
                             console.log('Something went wrong resetting a password');
